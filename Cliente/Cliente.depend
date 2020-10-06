@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1601938277 source:c:\users\notebook\codeblock\codigo c++\cliente\client.cpp
+	"Client.h"
+
+1601938233 c:\users\notebook\codeblock\codigo c++\cliente\client.h
+	<iostream>
+	<string.h>
+	<winsock2.h>
+	<fstream>
+
+1601938154 source:c:\users\notebook\codeblock\codigo c++\cliente\main.cpp
+	"Client.h"
+	<iostream>
+	<winsock2.h>
+
