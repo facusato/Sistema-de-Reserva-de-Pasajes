@@ -13,3 +13,17 @@
 	<iostream>
 	<winsock2.h>
 
+1602098640 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\main.cpp
+	"Client.h"
+	<iostream>
+	<winsock2.h>
+
+1602011187 c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.h
+	<iostream>
+	<string.h>
+	<winsock2.h>
+	<fstream>
+
+1602093801 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.cpp
+	"Client.h"
+

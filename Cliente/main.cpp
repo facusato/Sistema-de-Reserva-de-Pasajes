@@ -9,8 +9,8 @@ int main()
 {
     Cliente cliente;
     char comando[1024] = "\0";
-    string ruta = "";
-    string mensaje = "";
+    //string ruta = "";
+    string mensaje,ruta,usuario,password = "";
     int flagRecibir = 1;
     int fLagConexion;
     int respuesta;
@@ -18,13 +18,13 @@ int main()
     int puerto;
 
     do{
-        barraCarga();
+        barraCargando();
         system("cls");
         cout<< "...BIENVENIDO AL CLIENTE..."<<endl;
-        cout<< "Ingrese el IP del servidor"<<endl;
+        cout<< "INGRESE EL IP DEL SERVIDOR"<<endl;
         cout<< "IP: "; cin>>ws; cin>> ip; cout<< endl;
-        cout<< "Ingrese el puerto"<< endl;
-        cout<< "Puerto: "; cin>>ws; cin>> puerto;
+        cout<< "INGRESE EL PUERTO"<< endl;
+        cout<< "PUERTO: "; cin>>ws; cin>> puerto;
         crearCliente(cliente,ip,puerto);
         fLagConexion = cliente.conectado;
             if(fLagConexion != 0 ){
@@ -34,10 +34,14 @@ int main()
     }while(fLagConexion != 0);
 
     recibirMensaje(cliente);
-    enviarMensaje(cliente,"Pablo");
+    cout<<"Ingrese el nombre de usuario \n"<<endl;
+    cin>>usuario;
+    enviarMensaje(cliente,usuario);
     Sleep(1000);
     recibirMensaje(cliente);
-    enviarMensaje(cliente,"1234");
+    cout<<"Ingrese el password \n"<<endl;
+    cin>>password;
+    enviarMensaje(cliente,password);
     Sleep(1000);
 
 

@@ -26,6 +26,44 @@ void crearServidor(Servidor &servidor,int puerto){
 }
 
 
+bool validarCredencial(Servidor &servidor){
+    servidor.buffer[0] = '\0';
+    string usuario;
+    string password;
+    bool valido=false;
+    /**Esta rutina lee datos desde un socket conectado es decir recibe el msj*/
+    recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
+    usuario=servidor.buffer;
+    memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    enviarMensaje(servidor,"Ingrese password");
+    recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
+    password=servidor.buffer;
+    ifstream archivo("credenciales.txt");
+        if(archivo && archivo.is_open()){
+            string linea;
+            string linea2;
+            stringstream ss;
+            while(archivo.good()){
+                    //Nombre del usuario
+                    getline(archivo, linea, ';');
+                    getline(archivo, linea2);
+                    if( (linea==usuario) && (linea2==password)){
+                        cout<<"correcto"<<endl;
+                        valido=true;
+                    }
+                    else{
+                        cout<<"incorrecto"<<endl;
+                    }
+                   //cout<<linea<<endl;
+                    //ss.clear();
+        }
+        archivo.close();
+    }
+    memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    return valido;
+}
+
+
 int recibirMensaje(Servidor &servidor){
       servidor.buffer[0] = '\0';
       int retorno;

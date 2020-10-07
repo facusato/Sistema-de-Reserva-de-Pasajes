@@ -2,6 +2,7 @@
 #include <string>
 #include <winsock2.h>
 #include <fstream>
+#include <sstream>
 #ifndef SERVER_H_INCLUDED
 
 using namespace std;
@@ -19,6 +20,8 @@ typedef struct{
 void crearServidor(Servidor &servidor,int puerto);
 
 int recibirMensaje(Servidor &servidor);
+
+bool validarCredencial(Servidor &servidor);
 
 void enviarMensaje(Servidor &servidor,string mensaje);
 

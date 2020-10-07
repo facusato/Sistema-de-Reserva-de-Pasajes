@@ -1,6 +1,8 @@
 #include <iostream>
 #include <winsock2.h>
 #include "Server.h"
+#include <sstream>
+#include <fstream>
 using namespace std;
 
 int main()
@@ -18,25 +20,21 @@ int main()
     cout<< "...BIENVENIDO AL SERVIDOR..."<<endl;
     cout<< "Ingrese el puerto: "; cin>>ws; cin>> puerto;
     crearServidor(servidor,puerto);
-
     enviarMensaje(servidor,"Ingrese usuario");
     Sleep(1000);
-    recibirMensaje(servidor);
-    enviarMensaje(servidor,"Ingrese password");
+    validarCredencial(servidor);
     Sleep(1000);
-    recibirMensaje(servidor);
 
 
 
-        while (comando[0] != 'F' && fLagConexion != -1)
+/*
+        while (comando[0] != 'F' && fLagConexion != -1 )
         {
             if (flagRecibir == 0)
             {
                 menu();
                 Sleep(400);
-                //ws guarda la opcion elegida en el menu
                 cin >> ws;
-                //Leemos la cadena ingresada por teclado
                 cin.getline(comando, sizeof(comando));
                 Sleep(400);
 
@@ -73,7 +71,7 @@ int main()
             }
             flagRecibir = 0;
         }
-    }
+    }*/
 
 
     cout<<endl;
