@@ -35,6 +35,6 @@ string msj(char* grupo);
 
 void barraCargando();
 
-void menu();
+void menu(Cliente &cliente);
 
 #endif // CLIENT_H_INCLUDED

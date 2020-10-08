@@ -141,21 +141,21 @@ string msj(char* grupo){
     return cadena;
 }
 
-void menu(){
+void menu(Cliente &cliente){
     int opcion;
     cout<< "\n\n";
     cout<<"---BIENVENIDOS AL SISTEMA DE VENTA DE PASAJES---"<<endl;
     cout<<"---DESTINO BUENOS AIRES - MAR DEL PLATA---"<<endl;
     cout<<"\n"<<endl;
-    cout<<"1- ALTA DE SERVICIO "<<endl;
-    cout<<"2- GESTIONAR PASAJES "<<endl;
-    cout<<"3- VER REGISTRO DE ACTIVIDADES "<<endl;
-    cout<<"4- CERRAR SESION "<<endl;
+    cout<<" 1- ALTA DE SERVICIO \n"<<endl;
+    cout<<" 2- GESTIONAR PASAJES \n"<<endl;
+    cout<<" 3- VER REGISTRO DE ACTIVIDADES \n"<<endl;
+    cout<<" 4- CERRAR SESION \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
     switch(opcion){
                case 1:
-                   ;
+                   enviarMensaje(cliente,"hola pipi");
                break;
                case 2:
                    ;
@@ -170,6 +170,7 @@ void menu(){
                    cout << "-------- TRABAJO PRACTICO CUATRIMESTRAL -------" << endl;
                    cout << "-----------------------------------------------\n" << endl;
                    cout << "MUCHAS GRACIAS POR UTILIZAR LA APLICACION" << endl;
+                   cerrarSocket(cliente);
                break;
                default:
                    system("cls");
@@ -177,7 +178,7 @@ void menu(){
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
                    cout << "MENSAJE: LA OPCION INGRESADA ES INEXISTENTE, INTENTE NUEVAMENTE.";
-                   Sleep(3000);
+                   Sleep(1000);
                break;
     }
 }
