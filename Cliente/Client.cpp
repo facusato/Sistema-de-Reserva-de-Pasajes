@@ -42,8 +42,7 @@ int recibirMensaje(Cliente &cliente){
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
             retorno= 2;
         }
-        else
-        {
+        else{
             cout << "\nEl servidor dice: " << cliente.buffer << endl;
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
             retorno= 0;
@@ -142,17 +141,47 @@ string msj(char* grupo){
     return cadena;
 }
 
-void menu(){
+void menu(Cliente &cliente){
+    int opcion;
     cout<< "\n\n";
     cout<<"---BIENVENIDOS AL SISTEMA DE VENTA DE PASAJES---"<<endl;
     cout<<"---DESTINO BUENOS AIRES - MAR DEL PLATA---"<<endl;
-    cout<<"---SELECCIONE LA OPCION DESEADA---" <<endl;
-    cout<<" ALTA DE SERVICIO "<<endl;
-    cout<<" GESTIONAR PASAJES "<<endl;
-    cout<<" VER REGISTRO DE ACTIVIDADES "<<endl;
-    cout<<" CERRAR SESION "<<endl;
+    cout<<"\n"<<endl;
+    cout<<" 1- ALTA DE SERVICIO \n"<<endl;
+    cout<<" 2- GESTIONAR PASAJES \n"<<endl;
+    cout<<" 3- VER REGISTRO DE ACTIVIDADES \n"<<endl;
+    cout<<" 4- CERRAR SESION \n"<<endl;
+    cout << "\n INGRESE LA OPCION DESEADA: ";
+    cin>>opcion;
+    switch(opcion){
+               case 1:
+                   enviarMensaje(cliente,"hola pipi");
+               break;
+               case 2:
+                   ;
+               break;
+               case 3:
+                   ;
+               break;
+               case 4:
+                   system("cls");
+                   cout << "-----------------------------------------------" << endl;
+                   cout << "-- CATEDRA REDES Y COMUNICACIONES --" << endl;
+                   cout << "-------- TRABAJO PRACTICO CUATRIMESTRAL -------" << endl;
+                   cout << "-----------------------------------------------\n" << endl;
+                   cout << "MUCHAS GRACIAS POR UTILIZAR LA APLICACION" << endl;
+                   cerrarSocket(cliente);
+               break;
+               default:
+                   system("cls");
+                   cout << "----------------------------------" << endl;
+                   cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
+                   cout << "----------------------------------\n" << endl;
+                   cout << "MENSAJE: LA OPCION INGRESADA ES INEXISTENTE, INTENTE NUEVAMENTE.";
+                   Sleep(1000);
+               break;
+    }
 }
-
 void barraCargando(){
     int segundos=2;
     cout << "\n";

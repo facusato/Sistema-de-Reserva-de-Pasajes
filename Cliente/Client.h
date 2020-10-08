@@ -33,8 +33,8 @@ void cerrarSocket(Cliente &cliente);
 
 string msj(char* grupo);
 
-void barraCarga();
+void barraCargando();
 
-void menu();
+void menu(Cliente &cliente);
 
 #endif // CLIENT_H_INCLUDED
