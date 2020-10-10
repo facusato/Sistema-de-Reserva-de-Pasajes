@@ -41,7 +41,11 @@ int recibirMensaje(Cliente &cliente){
             cout << "\nEl servidor corto la conexion" << endl;
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
             retorno= 2;
-        }
+        }else if(!strcmp(cliente.buffer, "Correcto.")){
+            cout << "\nEl servidor acepto el lngreso" << endl;
+            memset(cliente.buffer, 0, sizeof(cliente.buffer));
+            retorno=3;
+              }
         else{
             cout << "\nEl servidor dice: " << cliente.buffer << endl;
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
@@ -155,22 +159,26 @@ void menu(Cliente &cliente){
     cin>>opcion;
     switch(opcion){
                case 1:
-                   enviarMensaje(cliente,"hola pipi");
+                   enviarMensaje(cliente,"ALTA DE SERVICIO.");
                break;
                case 2:
-                   ;
+                   enviarMensaje(cliente,"GESTIONAR PASAJES.");
                break;
                case 3:
-                   ;
+                   enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
                break;
                case 4:
+                   cout<<endl;
+                   enviarMensaje(cliente,"Se cerro el socket.");
+                   cerrarSocket(cliente);
+                   cout<<endl<<"SALIENDO DEL SISTEMA..."<<endl;
+                   Sleep(2000);
                    system("cls");
                    cout << "-----------------------------------------------" << endl;
                    cout << "-- CATEDRA REDES Y COMUNICACIONES --" << endl;
                    cout << "-------- TRABAJO PRACTICO CUATRIMESTRAL -------" << endl;
                    cout << "-----------------------------------------------\n" << endl;
                    cout << "MUCHAS GRACIAS POR UTILIZAR LA APLICACION" << endl;
-                   cerrarSocket(cliente);
                break;
                default:
                    system("cls");

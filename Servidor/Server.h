@@ -35,8 +35,6 @@ void cerrarSocket(Servidor &servidor);
 
 string msj(char* grupo);
 
-void menu();
-
-void barraCarga();
+void barraCargando();
 
 #endif // SERVER_H_INCLUDED
