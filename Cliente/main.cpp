@@ -11,6 +11,8 @@ int main()
     string mensaje,ruta,usuario,password = "";
     char ip[16];
     int puerto;
+    int respuesta=0;
+    int i=0;
     int fLagConexion=0;
     do{
         barraCargando();
@@ -27,17 +29,24 @@ int main()
                 cout<<endl<<endl;
             }
     }while(fLagConexion != 0);
-    recibirMensaje(cliente);
-    cout<<"Ingrese el nombre de usuario \n"<<endl;
-    cin>>usuario;
-    enviarMensaje(cliente,usuario);
-    Sleep(1000);
-    recibirMensaje(cliente);
-    cout<<"Ingrese el password \n"<<endl;
-    cin>>password;
-    enviarMensaje(cliente,password);
-    Sleep(1000);
-    menu(cliente);
+
+        while(i<3 && respuesta!=3){
+            recibirMensaje(cliente);
+            cin>>usuario;
+            enviarMensaje(cliente,usuario);
+            Sleep(1000);
+            recibirMensaje(cliente);
+            cin>>password;
+            enviarMensaje(cliente,password);
+            Sleep(1000);
+            respuesta=recibirMensaje(cliente);
+            i++;
+        }
+
+        if(respuesta==3){
+                menu(cliente);
+                respuesta=recibirMensaje(cliente);
+        }
     cout<<endl;
     enviarMensaje(cliente,"Se cerro el socket.");
     cerrarSocket(cliente);

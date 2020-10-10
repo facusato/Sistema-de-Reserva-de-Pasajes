@@ -8,27 +8,30 @@ using namespace std;
 int main()
 {
     Servidor servidor;
-    char comando[1024] = "\0";
-    string ruta = "";
     string mensaje = "";
+    int respuesta=0;
+    bool valido=false;
     int puerto;
-    int flagRecibir = 0;
-    int fLagConexion = 0;
-    int respuesta;
-    barraCarga();
+    int i=0;
+    barraCargando();
     system("cls");
     cout<< "...BIENVENIDO AL SERVIDOR..."<<endl;
-    cout<< "Ingrese el puerto: "; cin>>ws; cin>> puerto;
+    cout<< "Ingrese el puerto: ";
+    cin>> puerto;
     crearServidor(servidor,puerto);
-    enviarMensaje(servidor,"Ingrese usuario");
-    Sleep(1000);
-    validarCredencial(servidor);
-    Sleep(1000);
+    while (i<3 && !valido){
+     if(validarCredencial(servidor)==true){
+        enviarMensaje(servidor,"Correcto.");
+        valido=true;
+     }
+     else{
+        enviarMensaje(servidor,"Incorrecto.");
+     }
+     i++;
+    }
 
 
-
-/*
-        while (comando[0] != 'F' && fLagConexion != -1 )
+        /*while (comando[0] != 'F' && fLagConexion != -1 )
         {
             if (flagRecibir == 0)
             {
@@ -72,10 +75,25 @@ int main()
             flagRecibir = 0;
         }
     }*/
+    respuesta=recibirMensaje(servidor);
+        do{
+                if(respuesta==1){
+                    recibirArchivo(servidor);
+                }
+                else{
+                    enviarMensaje(servidor,"ok");
+                }
+                respuesta=recibirMensaje(servidor);
+        }while(respuesta==2);
 
 
     cout<<endl;
     enviarMensaje(servidor,"Se cerro el socket.");
+    cout<<"El cliente cerro la sesion"<<endl;
+    Sleep(1000);
+    cout<<endl;
+    enviarMensaje(servidor,"Se cerro el socket.");
+    cout<<"El cliente cerro la sesion"<<endl;
     cerrarSocket(servidor);
     cout<<endl<<"Saliendo del sistema..."<<endl;
     Sleep(2000);

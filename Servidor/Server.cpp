@@ -21,7 +21,7 @@ void crearServidor(Servidor &servidor,int puerto){
         if((servidor.client = accept(servidor.server, (SOCKADDR *)&servidor.clientAddr, &clientAddrSize)) != INVALID_SOCKET)
         {
             system("cls");
-            cout << "Se conecto el cliente." << endl;
+            cout << "SE CONECTO EL CLIENTE." << endl;
         }
 }
 
@@ -31,35 +31,32 @@ bool validarCredencial(Servidor &servidor){
     string usuario;
     string password;
     bool valido=false;
-    /**Esta rutina lee datos desde un socket conectado es decir recibe el msj*/
+    enviarMensaje(servidor,"INGRESE USUARIO");
+    //Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     usuario=servidor.buffer;
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
-    enviarMensaje(servidor,"Ingrese password");
+    enviarMensaje(servidor,"INGRESE PASSWORD");
+    //Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     password=servidor.buffer;
+    memset(servidor.buffer, 0, sizeof(servidor.buffer));
     ifstream archivo("credenciales.txt");
         if(archivo && archivo.is_open()){
             string linea;
             string linea2;
-            stringstream ss;
-            while(archivo.good()){
+            while(archivo.good() && !valido){
                     //Nombre del usuario
-                    getline(archivo, linea, ';');
-                    getline(archivo, linea2);
+                    getline(archivo,linea, ';');
+                    //Password del usuario
+                    getline(archivo,linea2);
                     if( (linea==usuario) && (linea2==password)){
                         cout<<"correcto"<<endl;
                         valido=true;
                     }
-                    else{
-                        cout<<"incorrecto"<<endl;
-                    }
-                   //cout<<linea<<endl;
-                    //ss.clear();
         }
         archivo.close();
     }
-    memset(servidor.buffer, 0, sizeof(servidor.buffer));
     return valido;
 }
 
@@ -89,9 +86,11 @@ int recibirMensaje(Servidor &servidor){
 }
 
 void enviarMensaje(Servidor &servidor,string mensaje){
+    //Copia la cadena del buffer en el mensaje
     strcpy(servidor.buffer, &mensaje[0]);
-    /**Envia datos sobre un canal de comunicación */
+    //Envia datos sobre un canal de comunicación
     send(servidor.client, servidor.buffer, sizeof(servidor.buffer), 0);
+    //Borra el buffer
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
         if(strcmp(servidor.buffer, "Enviando archivo.") && strcmp(servidor.buffer, "Se cerro el socket.")){
                 cout << "Mensaje enviado!" << endl << endl;
@@ -167,12 +166,10 @@ int SafeSend(SOCKET s, char* buf, int buflen){
 	while(sendlen != buflen)
 	{
 		sendlen = send(s, &buf[totalsend], remaining, 0);
-
-		if(sendlen == SOCKET_ERROR)
-		{
+            if(sendlen == SOCKET_ERROR)
+            {
 			return SOCKET_ERROR;
-		}
-
+            }
 		totalsend = totalsend + sendlen;
 		remaining = sendlen - totalsend;
 	}
@@ -193,16 +190,8 @@ string msj(char* grupo){
     return cadena;
 }
 
-void menu(){
-    cout<< "\n\n";
-    cout<<"---Server---"<<endl;
-    cout<< "Elija una opcion: " <<endl;
-    cout<< " M (Mensaje)                    --->    Ejemplo: M hola\n";
-    cout<< " T (Transferencia de archivo)   --->    Ejemplo: T C:/Users/Facu/Desktop/eee/a.jpg \n";
-    cout<< " F (Salir)" <<endl<<endl;
-}
 
-void barraCarga(){
+void barraCargando(){
     int segundos=2;
     cout << "\n";
     cout << "\t\t\t CARGANDO SERVIDOR...\n";
