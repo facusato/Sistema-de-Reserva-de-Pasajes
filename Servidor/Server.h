@@ -21,6 +21,8 @@ void crearServidor(Servidor &servidor,int puerto);
 
 int recibirMensaje(Servidor &servidor);
 
+void volver(Servidor &servidor);
+
 bool validarCredencial(Servidor &servidor);
 
 void enviarMensaje(Servidor &servidor,string mensaje);

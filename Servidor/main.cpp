@@ -19,83 +19,31 @@ int main()
     cout<< "Ingrese el puerto: ";
     cin>> puerto;
     crearServidor(servidor,puerto);
-    while (i<3 && !valido){
-     if(validarCredencial(servidor)==true){
-        enviarMensaje(servidor,"Correcto.");
-        valido=true;
-     }
-     else{
-        enviarMensaje(servidor,"Incorrecto.");
-     }
-     i++;
-    }
-
-
-        /*while (comando[0] != 'F' && fLagConexion != -1 )
-        {
-            if (flagRecibir == 0)
-            {
-                menu();
-                Sleep(400);
-                cin >> ws;
-                cin.getline(comando, sizeof(comando));
-                Sleep(400);
-
-                if(comando[0] != 'F')
-                {
-                    switch(comando[0])
-                    {
-                    case 'M':
-                        mensaje = msj(comando);
-                        enviarMensaje(servidor,mensaje);
-                        flagRecibir = 1;
-                        break;
-                    case 'T':
-                        ruta = msj(comando);
-                        enviarArchivo(servidor,ruta);
-                        flagRecibir = 1;
-                        break;
-                    default:
-                        cout<<endl<<"Comando equivocado."<<endl;
-                        break;
-                    }
-                }
+        while (i<3 && !valido){
+            if(validarCredencial(servidor)==true){
+                enviarMensaje(servidor,"Correcto.");
+                valido=true;
             }
-
-        else{
-            cout<<"Esperando respuesta del cliente..."<<endl;
-            respuesta =recibirMensaje(servidor);
-
-            if(respuesta == 1){
-                recibirArchivo(servidor);
+            else{
+                enviarMensaje(servidor,"Incorrecto.");
             }
-            else if (respuesta == 2){
-                fLagConexion = -1;
-            }
-            flagRecibir = 0;
+            i++;
         }
-    }*/
+
     respuesta=recibirMensaje(servidor);
-        do{
+        while(respuesta!=2){
                 if(respuesta==1){
                     recibirArchivo(servidor);
                 }
                 else{
                     enviarMensaje(servidor,"ok");
+                    Sleep(1000);
                 }
                 respuesta=recibirMensaje(servidor);
-        }while(respuesta==2);
+        }
 
-
-    cout<<endl;
-    enviarMensaje(servidor,"Se cerro el socket.");
-    cout<<"El cliente cerro la sesion"<<endl;
-    Sleep(1000);
-    cout<<endl;
-    enviarMensaje(servidor,"Se cerro el socket.");
-    cout<<"El cliente cerro la sesion"<<endl;
-    cerrarSocket(servidor);
-    cout<<endl<<"Saliendo del sistema..."<<endl;
+     cout<<"Esperando"<<endl;
+    volver(servidor);
     Sleep(2000);
     return 0;
 }

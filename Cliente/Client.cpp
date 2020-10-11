@@ -145,8 +145,9 @@ string msj(char* grupo){
     return cadena;
 }
 
-void menu(Cliente &cliente){
+int menu(Cliente &cliente){
     int opcion;
+    system("cls");
     cout<< "\n\n";
     cout<<"---BIENVENIDOS AL SISTEMA DE VENTA DE PASAJES---"<<endl;
     cout<<"---DESTINO BUENOS AIRES - MAR DEL PLATA---"<<endl;
@@ -157,21 +158,27 @@ void menu(Cliente &cliente){
     cout<<" 4- CERRAR SESION \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
+    system("cls");
     switch(opcion){
                case 1:
                    enviarMensaje(cliente,"ALTA DE SERVICIO.");
+                   Sleep(1000);
                break;
                case 2:
-                   enviarMensaje(cliente,"GESTIONAR PASAJES.");
+                    enviarMensaje(cliente,"GESTIONAR PASAJES.");
+                    Sleep(1000);
                break;
                case 3:
-                   enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
+                    enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
+                    Sleep(1000);
                break;
                case 4:
                    cout<<endl;
+                   Sleep(2000);
+                   cout<<endl;
                    enviarMensaje(cliente,"Se cerro el socket.");
                    cerrarSocket(cliente);
-                   cout<<endl<<"SALIENDO DEL SISTEMA..."<<endl;
+                   cout<<endl<<"Saliendo del sistema..."<<endl;
                    Sleep(2000);
                    system("cls");
                    cout << "-----------------------------------------------" << endl;
@@ -189,6 +196,7 @@ void menu(Cliente &cliente){
                    Sleep(1000);
                break;
     }
+    return opcion;
 }
 void barraCargando(){
     int segundos=2;
