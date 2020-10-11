@@ -26,18 +26,33 @@ void crearServidor(Servidor &servidor,int puerto){
 }
 
 
+void volver(Servidor &servidor){
+    listen(servidor.server, 0);
+    cout << "Esperando a que se conecte el cliente." << endl;
+    int clientAddrSize = sizeof(servidor.clientAddr);
+    /**crea un socket nuevo para la conexión y regresa su
+    descriptor al que lo invoca, este nuevo socket es usado por el servidor para
+    comunicarse con el cliente y al terminar se cierra */
+        if((servidor.client = accept(servidor.server, (SOCKADDR *)&servidor.clientAddr, &clientAddrSize)) != INVALID_SOCKET)
+        {
+            system("cls");
+            cout << "SE CONECTO EL CLIENTE." << endl;
+        }
+}
+
+
 bool validarCredencial(Servidor &servidor){
     servidor.buffer[0] = '\0';
     string usuario;
     string password;
     bool valido=false;
     enviarMensaje(servidor,"INGRESE USUARIO");
-    //Sleep(1000);
+    Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     usuario=servidor.buffer;
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
     enviarMensaje(servidor,"INGRESE PASSWORD");
-    //Sleep(1000);
+    Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     password=servidor.buffer;
     memset(servidor.buffer, 0, sizeof(servidor.buffer));

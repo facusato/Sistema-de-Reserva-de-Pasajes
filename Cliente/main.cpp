@@ -14,6 +14,7 @@ int main()
     int respuesta=0;
     int i=0;
     int fLagConexion=0;
+    int opcion=0;
     do{
         barraCargando();
         system("cls");
@@ -41,16 +42,16 @@ int main()
             Sleep(1000);
             respuesta=recibirMensaje(cliente);
             i++;
+            if(i>=3){
+                enviarMensaje(cliente,"Se cerro el socket.");
+            }
         }
 
         if(respuesta==3){
-                menu(cliente);
-                respuesta=recibirMensaje(cliente);
+                while(opcion!=4){
+                   opcion=menu(cliente);
+                   respuesta=recibirMensaje(cliente);
+                }
         }
-    cout<<endl;
-    enviarMensaje(cliente,"Se cerro el socket.");
-    cerrarSocket(cliente);
-    cout<<endl<<"Saliendo del sistema..."<<endl;
-    Sleep(2000);
     return 0;
 }
