@@ -3,6 +3,7 @@
 #include <winsock2.h>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 #ifndef SERVER_H_INCLUDED
 
 using namespace std;
@@ -38,5 +39,7 @@ void cerrarSocket(Servidor &servidor);
 string msj(char* grupo);
 
 void barraCargando();
+
+void fechaHora();
 
 #endif // SERVER_H_INCLUDED

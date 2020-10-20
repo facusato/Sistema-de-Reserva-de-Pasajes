@@ -18,8 +18,7 @@ void crearServidor(Servidor &servidor,int puerto){
     /**crea un socket nuevo para la conexión y regresa su
     descriptor al que lo invoca, este nuevo socket es usado por el servidor para
     comunicarse con el cliente y al terminar se cierra */
-        if((servidor.client = accept(servidor.server, (SOCKADDR *)&servidor.clientAddr, &clientAddrSize)) != INVALID_SOCKET)
-        {
+        if((servidor.client = accept(servidor.server, (SOCKADDR *)&servidor.clientAddr, &clientAddrSize)) != INVALID_SOCKET){
             system("cls");
             cout << "SE CONECTO EL CLIENTE." << endl;
         }
@@ -212,9 +211,16 @@ void barraCargando(){
     cout << "\t\t\t CARGANDO SERVIDOR...\n";
         for(int i=0; i<=0; i++)
             cout << "_";
-        for(int i=0; i<=70; i++)
-        {
+        for(int i=0; i<=70; i++){
             cout<<char(219);
             Sleep(segundos*1000/175);
         }
+}
+
+void fechaHora(){
+    time_t now;
+    struct tm nowLocal;
+    now=time(NULL);// get the time from the OS
+    nowLocal=*localtime(&now);
+    cout<<nowLocal.tm_mday<<"/"<<nowLocal.tm_mon+1<<"/"<<nowLocal.tm_year+1900<<" "<<nowLocal.tm_hour<<":"<<nowLocal.tm_min<<":"<<nowLocal.tm_sec;
 }
