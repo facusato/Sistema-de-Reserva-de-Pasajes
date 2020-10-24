@@ -42,9 +42,6 @@ int main()
             Sleep(1000);
             respuesta=recibirMensaje(cliente);
             i++;
-            if(i>=3){
-                enviarMensaje(cliente,"Se cerro el socket.");
-            }
         }
 
         if(respuesta==3){
@@ -53,5 +50,8 @@ int main()
                    respuesta=recibirMensaje(cliente);
                 }
         }
+        enviarMensaje(cliente,"Se cerro el socket.");
+        cerrarSocket(cliente);
+        cout<<endl<<"Saliendo del sistema..."<<endl;
     return 0;
 }

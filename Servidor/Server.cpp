@@ -217,10 +217,14 @@ void barraCargando(){
         }
 }
 
-void fechaHora(){
-    time_t now;
-    struct tm nowLocal;
-    now=time(NULL);// get the time from the OS
-    nowLocal=*localtime(&now);
-    cout<<nowLocal.tm_mday<<"/"<<nowLocal.tm_mon+1<<"/"<<nowLocal.tm_year+1900<<" "<<nowLocal.tm_hour<<":"<<nowLocal.tm_min<<":"<<nowLocal.tm_sec;
+
+string fechaHora(){
+    ostringstream oss;
+    auto t = time(nullptr);
+    auto tm = *localtime(&t);
+    oss<<put_time(&tm, "%d-%m-%Y %H:%M:%S");
+    auto str = oss.str();
+    return str;
 }
+
+

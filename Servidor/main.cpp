@@ -14,10 +14,10 @@ int main()
     int respuesta=0;
     bool valido=false;
     int puerto;
-    int i=1;
+    int i=0;
     barraCargando();
     system("cls");
-    archivo.open("serverLog.txt",ios::out);
+    archivo.open("serverLog.txt",ios::app);
     if(archivo.fail()){
         cout<<"error al abrir o crear el archivo"<<endl;
     }
@@ -25,22 +25,29 @@ int main()
     cout<< "Ingrese el puerto: ";
     cin>> puerto;
     crearServidor(servidor,puerto);
+    //Poner condicion para que si el cliente esta conectado y por 2 min no envia nada lo saque de la conexion
+    //DWORD time_out=120*1000;
+    //setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out))
 
     //Probando escribir el archivo de actividad del server
     archivo<<"========================================================================="<<endl;
-    archivo<<"Inicia Servidor"<<endl;
-    archivo<<"Socket creado. Puerto de escucha:"<<puerto<<endl;
-    //ver como poner la fecha hora del sistema operativo en una cadena para grabarla en el archivo
-    fechaHora();
+    archivo<<fechaHora();
+    archivo<<" Inicia Servidor"<<endl;
+    archivo<<fechaHora();
+    archivo<<" Socket creado. Puerto de escucha: "<<puerto<<endl;
 
-        while (i<=3 && !valido){
+
+        while (i<3 && !valido){
             if(validarCredencial(servidor)==true){
                 enviarMensaje(servidor,"Correcto.");
+                archivo<<fechaHora();
+                archivo<<" El cliente ingreso al sistema"<<endl;
                 valido=true;
             }
             else{
                 enviarMensaje(servidor,"Incorrecto.");
-                archivo<<"El cliente fallo al logueo en el intento:"<<i<<endl;
+                archivo<<fechaHora();
+                archivo<<" El cliente fallo al logueo en el intento:"<<i+1<<endl;
             }
             i++;
         }
@@ -57,8 +64,10 @@ int main()
                 respuesta=recibirMensaje(servidor);
         }
 
-    archivo<<"El cliente se retiro de la conexion"<<endl;
-    archivo<<"Esperando a un nuevo cliente"<<endl;
+    archivo<<fechaHora();
+    archivo<<" El cliente se retiro de la conexion"<<endl;
+    archivo<<fechaHora();
+    archivo<<" Esperando a un nuevo cliente"<<endl;
     volver(servidor);
     Sleep(2000);
     archivo.close();

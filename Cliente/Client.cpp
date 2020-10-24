@@ -12,6 +12,7 @@ void crearCliente(Cliente &cliente,char *ip, int puerto){
     /**  Establecer una conexión a otro socket,permitiendo que un protocolo TCP inicie una
     conexión en la capa de transporte para el servidor especificado*/
     cliente.conectado = connect(cliente.server, (SOCKADDR *)&cliente.addr, sizeof(cliente.addr));
+
         if(cliente.conectado == 0){
             cout << "Conectado al Servidor." << endl;
         }
