@@ -44,6 +44,7 @@ bool validarCredencial(Servidor &servidor){
     servidor.buffer[0] = '\0';
     string usuario;
     string password;
+    //string extension=".txt"
     bool valido=false;
     enviarMensaje(servidor,"INGRESE USUARIO");
     Sleep(1000);
@@ -55,6 +56,7 @@ bool validarCredencial(Servidor &servidor){
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     password=servidor.buffer;
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+
     ifstream archivo("credenciales.txt");
         if(archivo && archivo.is_open()){
             string linea;
@@ -67,6 +69,7 @@ bool validarCredencial(Servidor &servidor){
                     if( (linea==usuario) && (linea2==password)){
                         cout<<"correcto"<<endl;
                         valido=true;
+
                     }
         }
         archivo.close();

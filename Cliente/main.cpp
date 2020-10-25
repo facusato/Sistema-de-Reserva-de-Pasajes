@@ -51,7 +51,9 @@ int main()
                 }
         }
         enviarMensaje(cliente,"Se cerro el socket.");
+        Sleep(1000);
         cerrarSocket(cliente);
         cout<<endl<<"Saliendo del sistema..."<<endl;
+
     return 0;
 }
