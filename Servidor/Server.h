@@ -3,7 +3,9 @@
 #include <winsock2.h>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 #include <ctime>
+#include <string>
 #ifndef SERVER_H_INCLUDED
 
 using namespace std;
@@ -40,6 +42,7 @@ string msj(char* grupo);
 
 void barraCargando();
 
-void fechaHora();
+string fechaHora();
+
 
 #endif // SERVER_H_INCLUDED

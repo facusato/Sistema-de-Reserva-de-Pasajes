@@ -13,18 +13,20 @@
 1601947933 source:c:\users\notebook\codeblock\codigo c++\servidor\server.cpp
 	"Server.h"
 
-1603123077 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
+1603583936 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
 	"Server.h"
 
-1603120453 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
+1603492500 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
 	<iostream>
 	<string>
 	<winsock2.h>
 	<fstream>
 	<sstream>
+	<iomanip>
 	<ctime>
+	<string>
 
-1603123448 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
+1603624136 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
 	<iostream>
 	<winsock2.h>
 	"Server.h"
