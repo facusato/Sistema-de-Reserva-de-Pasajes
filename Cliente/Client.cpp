@@ -39,7 +39,7 @@ int recibirMensaje(Cliente &cliente){
             retorno=1;
         }
         else if(!strcmp(cliente.buffer, "Se cerro el socket.")){
-            cout << "\nEl servidor corto la conexion" << endl;
+            cout << "\n Cerrando conexion" << endl;
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
             retorno= 2;
         }else if(!strcmp(cliente.buffer, "Correcto.")){
@@ -182,7 +182,6 @@ int menu(Cliente &cliente){
                break;
                case 2:
                     menu2(cliente);
-                    //enviarMensaje(cliente,"GESTIONAR PASAJES.");
                     Sleep(1000);
                break;
                case 3:
@@ -190,26 +189,20 @@ int menu(Cliente &cliente){
                     Sleep(1000);
                break;
                case 4:
-                   cout<<endl;
-                   Sleep(2000);
-                   cout<<endl;
-                   enviarMensaje(cliente,"Se cerro el socket.");
-                   cerrarSocket(cliente);
-                   cout<<endl<<"Saliendo del sistema..."<<endl;
-                   Sleep(2000);
                    system("cls");
                    cout << "-----------------------------------------------" << endl;
                    cout << "-- CATEDRA REDES Y COMUNICACIONES --" << endl;
                    cout << "-------- TRABAJO PRACTICO CUATRIMESTRAL -------" << endl;
                    cout << "-----------------------------------------------\n" << endl;
                    cout << "MUCHAS GRACIAS POR UTILIZAR LA APLICACION" << endl;
+                   enviarMensaje(cliente,"Se cerro el socket.");
                break;
                default:
                    system("cls");
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   cout << "MENSAJE: LA OPCION INGRESADA ES INEXISTENTE, INTENTE NUEVAMENTE.";
+                   menu(cliente);
                    Sleep(1000);
                break;
     }
@@ -220,6 +213,11 @@ int menu(Cliente &cliente){
 
 
 int menu2(Cliente &cliente){
+    char destino[23];
+	char fecha[23];
+	char turno[23];
+	char fila[5];
+	char columna[5];
     int opcion;
     system("cls");
     cout<<"\n"<<endl;
@@ -233,6 +231,26 @@ int menu2(Cliente &cliente){
     switch(opcion){
                case 1:
                      enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin >> destino;
+                     enviarMensaje(cliente,destino);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin >> fecha;
+                     enviarMensaje(cliente,fecha);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin >> turno;
+                     enviarMensaje(cliente,turno);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>fila;
+                     enviarMensaje(cliente,fila);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>columna;
+                     enviarMensaje(cliente,columna);
                      Sleep(1000);
                break;
                case 2:
@@ -250,7 +268,7 @@ int menu2(Cliente &cliente){
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   cout << "MENSAJE: LA OPCION INGRESADA ES INEXISTENTE, INTENTE NUEVAMENTE.";
+                   menu2(cliente);
                    Sleep(1000);
                break;
     }

@@ -67,14 +67,13 @@ int main()
                         Sleep(1000);
                     }
                     else if(respuesta==4){
+                            system("cls");
                             enviarMensaje(servidor,"Entrando a otro menu");
-
-                            /*respuesta=menuAsignarAsiento(servidor,viaje);
-                            enviarMensaje(servidor,"Se asigno el asiento correctamente");
-                            Sleep(1000);*/
+                            Sleep(1000);
+                            respuesta=menuAsignarAsiento(servidor,viaje);
                     }else if(respuesta==5){
-
-                            enviarMensaje(servidor,"Entro");
+                            respuesta=menuAsignarAsiento(servidor,viaje);
+                            enviarMensaje(servidor,"Se asigno el asiento correctamente");
                             Sleep(1000);
                       }
 
@@ -88,6 +87,7 @@ int main()
     archivo<<fechaHora();
     archivo<<" El cliente se retiro de la conexion"<<endl;
     Sleep(1000);
+    enviarMensaje(servidor,"Se cerro el socket.");
 
             system("cls");
             cout<<" 1- ESPERAR UN NUEVO CLIENTE \n"<<endl;

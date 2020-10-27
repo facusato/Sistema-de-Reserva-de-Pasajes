@@ -45,16 +45,12 @@ int main()
         }
 
         if(respuesta==3){
-                while(opcion!=4){
+                while(opcion!=4 || respuesta!=2){
                    opcion=menu(cliente);
                    respuesta=recibirMensaje(cliente);
-                   Sleep(2000);
+                   Sleep(1000);
                 }
         }
-        enviarMensaje(cliente,"Se cerro el socket.");
-        Sleep(1000);
-        cerrarSocket(cliente);
-        cout<<endl<<"Saliendo del sistema..."<<endl;
-
+     cerrarSocket(cliente);
     return 0;
 }

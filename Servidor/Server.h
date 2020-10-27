@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <ctime>
 #include <string>
+#include <stdlib.h>
 #ifndef SERVER_H_INCLUDED
 #include "Viaje.h"
 
@@ -52,5 +53,11 @@ void recibirFecha(Servidor &servidor,Viaje &viaje);
 void recibirTurno(Servidor &servidor,Viaje &viaje);
 
 int menuCrearViaje(Servidor &servidor,Viaje &viaje);
+
+int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
+
+void recibirFila(Servidor &servidor,Viaje &viaje);
+
+int recibirColumna(Servidor &servidor);
 
 #endif // SERVER_H_INCLUDED
