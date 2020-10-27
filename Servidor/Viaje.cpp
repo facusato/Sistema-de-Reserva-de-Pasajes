@@ -1,35 +1,15 @@
 #include "Viaje.h"
-//#include <fstream>
-#include <string.h>			// strcpy
+#include <string.h>
 
-//#include <typeinfo>
-/*******************************************************///CONSTRUCTOR
 
-/*
-Esquema crearEsquemaVacio(){
-	Esquema esquema;
-	esquema.fila1[23] = "           11111111112";
-	esquema.fila2[23] = " |12345678901234567890";		//strcpy(esquema.fila2," |12345678901234567890");
-	esquema.fila3[23] = "----------------------";
-	esquema.fila4[23] = "A|OOOOOOOOOOOOOOOOOOOO";
-	esquema.fila5[23] = "B|OOOOOOOOOOOOOOOOOOOO";
-	esquema.fila6[23] = "======================";
-	esquema.fila7[23] = "C|OOOOOOOOOOOOOOOOOOOO";
-
-	return esquema;
-};
-*/
 
 Viaje crearViaje(char destino[20], char fecha[20], char turno[20]){
 
 	Viaje viaje;			//CREA VARIABLE TIPO VIAJE
 	Esquema esquema;		//CREA VARIABLE TIPO ESQUEMA
-
 	setDestino(viaje, destino);
 	setFecha(viaje, fecha);
 	setTurno(viaje, turno);
-
-	//esquema = crearEsquemaVacio();
 	setEsquema(viaje, esquema);		// EL ESQUEMA YA SE SETEA DESDE SU DECLARACION VACIO, ES DECIR, CON O'S EN TODOS LOS ASIENTOS.
 	escribirFichero(viaje);			// guarda en el fichero el viaje creado
 	return viaje;					//DEVUELVE EL VIAJE CON LOS DATOS SETEADOS POR PARAMETRO Y UN ESQUEMA DE BUS VACIO
@@ -40,9 +20,11 @@ Viaje crearViaje(char destino[20], char fecha[20], char turno[20]){
 void setDestino(Viaje &viaje, char destino[20]){
 	strcpy(viaje.destino, destino);
 };
+
 void setFecha(Viaje &viaje, char fecha[20]){
 	strcpy(viaje.fecha, fecha);
 };
+
 void setTurno(Viaje &viaje, char turno[20]){
 	strcpy(viaje.turno, turno);
 };
@@ -51,7 +33,7 @@ void setEsquema(Viaje &viaje, Esquema &esquema){
 	viaje.esquema = esquema;
 };
 
-//SOLO NECESITO TRABAJAR SOBRE LAS FILAS A, B Y C QUEDANDO EL RESTO DE LAS FILAS ESTATICAS COMO SE DELARARON EN UN PRINCIPIO.
+//SOLO NECESITO TRABAJAR SOBRE LAS FILAS A, B Y C QUEDANDO EL RESTO DE LAS FILAS ESTATICAS COMO SE DECLARARON EN UN PRINCIPIO.
 void setFilaA(Viaje &viaje, char fila[23]){
 	strcpy(viaje.esquema.fila4, fila);
 };
@@ -112,37 +94,6 @@ void mostrarEsquema(Viaje &viaje){
 	cout<<endl;
 };
 
-/*
-bool validarAsientoVacio(Viaje &viaje,char fila, int columna){
-	bool flag = 1;  // flag para asiento (0 ocupado, 1 libre)
-	char* fila_temporal;
-
-
-	if(fila == 'A' ||fila == 'a'){
-		fila_temporal = getFilaA(viaje);				//TRAE LA FILA A DEL ESQUEMA COMPLETA
-		if (fila_temporal[columna] == 'X'){
-			flag = 0;
-		}
-	}
-
-	if(fila == 'B' ||fila == 'b'){
-		fila_temporal = getFilaB(viaje);
-		if (fila_temporal[columna] == 'X'){
-			flag = 0;
-		}
-	}
-
-	if(fila == 'C' ||fila == 'c'){
-		fila_temporal = getFilaC(viaje);
-		if (fila_temporal[columna] == 'X'){
-			flag = 0;
-		}
-	}
-
-	return flag;			//(0 ocupado, 1 libre)
-}
-*/
-
 
 void asignarAsiento(Viaje &viaje, char fila, int columna){
 
@@ -156,7 +107,6 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 		if(fila == 'A' ||fila == 'a'){
 			fila_temporal = getFilaA(viaje);				//TRAE LA FILA A DEL ESQUEMA COMPLETA
 
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==1){		//verifica si esta libre el asiento, si esta libre entra
 				if(fila_temporal[columna_aux] == 'O'){					//verifica si esta libre el asiento, si esta libre entra
 					fila_temporal[columna_aux] = 'X';
 
@@ -169,7 +119,6 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 				}else{
 					cout<<"asiento ocupado"<<endl;					// sino avisa error en pantalla
 				}
-			//}
 		}
 
 		if(fila == 'B' ||fila == 'b'){
