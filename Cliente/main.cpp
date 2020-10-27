@@ -48,6 +48,7 @@ int main()
                 while(opcion!=4){
                    opcion=menu(cliente);
                    respuesta=recibirMensaje(cliente);
+                   Sleep(2000);
                 }
         }
         enviarMensaje(cliente,"Se cerro el socket.");

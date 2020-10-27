@@ -47,3 +47,7 @@
 24-10-2020 21:22:05 El cliente ingreso al sistema
 24-10-2020 21:22:18 El cliente se retiro de la conexion
 24-10-2020 21:22:18 Esperando a un nuevo cliente
+=========================================================================
+27-10-2020 10:45:15 Inicia Servidor
+27-10-2020 10:45:15 Socket creado. Puerto de escucha: 8000
+27-10-2020 10:45:22 El cliente ingreso al sistema

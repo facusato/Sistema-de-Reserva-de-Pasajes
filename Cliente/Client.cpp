@@ -147,6 +147,9 @@ string msj(char* grupo){
 }
 
 int menu(Cliente &cliente){
+    char destino[23];
+	char fecha[23];
+	char turno[23];
     int opcion;
     system("cls");
     cout<< "\n\n";
@@ -162,11 +165,24 @@ int menu(Cliente &cliente){
     system("cls");
     switch(opcion){
                case 1:
-                   enviarMensaje(cliente,"ALTA DE SERVICIO.");
-                   Sleep(1000);
+                    enviarMensaje(cliente,"ALTA DE SERVICIO.");
+                    Sleep(1000);
+                    recibirMensaje(cliente);
+                    cin >> destino;
+                    enviarMensaje(cliente,destino);
+                    Sleep(1000);
+                    recibirMensaje(cliente);
+                    cin >> fecha;
+                    enviarMensaje(cliente,fecha);
+                    Sleep(1000);
+                    recibirMensaje(cliente);
+                    cin >> turno;
+                    enviarMensaje(cliente,turno);
+                    Sleep(1000);
                break;
                case 2:
-                    enviarMensaje(cliente,"GESTIONAR PASAJES.");
+                    menu2(cliente);
+                    //enviarMensaje(cliente,"GESTIONAR PASAJES.");
                     Sleep(1000);
                break;
                case 3:
@@ -199,6 +215,51 @@ int menu(Cliente &cliente){
     }
     return opcion;
 }
+
+
+
+
+int menu2(Cliente &cliente){
+    int opcion;
+    system("cls");
+    cout<<"\n"<<endl;
+    cout<<" 1- RESERVAR UN ASIENTO \n"<<endl;
+    cout<<" 2- LIBERAR UN ASIENTO \n"<<endl;
+    cout<<" 3- ELEGIR OTRO SERVICIO \n"<<endl;
+    cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
+    cout << "\n INGRESE LA OPCION DESEADA: ";
+    cin>>opcion;
+    system("cls");
+    switch(opcion){
+               case 1:
+                     enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
+                     Sleep(1000);
+               break;
+               case 2:
+               break;
+               case 3:
+               break;
+               case 4:
+                   system("cls");
+                   cout<<endl;
+                   Sleep(2000);
+                   cout<<menu(cliente)<<endl;
+               break;
+               default:
+                   system("cls");
+                   cout << "----------------------------------" << endl;
+                   cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
+                   cout << "----------------------------------\n" << endl;
+                   cout << "MENSAJE: LA OPCION INGRESADA ES INEXISTENTE, INTENTE NUEVAMENTE.";
+                   Sleep(1000);
+               break;
+    }
+    return opcion;
+}
+
+
+
+
 void barraCargando(){
     int segundos=2;
     cout << "\n";

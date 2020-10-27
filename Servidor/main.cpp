@@ -4,10 +4,12 @@
 #include <sstream>
 #include <fstream>
 #include <ctime>
+#include "Viaje.h"
 using namespace std;
 
 int main()
 {
+    Viaje viaje;
     ofstream archivo;
     Servidor servidor;
     string mensaje = "";
@@ -59,10 +61,27 @@ int main()
                 if(respuesta==1){
                     recibirArchivo(servidor);
                 }
-                else{
-                    enviarMensaje(servidor,"ok");
-                    Sleep(1000);
-                }
+                else if(respuesta==3){
+                        respuesta=menuCrearViaje(servidor,viaje);
+                        enviarMensaje(servidor,"Alta correctamente");
+                        Sleep(1000);
+                    }
+                    else if(respuesta==4){
+                            enviarMensaje(servidor,"Entrando a otro menu");
+
+                            /*respuesta=menuAsignarAsiento(servidor,viaje);
+                            enviarMensaje(servidor,"Se asigno el asiento correctamente");
+                            Sleep(1000);*/
+                    }else if(respuesta==5){
+
+                            enviarMensaje(servidor,"Entro");
+                            Sleep(1000);
+                      }
+
+                    else{
+                        enviarMensaje(servidor,"ok");
+                        Sleep(1000);
+                        }
                 respuesta=recibirMensaje(servidor);
         }
 
@@ -70,7 +89,6 @@ int main()
     archivo<<" El cliente se retiro de la conexion"<<endl;
     Sleep(1000);
 
-            //while(opcion!=2 && opcion!=1){
             system("cls");
             cout<<" 1- ESPERAR UN NUEVO CLIENTE \n"<<endl;
             cout<<" 2- CERRAR CONEXION \n"<<endl;

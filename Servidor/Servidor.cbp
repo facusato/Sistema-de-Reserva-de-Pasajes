@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Server.cpp" />
 		<Unit filename="Server.h" />
+		<Unit filename="Viaje.cpp" />
+		<Unit filename="Viaje.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
