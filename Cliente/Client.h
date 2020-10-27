@@ -37,4 +37,6 @@ void barraCargando();
 
 int menu(Cliente &cliente);
 
+int menu2(Cliente &cliente);
+
 #endif // CLIENT_H_INCLUDED

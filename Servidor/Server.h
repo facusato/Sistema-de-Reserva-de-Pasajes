@@ -7,6 +7,7 @@
 #include <ctime>
 #include <string>
 #ifndef SERVER_H_INCLUDED
+#include "Viaje.h"
 
 using namespace std;
 
@@ -44,5 +45,12 @@ void barraCargando();
 
 string fechaHora();
 
+void recibirDestino(Servidor &servidor,Viaje &viaje);
+
+void recibirFecha(Servidor &servidor,Viaje &viaje);
+
+void recibirTurno(Servidor &servidor,Viaje &viaje);
+
+int menuCrearViaje(Servidor &servidor,Viaje &viaje);
 
 #endif // SERVER_H_INCLUDED
