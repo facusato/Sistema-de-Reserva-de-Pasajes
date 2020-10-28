@@ -56,7 +56,7 @@ int menuCrearViaje(Servidor &servidor,Viaje &viaje);
 
 int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
 
-void recibirFila(Servidor &servidor,Viaje &viaje);
+char recibirFila(Servidor &servidor);
 
 int recibirColumna(Servidor &servidor);
 

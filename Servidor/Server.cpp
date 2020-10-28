@@ -272,20 +272,15 @@ void recibirTurno(Servidor &servidor,Viaje &viaje){
 }
 
 
-void recibirFila(Servidor &servidor,Viaje &viaje){
+char recibirFila(Servidor &servidor){
     servidor.buffer[0] = '\0';
+    char unCaracter;
+    char *puntero = NULL;
+    puntero = &unCaracter;
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
-    strcpy(viaje.esquema.fila4,servidor.buffer);
-    /*if(servidor.buffer=='A' || servidor.buffer=='b'){
-        strcpy(viaje.esquema.fila4,servidor.buffer);
-    }
-    else if(servidor.buffer=='B' || servidor.buffer=='b'){
-        strcpy(viaje.esquema.fila5,servidor.buffer);
-    }
-    else if(servidor.buffer=='B' || servidor.buffer=='B'){
-        strcpy(viaje.esquema.fila7,servidor.buffer);
-    }*/
+    strcpy(puntero,servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    return unCaracter;
 }
 
 int recibirColumna(Servidor &servidor){
@@ -310,12 +305,13 @@ int menuCrearViaje(Servidor &servidor,Viaje &viaje){
     recibirTurno(servidor,viaje);
 	viaje = crearViaje(viaje.destino,viaje.fecha,viaje.turno);
 	mostrarEsquema(viaje);
-   return 40;
+    return 40;
 }
 
 
 
 int menuAsignarAsiento(Servidor &servidor,Viaje &viaje){
+    char fila;
     enviarMensaje(servidor,"Ingrese origen (MDQ | BSAS) :");
     Sleep(1000);
     recibirDestino(servidor,viaje);
@@ -326,10 +322,9 @@ int menuAsignarAsiento(Servidor &servidor,Viaje &viaje){
     Sleep(1000);
     recibirTurno(servidor,viaje);
     enviarMensaje(servidor,"Ingrese fila (A | B | C) : ");
-    recibirFila(servidor,viaje);
+    fila=recibirFila(servidor);
     enviarMensaje(servidor,"Ingrese columna (1 al 20) : ");
-    int columna=recibirColumna(servidor);
-	//modificacionFicheroAsignar(a,a,a,a,recibirColumna(servidor));
+	modificacionFicheroAsignar(viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor));
 	return 41;
 }
 
