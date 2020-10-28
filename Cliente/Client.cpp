@@ -1,5 +1,5 @@
 #include "Client.h"
-
+#include "Binario.h"
 
 void crearCliente(Cliente &cliente,char *ip, int puerto){
     system("cls");
