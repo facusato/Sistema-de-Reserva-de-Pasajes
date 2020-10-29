@@ -49,3 +49,37 @@ C|OOOOOOOOOOOOOOOOOOOO
 
 ******************************
 
+
+
+******************************
+
+mdq
+11/11/2020
+tarde
+           11111111112
+ |12345678901234567890
+----------------------
+A|OOOOOOOOOOOOOOOOOOXO
+B|OOOOOOOOOOOOOOOOOOOO
+======================
+C|OOOOOOOOOOOOOOOOOOOO
+
+******************************
+
+
+
+******************************
+
+bsas
+16/06/2020
+noche
+           11111111112
+ |12345678901234567890
+----------------------
+A|OOOOOOOOOOOOOOOOOOOO
+B|OOOOXOOOOOOOOOOOOOOO
+======================
+C|OOOOOOOOOOOOOOOOOOOO
+
+******************************
+

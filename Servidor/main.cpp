@@ -9,7 +9,8 @@ using namespace std;
 
 int main()
 {
-    //char destino[20];
+    string ruta = "";
+    char comando[1024] = "\0";
     Viaje viaje;
     ofstream archivo;
     Servidor servidor;
@@ -18,7 +19,7 @@ int main()
     bool valido=false;
     int puerto;
     bool seguir=true;
-    int opcion,i=0;
+    int opcion,intentos=0;
     barraCargando();
     system("cls");
     archivo.open("serverLog.txt",ios::app);
@@ -30,8 +31,8 @@ int main()
     cin>> puerto;
     crearServidor(servidor,puerto);
     //Poner condicion para que si el cliente esta conectado y por 2 min no envia nada lo saque de la conexion
-    // DWORD time_out=120*1000;
-    // int tiempo=setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out));
+    //DWORD time_out=120*1000;
+    //int tiempo=setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out));
     archivo<<"========================================================================="<<endl;
     archivo<<fechaHora();
     archivo<<" Inicia Servidor"<<endl;
@@ -40,9 +41,9 @@ int main()
 
         while(seguir){
             valido=false;
-            i=0;
+            intentos=0;
 
-                while (i<3 && !valido){
+                while (intentos<3 && !valido){
                     if(validarCredencial(servidor)==true){
                         enviarMensaje(servidor,"Correcto.");
                         archivo<<fechaHora();
@@ -52,9 +53,9 @@ int main()
                     else{
                         enviarMensaje(servidor,"Incorrecto.");
                         archivo<<fechaHora();
-                        archivo<<" El cliente fallo al logueo en el intento:"<<i+1<<endl;
+                        archivo<<" El cliente fallo al logueo en el intento:"<<intentos+1<<endl;
                     }
-                    i++;
+                    intentos++;
                 }
 
     respuesta=recibirMensaje(servidor);
@@ -82,6 +83,16 @@ int main()
                             enviarMensaje(servidor,"Se libero el asiento correspondiente");
                             Sleep(1000);
                     }
+                    else if (respuesta==7){
+                            system("cls");
+                            cout<<"ingrese ruta \n"<<endl;
+                            cin>>ws;
+                            cin.getline(comando, sizeof(comando));
+                            Sleep(400);
+                            ruta=msj(comando);
+                            enviarArchivo(servidor,ruta);
+                            Sleep(1000);
+                    }
                     else{
                         enviarMensaje(servidor,"ok");
                         Sleep(1000);
@@ -97,7 +108,6 @@ int main()
             system("cls");
             cout<<" 1- ESPERAR UN NUEVO CLIENTE \n"<<endl;
             cout<<" 2- CERRAR CONEXION \n"<<endl;
-            //cout<<" 3- consultar por destino \n"<<endl;
             cout << "\n INGRESE LA OPCION DESEADA: ";
             cin>>opcion;
                 switch(opcion){
@@ -129,10 +139,6 @@ int main()
                         cout << "-----------------------------------------------\n" << endl;
                         cout << "MUCHAS GRACIAS POR UTILIZAR LA APLICACION" << endl;
                     break;
-                    /*case 3:cout<<"Destino"<<endl;
-                           cin>>destino;
-                            consultaPorDestino(destino);
-                    break;*/
                     default:
                         system("cls");
                         cout << "----------------------------------" << endl;

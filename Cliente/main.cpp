@@ -12,7 +12,7 @@ int main()
     char ip[16];
     int puerto;
     int respuesta=0;
-    int i=0;
+    int intentos=0;
     int fLagConexion=0;
     int opcion=0;
     do{
@@ -31,7 +31,7 @@ int main()
             }
     }while(fLagConexion != 0);
 
-        while(i<3 && respuesta!=3){
+        while(intentos<3 && respuesta!=3){
             recibirMensaje(cliente);
             cin>>usuario;
             enviarMensaje(cliente,usuario);
@@ -41,7 +41,7 @@ int main()
             enviarMensaje(cliente,password);
             Sleep(1000);
             respuesta=recibirMensaje(cliente);
-            i++;
+            intentos++;
         }
 
         if(respuesta==3){
@@ -51,6 +51,7 @@ int main()
                    Sleep(1000);
                 }
         }
+     enviarMensaje(cliente,"Se cerro el socket.");
      cerrarSocket(cliente);
     return 0;
 }

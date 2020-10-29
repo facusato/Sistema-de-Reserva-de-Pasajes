@@ -218,3 +218,69 @@
 28-10-2020 23:21:58 El cliente ingreso al sistema
 28-10-2020 23:23:49 El cliente se retiro de la conexion
 28-10-2020 23:23:57 El Servidor cerro la conexion
+=========================================================================
+29-10-2020 11:32:04 Inicia Servidor
+29-10-2020 11:32:04 Socket creado. Puerto de escucha: 5000
+29-10-2020 11:32:10 El cliente fallo al logueo en el intento:1
+29-10-2020 11:32:16 El cliente ingreso al sistema
+29-10-2020 11:36:26 El cliente se retiro de la conexion
+29-10-2020 11:36:33 El Servidor cerro la conexion
+=========================================================================
+29-10-2020 12:18:43 Inicia Servidor
+29-10-2020 12:18:43 Socket creado. Puerto de escucha: 8000
+29-10-2020 12:18:48 El cliente ingreso al sistema
+=========================================================================
+29-10-2020 12:25:48 Inicia Servidor
+29-10-2020 12:25:48 Socket creado. Puerto de escucha: 5000
+29-10-2020 12:25:52 El cliente ingreso al sistema
+=========================================================================
+29-10-2020 12:58:58 Inicia Servidor
+29-10-2020 12:58:58 Socket creado. Puerto de escucha: 8000
+29-10-2020 12:59:03 El cliente ingreso al sistema
+=========================================================================
+29-10-2020 13:02:51 Inicia Servidor
+29-10-2020 13:02:51 Socket creado. Puerto de escucha: 8000
+29-10-2020 13:02:55 El cliente ingreso al sistema
+29-10-2020 13:05:19 El cliente se retiro de la conexion
+=========================================================================
+29-10-2020 13:05:26 Esperando a un nuevo cliente
+=========================================================================
+29-10-2020 14:08:24 Inicia Servidor
+29-10-2020 14:08:24 Socket creado. Puerto de escucha: 8000
+29-10-2020 14:08:35 El cliente ingreso al sistema
+29-10-2020 14:11:38 El cliente se retiro de la conexion
+29-10-2020 14:11:43 El Servidor cerro la conexion
+=========================================================================
+29-10-2020 14:43:50 Inicia Servidor
+29-10-2020 14:43:50 Socket creado. Puerto de escucha: 5000
+29-10-2020 14:43:58 El cliente ingreso al sistema
+=========================================================================
+29-10-2020 15:08:20 Inicia Servidor
+29-10-2020 15:08:20 Socket creado. Puerto de escucha: 5000
+29-10-2020 15:12:30 El cliente fallo al logueo en el intento:1
+29-10-2020 15:12:33 El cliente fallo al logueo en el intento:2
+29-10-2020 15:12:36 El cliente fallo al logueo en el intento:3
+=========================================================================
+29-10-2020 15:16:03 Inicia Servidor
+29-10-2020 15:16:03 Socket creado. Puerto de escucha: 5000
+29-10-2020 15:16:10 El cliente fallo al logueo en el intento:1
+29-10-2020 15:16:15 El cliente fallo al logueo en el intento:2
+29-10-2020 15:16:24 El cliente fallo al logueo en el intento:3
+=========================================================================
+29-10-2020 15:23:03 Inicia Servidor
+29-10-2020 15:23:03 Socket creado. Puerto de escucha: 5000
+29-10-2020 15:23:07 El cliente fallo al logueo en el intento:1
+29-10-2020 15:23:11 El cliente fallo al logueo en el intento:2
+29-10-2020 15:23:15 El cliente fallo al logueo en el intento:3
+29-10-2020 15:23:16 El cliente se retiro de la conexion
+29-10-2020 15:23:22 El Servidor cerro la conexion
+=========================================================================
+29-10-2020 15:32:25 Inicia Servidor
+29-10-2020 15:32:25 Socket creado. Puerto de escucha: 8000
+29-10-2020 15:32:31 El cliente ingreso al sistema
+=========================================================================
+29-10-2020 15:34:38 Inicia Servidor
+29-10-2020 15:34:38 Socket creado. Puerto de escucha: 8000
+29-10-2020 15:34:52 El cliente ingreso al sistema
+29-10-2020 15:34:54 El cliente se retiro de la conexion
+29-10-2020 15:35:03 El Servidor cerro la conexion

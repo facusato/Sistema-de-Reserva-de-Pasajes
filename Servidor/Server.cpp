@@ -120,6 +120,13 @@ int recibirMensaje(Servidor &servidor){
                 retorno=6;
 
             }
+            else if(!strcmp(servidor.buffer, "VER SERVICIOS DISPONIBLES."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=7;
+
+            }
             else
             {
                 cout << "\nEl cliente dice: " << servidor.buffer << endl;
@@ -143,41 +150,53 @@ void enviarMensaje(Servidor &servidor,string mensaje){
         }
 }
 
-void enviarArchivo(Servidor &servidor,string ruta){
+void enviarArchivo(Servidor &servidor,string ruta)
+    {
         FILE *File;
         char *Buffer;
         unsigned long Size;
         char nombre[512]= "\0";
         char rutaChar[1024] = "\0";
         string mensaje = "Enviando archivo.";
+
         cout<<mensaje<<endl;
         enviarMensaje(servidor,mensaje); // manda aviso para que limpie buffer
+
         strcpy(nombre, &ruta[0]); //Mando ruta y nombre de archivo
+
         SafeSend(servidor.client, nombre, sizeof(nombre));
+
         strcpy(rutaChar, &ruta[0]);
-        /**"rb" archivo binario*/
+
         File = fopen(rutaChar, "rb");
-            if(!File)
-            {
-                cout<<"Error al leer archivo"<<endl;
-                cin.ignore();
-            }
-            else{
-                fseek(File, 0, SEEK_END);
-                Size = ftell(File);
-                fseek(File, 0, SEEK_SET);
-                Buffer = new char[Size];
-                fread(Buffer, Size, 1, File);
-                char cSize[MAX_PATH];
-                sprintf(cSize, "%lu", Size);
-                fclose(File);
-                Sleep(1000);
-                SafeSend(servidor.client, cSize, MAX_PATH); // File size
-                Sleep(1000);
-                SafeSend(servidor.client,Buffer,Size);
-            }
+
+        if(!File)
+        {
+            cout<<"Error al leer archivo"<<endl;
+            cin.ignore();
+        }
+        else
+        {
+            fseek(File, 0, SEEK_END);
+            Size = ftell(File);
+            fseek(File, 0, SEEK_SET);
+
+            Buffer = new char[Size];
+
+            fread(Buffer, Size, 1, File);
+            char cSize[MAX_PATH];
+            sprintf(cSize, "%lu", Size);
+
+            fclose(File);
+
+            Sleep(1000);
+            SafeSend(servidor.client, cSize, MAX_PATH); // File size
+
+            Sleep(1000);
+            SafeSend(servidor.client,Buffer,Size);
+        }
         free(Buffer);
-}
+    }
 
 void recibirArchivo(Servidor &servidor){
     cout<<"Recibiendo archivo..."<<endl;
