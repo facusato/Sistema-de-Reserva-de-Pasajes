@@ -254,8 +254,32 @@ int menu2(Cliente &cliente){
                      Sleep(1000);
                break;
                case 2:
+                     enviarMensaje(cliente,"LIBERAR UN ASIENTO.");
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>destino;
+                     enviarMensaje(cliente,destino);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>fecha;
+                     enviarMensaje(cliente,fecha);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>turno;
+                     enviarMensaje(cliente,turno);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>fila;
+                     enviarMensaje(cliente,fila);
+                     Sleep(1000);
+                     recibirMensaje(cliente);
+                     cin>>columna;
+                     enviarMensaje(cliente,columna);
+                     Sleep(1000);
                break;
                case 3:
+                      leerFichero();
+                      enviarMensaje(cliente,"se ve bien");
                break;
                case 4:
                    system("cls");

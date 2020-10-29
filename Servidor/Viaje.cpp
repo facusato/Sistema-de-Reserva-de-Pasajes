@@ -240,6 +240,45 @@ void escribirFichero(Viaje &viaje){			//escribe un registro al final del fichero
 
 };
 
+//Agregado 21 hs
+
+void escribirFicheroDestino(Viaje &viaje){			//escribe un registro al final del fichero.
+
+	FILE *ficheroDestino;					//crea puntero a fichero
+	ficheroDestino = fopen("Destino.bin","ab");
+	if(ficheroDestino ==NULL){			//verifica si fichero existe y lo crea añadiendo datos al final sin pisar los datos ya guardados
+		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+	}else{
+		fwrite(&viaje,sizeof(viaje),1,ficheroDestino);				//sino, escribe toda la estructura en el fichero
+		fclose(ficheroDestino);									//cierra fichero
+	}
+};
+
+
+void escribirFicheroFecha(Viaje &viaje){			//escribe un registro al final del fichero.
+
+	FILE *ficheroFecha;					//crea puntero a fichero
+	ficheroFecha = fopen("Fecha.bin","ab");
+	if(ficheroFecha ==NULL){			//verifica si fichero existe y lo crea añadiendo datos al final sin pisar los datos ya guardados
+		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+	}else{
+		fwrite(&viaje,sizeof(viaje),1,ficheroFecha);				//sino, escribe toda la estructura en el fichero
+		fclose(ficheroFecha);									//cierra fichero
+	}
+};
+
+void escribirFicheroTurno(Viaje &viaje){			//escribe un registro al final del fichero.
+
+	FILE *ficheroTurno;					//crea puntero a fichero
+	ficheroTurno = fopen("Turno.bin","ab");
+	if(ficheroTurno ==NULL){			//verifica si fichero existe y lo crea añadiendo datos al final sin pisar los datos ya guardados
+		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+	}else{
+		fwrite(&viaje,sizeof(viaje),1,ficheroTurno);				//sino, escribe toda la estructura en el fichero
+		fclose(ficheroTurno);									//cierra fichero
+	}
+};
+
 
 void leerFichero(){			//lee el fichero completo
 
@@ -359,12 +398,15 @@ void consultaPorDestino(char destino[20])
 			cout<< getTurno(viaje)<<endl;
 			cout<<endl;
 			mostrarEsquema(viaje);
+			//agregue 21 hs
+			escribirFicheroDestino(viaje);
 			cout<<endl;
 			cout<<"------------------------"<<endl;
         	existe=1;
         }
         fread(&viaje, sizeof(Viaje), 1, fichero);
     }
+    //ACA TENGO Q PONER UN ENVIAR PARA MANDAR EL BINARIO DEL FILTRO
     if (existe==0)
         cout<<"No existe servicio con dichos parametros"<<endl;
     fclose(fichero);
@@ -390,6 +432,7 @@ void consultaPorFecha(char fecha[20])
 			cout<< getTurno(viaje)<<endl;
 			cout<<endl;
 			mostrarEsquema(viaje);
+			escribirFicheroFecha(viaje);
 			cout<<endl;
 			cout<<"------------------------"<<endl;
         	existe=1;
@@ -421,6 +464,7 @@ void consultaPorTurno(char turno[20])
 			cout<< getTurno(viaje)<<endl;
 			cout<<endl;
 			mostrarEsquema(viaje);
+			escribirFicheroTurno(viaje);
 			cout<<endl;
 			cout<<"------------------------"<<endl;
         	existe=1;

@@ -25,7 +25,7 @@ void crearServidor(Servidor &servidor,int puerto){
 }
 
 
-void volver(Servidor &servidor){
+void escuchando(Servidor &servidor){
     listen(servidor.server, 0);
     cout << "Esperando a que se conecte el cliente." << endl;
     int clientAddrSize = sizeof(servidor.clientAddr);
@@ -44,6 +44,7 @@ bool validarCredencial(Servidor &servidor){
     servidor.buffer[0] = '\0';
     string usuario;
     string password;
+    string txt= ".txt";
     bool valido=false;
     enviarMensaje(servidor,"INGRESE USUARIO");
     Sleep(1000);
@@ -110,6 +111,14 @@ int recibirMensaje(Servidor &servidor){
                 cout << "\n El cliente esta reservando un asiento" << endl;
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));
                 retorno= 5;
+            }
+            else if(!strcmp(servidor.buffer, "LIBERAR UN ASIENTO."))
+            {
+
+                cout<< "\n El cliente esta liberando un asiento" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=6;
+
             }
             else
             {
@@ -294,7 +303,7 @@ int recibirColumna(Servidor &servidor){
 
 int menuCrearViaje(Servidor &servidor,Viaje &viaje){
 
-	enviarMensaje(servidor,"Ingrese origen (MDQ | BSAS) :");
+	enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
     recibirDestino(servidor,viaje);
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
@@ -312,7 +321,7 @@ int menuCrearViaje(Servidor &servidor,Viaje &viaje){
 
 int menuAsignarAsiento(Servidor &servidor,Viaje &viaje){
     char fila;
-    enviarMensaje(servidor,"Ingrese origen (MDQ | BSAS) :");
+    enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
     recibirDestino(servidor,viaje);
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
@@ -327,4 +336,25 @@ int menuAsignarAsiento(Servidor &servidor,Viaje &viaje){
 	modificacionFicheroAsignar(viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor));
 	return 41;
 }
+
+int menuLiberarAsiento(Servidor &servidor, Viaje &viaje){
+    char fila;
+    enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
+    Sleep(1000);
+    recibirDestino(servidor,viaje);
+    enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
+    Sleep(1000);
+    recibirFecha(servidor,viaje);
+    enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
+    Sleep(1000);
+    recibirTurno(servidor,viaje);
+    enviarMensaje(servidor,"Ingrese fila: (A | B | C):");
+    fila=recibirFila(servidor);
+    enviarMensaje(servidor,"Ingrese columna (1 al 20)");
+    modificacionFicheroLiberar(viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor));
+    return 42;
+}
+
+
+
 

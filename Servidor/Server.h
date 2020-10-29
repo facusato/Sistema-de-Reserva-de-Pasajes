@@ -26,7 +26,7 @@ void crearServidor(Servidor &servidor,int puerto);
 
 int recibirMensaje(Servidor &servidor);
 
-void volver(Servidor &servidor);
+void escuchando(Servidor &servidor);
 
 bool validarCredencial(Servidor &servidor);
 
@@ -55,6 +55,8 @@ void recibirTurno(Servidor &servidor,Viaje &viaje);
 int menuCrearViaje(Servidor &servidor,Viaje &viaje);
 
 int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
+
+int menuLiberarAsiento(Servidor &servidor, Viaje &viaje);
 
 char recibirFila(Servidor &servidor);
 
