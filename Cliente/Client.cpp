@@ -90,30 +90,38 @@ void enviarArchivo(Cliente &cliente,string ruta){
 }
 
 
-void recibirArchivo(Cliente &cliente){
-    cout<<"Recibiendo archivo."<<endl;
-    int Size;
-    char Filesize[MAX_PATH] = "\0";
-    char nombre[512] = "\0";
-    recv(cliente.server, nombre, sizeof(nombre), 0);
-        if(recv(cliente.server, Filesize, sizeof(Filesize), 0)){
+void recibirArchivo(Cliente &cliente)
+    {
+        cout<<"Recibiendo archivo."<<endl;
+        int Size;
+        char Filesize[MAX_PATH] = "\0";
+        char nombre[512] = "\0";
+
+        recv(cliente.server, nombre, sizeof(nombre), 0);
+
+        if(recv(cliente.server, Filesize, sizeof(Filesize), 0)) // Tamaño de archivo
+        {
             Size = atoi((const char*)Filesize);
             cout<< "Tamanio del archivo: "<< Size<<endl;
         }
+
         char *Buffer = new char[Size];
         recv(cliente.server, Buffer, Size, 0);
         cout<< "Se trajo el archivo: "<< nombre <<endl; // Guardo la ruta y el nombre y lo muestro
+
         char cmd[50];
         cout<<"Ingresar ruta y  nombre del archivo: "<<endl;
         cin>>ws; cin>>cmd;
+
         FILE* File;
         File = fopen(cmd, "wb");
         fwrite(Buffer, 1, Size, File);
         fclose(File);
+
         cout<<"Archivo recibido."<<endl;
         cout<<"Se recibieron " << Size << " bytes.";
         free(Buffer);
-}
+    }
 
 
 int SafeSend(SOCKET s, char* buf, int buflen){
@@ -223,7 +231,7 @@ int menu2(Cliente &cliente){
     cout<<"\n"<<endl;
     cout<<" 1- RESERVAR UN ASIENTO \n"<<endl;
     cout<<" 2- LIBERAR UN ASIENTO \n"<<endl;
-    cout<<" 3- ELEGIR OTRO SERVICIO \n"<<endl;
+    cout<<" 3- VER SERVICIOS DISPONIBLES \n"<<endl;
     cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
@@ -278,8 +286,13 @@ int menu2(Cliente &cliente){
                      Sleep(1000);
                break;
                case 3:
+                      enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
+                      Sleep(1000);
+                      recibirMensaje(cliente);
+                      recibirArchivo(cliente);
                       leerFichero();
-                      enviarMensaje(cliente,"se ve bien");
+                      Sleep(1000);
+                      enviarMensaje(cliente,"RECIBIDO.");
                break;
                case 4:
                    system("cls");
