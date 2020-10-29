@@ -63,6 +63,9 @@ bool validarAsientoVacio(Viaje &viaje,char fila, int columna);
 /*****************************************************************************///FICHERO
 
 void escribirFichero(Viaje &viaje);
+void escribirFicheroDestino(Viaje &viaje);
+void escribirFicheroFecha(Viaje &viaje);
+void escribirFicheroTurno(Viaje &viaje);
 void leerFichero();
 void modificacionFicheroAsignar(char destino[20], char fecha[20], char turno[20], char fila, int columna );
 void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20], char fila, int columna );
