@@ -127,6 +127,13 @@ int recibirMensaje(Servidor &servidor){
                 retorno=7;
 
             }
+            else if(!strcmp(servidor.buffer, "VER POR DESTINO."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=8;
+
+            }
             else
             {
                 cout << "\nEl cliente dice: " << servidor.buffer << endl;
@@ -372,6 +379,16 @@ int menuLiberarAsiento(Servidor &servidor, Viaje &viaje){
     enviarMensaje(servidor,"Ingrese columna (1 al 20)");
     modificacionFicheroLiberar(viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor));
     return 42;
+}
+
+
+int menuDestino(Servidor &servidor,Viaje &viaje){
+
+    enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
+    Sleep(1000);
+    recibirDestino(servidor,viaje);
+    consultaPorDestino(viaje.destino);
+    return 43;
 }
 
 
