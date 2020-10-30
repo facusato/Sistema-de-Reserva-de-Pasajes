@@ -35,6 +35,10 @@ string msj(char* grupo);
 
 void barraCargando();
 
+void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],Cliente &cliente);
+
+void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente);
+
 int menu(Cliente &cliente);
 
 int menu2(Cliente &cliente);

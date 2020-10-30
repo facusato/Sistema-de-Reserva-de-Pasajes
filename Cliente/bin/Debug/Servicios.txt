@@ -60,9 +60,9 @@ tarde
  |12345678901234567890
 ----------------------
 A|OOOOOOOOOOOOOOOOOOXO
-B|OOOOOOOOOOOOOOOOOOOO
+B|OOOOOXOOOOOXOOOOOOOO
 ======================
-C|OOOOOOOOOOOOOOOOOOOO
+C|OOOOOOXOOOOOOOOOOOOO
 
 ******************************
 
@@ -76,10 +76,27 @@ noche
            11111111112
  |12345678901234567890
 ----------------------
-A|OOOOOOOOOOOOOOOOOOOO
+A|OOOOOOOOOOXOOOOOOOOO
 B|OOOOXOOOOOOOOOOOOOOO
 ======================
 C|OOOOOOOOOOOOOOOOOOOO
+
+******************************
+
+
+
+******************************
+
+MDQ
+25/12/2020
+manana
+           11111111112
+ |12345678901234567890
+----------------------
+A|OOOOOOOOOOOOOOOOOOOO
+B|OOOOOOOOOOOOOOOOOOOO
+======================
+C|OOOOOOOOOOOOOOXOOOOO
 
 ******************************
 
