@@ -21,6 +21,8 @@ struct Viaje{
 
 void leerFichero();
 void leerFicheroDestino();
+void leerFicheroFecha();
+void leerFicheroTurno();
 char* getDestino(Viaje &viaje);
 char* getFecha(Viaje &viaje);
 char* getTurno(Viaje &viaje);

@@ -134,6 +134,19 @@ int recibirMensaje(Servidor &servidor){
                 retorno=8;
 
             }
+            else if(!strcmp(servidor.buffer, "VER POR FECHA."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=9;
+
+            }
+            else if(!strcmp(servidor.buffer, "VER POR TURNO."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=10;
+            }
             else
             {
                 cout << "\nEl cliente dice: " << servidor.buffer << endl;
@@ -382,7 +395,7 @@ int menuLiberarAsiento(Servidor &servidor, Viaje &viaje){
 }
 
 
-int menuDestino(Servidor &servidor,Viaje &viaje){
+int filtrarPorDestino(Servidor &servidor,Viaje &viaje){
 
     enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
@@ -391,6 +404,21 @@ int menuDestino(Servidor &servidor,Viaje &viaje){
     return 43;
 }
 
+int filtrarPorFecha(Servidor &servidor,Viaje &viaje){
 
+    enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
+    Sleep(1000);
+    recibirFecha(servidor,viaje);
+    consultaPorFecha(viaje.fecha);
+    return 44;
+}
 
+int filtrarPorTurno(Servidor &servidor,Viaje &viaje){
+
+    enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
+    Sleep(1000);
+    recibirTurno(servidor,viaje);
+    consultaPorTurno(viaje.turno);
+    return 45;
+}
 
