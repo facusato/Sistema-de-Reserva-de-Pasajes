@@ -174,7 +174,8 @@ int menu(Cliente &cliente){
     switch(opcion){
                case 1:
                     enviarMensaje(cliente,"ALTA DE SERVICIO.");
-                    Sleep(1000);
+                    validarDestinoFechaTurno(destino,fecha,turno,cliente);
+                    /*Sleep(1000);
                     recibirMensaje(cliente);
                     cin >> destino;
                     enviarMensaje(cliente,destino);
@@ -186,7 +187,7 @@ int menu(Cliente &cliente){
                     recibirMensaje(cliente);
                     cin >> turno;
                     enviarMensaje(cliente,turno);
-                    Sleep(1000);
+                    Sleep(1000);*/
                break;
                case 2:
                     menu2(cliente);
@@ -239,7 +240,9 @@ int menu2(Cliente &cliente){
     switch(opcion){
                case 1:
                      enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
-                     Sleep(1000);
+                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
+                     validarFilaColumna(fila,columna,cliente);
+                     /*Sleep(1000);
                      recibirMensaje(cliente);
                      cin >> destino;
                      enviarMensaje(cliente,destino);
@@ -259,11 +262,13 @@ int menu2(Cliente &cliente){
                      recibirMensaje(cliente);
                      cin>>columna;
                      enviarMensaje(cliente,columna);
-                     Sleep(1000);
+                     Sleep(1000);*/
                break;
                case 2:
                      enviarMensaje(cliente,"LIBERAR UN ASIENTO.");
-                     Sleep(1000);
+                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
+                     validarFilaColumna(fila,columna,cliente);
+                     /*Sleep(1000);
                      recibirMensaje(cliente);
                      cin>>destino;
                      enviarMensaje(cliente,destino);
@@ -283,7 +288,7 @@ int menu2(Cliente &cliente){
                      recibirMensaje(cliente);
                      cin>>columna;
                      enviarMensaje(cliente,columna);
-                     Sleep(1000);
+                     Sleep(1000);*/
                break;
                case 3:
                       enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
@@ -325,4 +330,78 @@ void barraCargando(){
             cout<<char(219);
             Sleep(segundos*1000/175);
         }
+}
+
+void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],Cliente &cliente){
+    bool destinoCorrecto=false;
+    bool fechaCorrecta=false;
+    bool turnoCorrecto=false;
+    Sleep(1000);
+    //Destino
+    recibirMensaje(cliente);
+
+        while(destinoCorrecto==false){
+                cin >> destino;
+                        if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
+                            destinoCorrecto=true;
+                        }else{cout << "Destino Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+                        }
+        }
+
+        enviarMensaje(cliente,destino);
+        Sleep(1000);
+        recibirMensaje(cliente);
+        //Fecha
+            while(fechaCorrecta==false){
+                    cin >> fecha;
+                        if(strlen(fecha)==10){
+                            fechaCorrecta=true;
+                        }else{
+                        cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
+            }
+
+            enviarMensaje(cliente,fecha);
+            Sleep(1000);
+            recibirMensaje(cliente);
+            //turno
+                while(turnoCorrecto==false){
+                        cin >> turno;
+                            if (strcmp(turno,"manana")==0||strcmp(turno,"tarde")==0||strcmp(turno,"noche")==0){
+                                    turnoCorrecto=true;
+                            }else{
+                            cout << "Turno Incorrecto. Por favor, vuelva a ingresarlo:" << endl;}
+                }
+
+                enviarMensaje(cliente,turno);
+                Sleep(1000);
+
+}
+
+void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente){
+    bool filaCorrecta=false;
+    bool columnaCorrecta=false;
+    Sleep(1000);
+    //Fila
+    recibirMensaje(cliente);
+        while(filaCorrecta==false){
+            cin >> fila;
+            if (strcmp(fila,"A")==0||strcmp(fila,"B")==0||strcmp(fila,"C")==0
+                ||strcmp(fila,"a")==0||strcmp(fila,"b")==0||strcmp(fila,"c")==0){
+                filaCorrecta=true;
+            }else{cout << "Fila Incorrecta. Por favor, vuelva a ingresarla:" << endl;
+            }
+        }
+        enviarMensaje(cliente,fila);
+        Sleep(1000);
+        recibirMensaje(cliente);
+        //columna
+            while(columnaCorrecta==false){
+                cin >> columna;
+                    if(atoi(columna)>0&&atoi(columna)<21){
+                        columnaCorrecta=true;
+                    }else{
+                        cout << "Columna Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
+                    }
+                    enviarMensaje(cliente,columna);
+                    Sleep(1000);
 }
