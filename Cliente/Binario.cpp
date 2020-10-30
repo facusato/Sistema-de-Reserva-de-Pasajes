@@ -8,130 +8,98 @@ using namespace std;
 void leerFichero(){			//lee el fichero completo
 
 	FILE *fichero;
-	FILE *fichero_txt;
 	Viaje viaje;
-
-	char* salto_linea ="\n";
 	fichero = fopen("Servicios.bin","rb");
-	fichero_txt = fopen("Servicios.txt","wt");
-
-	if(fichero == NULL){									//verifica si fichero existe
-		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
-	}else{
-		fread(&viaje, sizeof(Viaje),1,fichero);
-		while(! feof(fichero)){
-			cout<<"------------------------"<<endl;
-			cout<< getDestino(viaje)<<endl;
-			cout<< getFecha(viaje)<<endl;
-			cout<< getTurno(viaje)<<endl;
-			cout<<endl;
-			mostrarEsquema(viaje);
-			cout<<endl;
-			cout<<"------------------------"<<endl;
-
-
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs("******************************",fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getDestino(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFecha(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getTurno(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila1(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila2(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila3(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaA(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaB(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila6(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaC(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs("******************************",fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-
-			fread(&viaje, sizeof(Viaje), 1,fichero);
-		}
-	}
-	fclose(fichero);
-	fclose(fichero_txt);
-
+        if(fichero == NULL){									//verifica si fichero existe
+            cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                }
+            }
+        fclose(fichero);
 }
 
 void leerFicheroDestino(){			//lee el fichero completo
 
 	FILE *fichero;
-	FILE *fichero_txt;
 	Viaje viaje;
-
-	char* salto_linea ="\n";
 	fichero = fopen("Destino.bin","rb");
-	fichero_txt = fopen("Destino.txt","wt");
-
-	if(fichero == NULL){									//verifica si fichero existe
-		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
-	}else{
-		fread(&viaje, sizeof(Viaje),1,fichero);
-		while(! feof(fichero)){
-			cout<<"------------------------"<<endl;
-			cout<< getDestino(viaje)<<endl;
-			cout<< getFecha(viaje)<<endl;
-			cout<< getTurno(viaje)<<endl;
-			cout<<endl;
-			mostrarEsquema(viaje);
-			cout<<endl;
-			cout<<"------------------------"<<endl;
-
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs("******************************",fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getDestino(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFecha(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getTurno(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila1(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila2(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila3(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaA(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaB(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFila6(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(getFilaC(viaje),fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs("******************************",fichero_txt);
-			fputs(salto_linea,fichero_txt);
-			fputs(salto_linea,fichero_txt);
-
-			fread(&viaje, sizeof(Viaje), 1,fichero);
-		}
-	}
-	fclose(fichero);
-	fclose(fichero_txt);
-
+        if(fichero == NULL){									//verifica si fichero existe
+            cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                }
+        }
+        fclose(fichero);
 }
 
+void leerFicheroFecha(){			//lee el fichero completo
 
+	FILE *fichero;
+	Viaje viaje;
+	fichero = fopen("Fecha.bin","rb");
+        if(fichero == NULL){									//verifica si fichero existe
+            cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                }
+        }
+        fclose(fichero);
+}
 
+void leerFicheroTurno(){			//lee el fichero completo
+
+	FILE *fichero;
+	Viaje viaje;
+	fichero = fopen("Turno.bin","rb");
+        if(fichero == NULL){									//verifica si fichero existe
+            cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                }
+        }
+        fclose(fichero);
+}
 
 
 char* getDestino(Viaje &viaje){

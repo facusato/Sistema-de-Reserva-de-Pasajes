@@ -89,16 +89,28 @@ int main()
                             system("cls");
                             enviarArchivo(servidor,ruta);
                             Sleep(1000);
-                            //ver
                             respuesta=80;
                     }
                     else if (respuesta==8){
-                            //nuevo 30/10 15:47
                             system("cls");
-                            respuesta=menuDestino(servidor,viaje);
+                            respuesta=filtrarPorDestino(servidor,viaje);
                             enviarArchivo(servidor,destino);
                             Sleep(1000);
                             remove("Destino.bin");
+                    }
+                     else if (respuesta==9){
+                            system("cls");
+                            respuesta=filtrarPorFecha(servidor,viaje);
+                            enviarArchivo(servidor,fecha);
+                            Sleep(1000);
+                            remove("Fecha.bin");
+                    }
+                    else if (respuesta==10){
+                            system("cls");
+                            respuesta=filtrarPorTurno(servidor,viaje);
+                            enviarArchivo(servidor,turno);
+                            Sleep(1000);
+                            remove("Turno.bin");
                     }
                     else{
                         enviarMensaje(servidor,"ok");

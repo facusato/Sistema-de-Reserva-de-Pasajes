@@ -122,7 +122,23 @@ void recibirArchivo(Cliente &cliente){
             fclose(File);
             cout<<"Archivo recibido."<<endl;
             cout<<"Se recibieron " << Size << " bytes.";
+        }else if(strcmp(nombre,"Fecha.bin")==0){
+            FILE* File;
+            File = fopen("Fecha.bin", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
         }
+        else if(strcmp(nombre,"Turno.bin")==0){
+            FILE* File;
+            File = fopen("Turno.bin", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
+        }
+
         free(Buffer);
     }
 
@@ -222,9 +238,11 @@ int menu2(Cliente &cliente){
     cout<<"\n"<<endl;
     cout<<" 1- RESERVAR UN ASIENTO \n"<<endl;
     cout<<" 2- LIBERAR UN ASIENTO \n"<<endl;
-    cout<<" 3- VER SERVICIOS DISPONIBLES \n"<<endl;
-    cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
-    cout<<" 5- VER VIAJES POR DESTINO \n"<<endl;
+    cout<<" 3- VER VIAJES DISPONIBLES \n"<<endl;
+    cout<<" 4- VER VIAJES POR DESTINO \n"<<endl;
+    cout<<" 5- VER VIAJES POR TURNO \n"<<endl;
+    cout<<" 6- VER VIAJES POR FECHA \n"<<endl;
+    cout<<" 7- VOLVER AL MENU ANTERIOR \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
     system("cls");
@@ -252,12 +270,6 @@ int menu2(Cliente &cliente){
                break;
                case 4:
                    system("cls");
-                   cout<<endl;
-                   Sleep(2000);
-                   cout<<menu(cliente)<<endl;
-               break;
-                case 5:
-                   system("cls");
                    enviarMensaje(cliente,"VER POR DESTINO.");
                    Sleep(1000);
                    recibirMensaje(cliente);
@@ -272,8 +284,46 @@ int menu2(Cliente &cliente){
                    system("pause");
                    enviarMensaje(cliente,"RECIBIDO.");
                break;
-               default:
+               case 5:
                    system("cls");
+                   enviarMensaje(cliente,"VER POR TURNO.");
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   cin>>turno;
+                   enviarMensaje(cliente,turno);
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   recibirArchivo(cliente);
+                   system("cls");
+                   leerFicheroTurno();
+                   Sleep(2000);
+                   system("pause");
+                   enviarMensaje(cliente,"RECIBIDO.");
+               break;
+               case 6:
+                   system("cls");
+                   enviarMensaje(cliente,"VER POR FECHA.");
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   cin>>fecha;
+                   enviarMensaje(cliente,fecha);
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   recibirArchivo(cliente);
+                   system("cls");
+                   leerFicheroFecha();
+                   Sleep(2000);
+                   system("pause");
+                   enviarMensaje(cliente,"RECIBIDO.");
+               break;
+               case 7:
+                   system("cls");
+                   cout<<endl;
+                   Sleep(2000);
+                   cout<<menu(cliente)<<endl;
+               break;
+               default:
+               system("cls");
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;

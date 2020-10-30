@@ -52,16 +52,22 @@ void recibirFecha(Servidor &servidor,Viaje &viaje);
 
 void recibirTurno(Servidor &servidor,Viaje &viaje);
 
+char recibirFila(Servidor &servidor);
+
+int recibirColumna(Servidor &servidor);
+
 int menuCrearViaje(Servidor &servidor,Viaje &viaje);
 
 int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
 
 int menuLiberarAsiento(Servidor &servidor, Viaje &viaje);
 
-int menuDestino(Servidor &servidor,Viaje &viaje);
+int filtrarPorDestino(Servidor &servidor,Viaje &viaje);
 
-char recibirFila(Servidor &servidor);
+int filtrarPorFecha(Servidor &servidor,Viaje &viaje);
 
-int recibirColumna(Servidor &servidor);
+int filtrarPorTurno(Servidor &servidor,Viaje &viaje);
+
+
 
 #endif // SERVER_H_INCLUDED
