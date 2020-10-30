@@ -9,8 +9,10 @@ using namespace std;
 
 int main()
 {
-    string ruta = "";
-    char comando[1024] = "\0";
+    string ruta = "Servicios.bin";
+    string destino= "Destino.bin";
+    string fecha="Fecha.bin";
+    string turno="Turno.bin";
     Viaje viaje;
     ofstream archivo;
     Servidor servidor;
@@ -85,13 +87,18 @@ int main()
                     }
                     else if (respuesta==7){
                             system("cls");
-                            cout<<"ingrese ruta \n"<<endl;
-                            cin>>ws;
-                            cin.getline(comando, sizeof(comando));
-                            Sleep(400);
-                            ruta=msj(comando);
                             enviarArchivo(servidor,ruta);
                             Sleep(1000);
+                            //ver
+                            respuesta=80;
+                    }
+                    else if (respuesta==8){
+                            //nuevo 30/10 15:47
+                            system("cls");
+                            respuesta=menuDestino(servidor,viaje);
+                            enviarArchivo(servidor,destino);
+                            Sleep(1000);
+                            remove("Destino.bin");
                     }
                     else{
                         enviarMensaje(servidor,"ok");

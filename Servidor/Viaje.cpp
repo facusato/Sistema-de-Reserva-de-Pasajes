@@ -123,7 +123,7 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 
 		if(fila == 'B' ||fila == 'b'){
 			fila_temporal = getFilaB(viaje);
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==1){
+
 				if(fila_temporal[columna_aux] == 'O'){				//verifica si esta libre el asiento, si esta libre entra
 					fila_temporal[columna_aux] = 'X';
 
@@ -136,11 +136,10 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 				}else{
 					cout<<"asiento ocupado"<<endl;					// sino avisa error en pantalla
 				}
-			//}
 		}
 		if(fila == 'C' ||fila == 'c'){
 			fila_temporal = getFilaC(viaje);
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==1){
+
 				if(fila_temporal[columna_aux] == 'O'){				//verifica si esta libre el asiento, si esta libre entra
 					fila_temporal[columna_aux] = 'X';
 
@@ -153,10 +152,9 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 				}else{
 					cout<<"asiento ocupado"<<endl;					// sino avisa error en pantalla
 				}
-			//}
 		}
 	}else{
-		cout<<"no existe viaje, favor de crearlo primero"<<endl;
+		cout<<"No existe el viaje, proceda a dar de alta el servicio"<<endl;
 	}
 
 };
@@ -174,7 +172,6 @@ void liberarAsiento(Viaje &viaje, char fila, int columna){
 		if(fila == 'A' ||fila == 'a'){
 			fila_temporal = getFilaA(viaje);				//TRAE LA FILA A DEL ESQUEMA COMPLETA
 
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==0){
 				if(fila_temporal[columna_aux] == 'X'){				//verifica si esta ocupado el asiento, si esta ocupado entra
 					fila_temporal[columna_aux] = 'O';
 
@@ -185,12 +182,12 @@ void liberarAsiento(Viaje &viaje, char fila, int columna){
 					cout<<"Se libero el asiento para dicho viaje."<<endl;
 					mostrarEsquema(viaje);
 				}
-			//}
+
 		}
 
 		if(fila == 'B' ||fila == 'b'){
 			fila_temporal = getFilaB(viaje);
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==0){
+
 				if(fila_temporal[columna_aux] == 'X'){				//verifica si esta ocupado el asiento, si esta ocupado entra
 					fila_temporal[columna_aux] = 'O';
 
@@ -201,11 +198,11 @@ void liberarAsiento(Viaje &viaje, char fila, int columna){
 					cout<<"Se libero el asiento para dicho viaje."<<endl;
 					mostrarEsquema(viaje);
 				}
-			//}
+
 		}
 		if(fila == 'C' ||fila == 'c'){
 			fila_temporal = getFilaC(viaje);
-			//if(validarAsientoVacio(viaje, fila, columna_aux)==0){			//chequea que este ocupado
+
 				if(fila_temporal[columna_aux] == 'X'){						//verifica si esta ocupado el asiento, si esta ocupado entra
 					fila_temporal[columna_aux] = 'O';
 
@@ -237,20 +234,21 @@ void escribirFichero(Viaje &viaje){			//escribe un registro al final del fichero
 		fwrite(&viaje,sizeof(viaje),1,fichero);				//sino, escribe toda la estructura en el fichero
 		fclose(fichero);									//cierra fichero
 	}
-
 };
 
-//Agregado 21 hs
+
 
 void escribirFicheroDestino(Viaje &viaje){			//escribe un registro al final del fichero.
 
-	FILE *ficheroDestino;					//crea puntero a fichero
+	FILE *ficheroDestino;
+	                         			//crea puntero a fichero
 	ficheroDestino = fopen("Destino.bin","ab");
 	if(ficheroDestino ==NULL){			//verifica si fichero existe y lo crea añadiendo datos al final sin pisar los datos ya guardados
 		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
 	}else{
 		fwrite(&viaje,sizeof(viaje),1,ficheroDestino);				//sino, escribe toda la estructura en el fichero
-		fclose(ficheroDestino);									//cierra fichero
+		fclose(ficheroDestino);
+                                        //cierra fichero
 	}
 };
 
@@ -286,22 +284,22 @@ void leerFichero(){			//lee el fichero completo
 	Viaje viaje;
 	int i=0;
 	fichero = fopen("Servicios.bin","rb");
-	if(fichero == NULL){									//verifica si fichero existe
-		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
-	}else{
-		fread(&viaje, sizeof(Viaje),1,fichero);
-		while(! feof(fichero)){
-			cout<<"------------------------"<<endl;
-			cout<< getDestino(viaje)<<endl;
-			cout<< getFecha(viaje)<<endl;
-			cout<< getTurno(viaje)<<endl;
-			cout<<endl;
-			mostrarEsquema(viaje);
-			cout<<endl;
-			cout<<"------------------------"<<endl;
-			cout <<i++;
-			fread(&viaje, sizeof(Viaje), 1,fichero);
-			system("pause");
+        if(fichero == NULL){									//verifica si fichero existe
+            cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    cout <<i++;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                    system("pause");
 		}
 	}
 	fclose(fichero);
@@ -309,34 +307,30 @@ void leerFichero(){			//lee el fichero completo
 }
 
 
-void modificacionFicheroAsignar(char destino[20], char fecha[20], char turno[20], char fila, int columna )
-{
+void modificacionFicheroAsignar(char destino[20], char fecha[20], char turno[20], char fila, int columna ){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
-    if (fichero==NULL)
-        exit(1);
+        if (fichero==NULL)
+            exit(1);
 
     Viaje viaje;
     int existe=0;			//flag para comprobar si existe el registro buscado.
 
     fread(&viaje, sizeof(Viaje), 1,fichero);
-    while(!feof(fichero))
-    {
-        if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
+        while(!feof(fichero))
         {
-           asignarAsiento(viaje,fila,columna);				//asigna el asiento al registro leido
-
-           int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
-           fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
-           fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
-
-           //cout<<"Se asigno el asiento para dicho viaje."<<endl;
-
-		   existe=1;
-           break;
+            if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
+            {
+                asignarAsiento(viaje,fila,columna);				//asigna el asiento al registro leido
+                int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
+                fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
+                fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
+                existe=1;
+                break;
+            }
+         fread(&viaje, sizeof(Viaje), 1, fichero);
         }
-        fread(&viaje, sizeof(Viaje), 1, fichero);
-    }
     if (existe==0)
         cout<<"No existe un viaje con dichos parametros"<<endl;
     fclose(fichero);
@@ -344,8 +338,8 @@ void modificacionFicheroAsignar(char destino[20], char fecha[20], char turno[20]
 
 
 
-void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20], char fila, int columna )
-{
+void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20], char fila, int columna ){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
     if (fichero==NULL)
@@ -355,22 +349,19 @@ void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20]
     int existe=0;			//flag para comprobar si existe el registro buscado.
 
     fread(&viaje, sizeof(Viaje), 1,fichero);
-    while(!feof(fichero))
-    {
-        if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
+        while(!feof(fichero))
         {
-           liberarAsiento(viaje,fila,columna);				//asigna el asiento al registro leido
-
-           int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
-           fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
-           fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
-
-           //cout<<"Se libero el asiento para dicho viaje."<<endl;
-           existe=1;
-           break;
+            if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
+            {
+                liberarAsiento(viaje,fila,columna);				//asigna el asiento al registro leido
+                int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
+                fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
+                fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
+                existe=1;
+                break;
+            }
+         fread(&viaje, sizeof(Viaje), 1, fichero);
         }
-        fread(&viaje, sizeof(Viaje), 1, fichero);
-    }
     if (existe==0)
         cout<<"No existe un viaje con dichos parametros"<<endl;
     fclose(fichero);
@@ -378,8 +369,8 @@ void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20]
 
 /*****************************************************************************///CONSULTAS
 
-void consultaPorDestino(char destino[20])
-{
+void consultaPorDestino(char destino[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -397,8 +388,8 @@ void consultaPorDestino(char destino[20])
 			cout<< getFecha(viaje)<<endl;
 			cout<< getTurno(viaje)<<endl;
 			cout<<endl;
+			//sacar el mostrar esquema para que no se vea del lado del server 15:50
 			mostrarEsquema(viaje);
-			//agregue 21 hs
 			escribirFicheroDestino(viaje);
 			cout<<endl;
 			cout<<"------------------------"<<endl;
@@ -406,14 +397,13 @@ void consultaPorDestino(char destino[20])
         }
         fread(&viaje, sizeof(Viaje), 1, fichero);
     }
-    //ACA TENGO Q PONER UN ENVIAR PARA MANDAR EL BINARIO DEL FILTRO
     if (existe==0)
         cout<<"No existe servicio con dichos parametros"<<endl;
     fclose(fichero);
 }
 
-void consultaPorFecha(char fecha[20])
-{
+void consultaPorFecha(char fecha[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -444,8 +434,8 @@ void consultaPorFecha(char fecha[20])
     fclose(fichero);
 }
 
-void consultaPorTurno(char turno[20])
-{
+void consultaPorTurno(char turno[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -478,8 +468,8 @@ void consultaPorTurno(char turno[20])
 
 
 
-void consultaPorDestinoFecha(char destino[20], char fecha[20])
-{
+void consultaPorDestinoFecha(char destino[20], char fecha[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -510,8 +500,8 @@ void consultaPorDestinoFecha(char destino[20], char fecha[20])
 }
 
 
-void consultaPorDestinoTurno(char destino[20], char turno[20])
-{
+void consultaPorDestinoTurno(char destino[20], char turno[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -541,8 +531,8 @@ void consultaPorDestinoTurno(char destino[20], char turno[20])
     fclose(fichero);
 }
 
-void consultaPorFechaTurno( char fecha[20], char turno[20])
-{
+void consultaPorFechaTurno( char fecha[20], char turno[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)
@@ -573,8 +563,8 @@ void consultaPorFechaTurno( char fecha[20], char turno[20])
 }
 
 
-void consultaPorServicio(char destino[20], char fecha[20], char turno[20])
-{
+void consultaPorServicio(char destino[20], char fecha[20], char turno[20]){
+
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
     if (fichero==NULL)

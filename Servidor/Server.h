@@ -58,6 +58,8 @@ int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
 
 int menuLiberarAsiento(Servidor &servidor, Viaje &viaje);
 
+int menuDestino(Servidor &servidor,Viaje &viaje);
+
 char recibirFila(Servidor &servidor);
 
 int recibirColumna(Servidor &servidor);

@@ -90,8 +90,7 @@ void enviarArchivo(Cliente &cliente,string ruta){
 }
 
 
-void recibirArchivo(Cliente &cliente)
-    {
+void recibirArchivo(Cliente &cliente){
         cout<<"Recibiendo archivo."<<endl;
         int Size;
         char Filesize[MAX_PATH] = "\0";
@@ -109,17 +108,21 @@ void recibirArchivo(Cliente &cliente)
         recv(cliente.server, Buffer, Size, 0);
         cout<< "Se trajo el archivo: "<< nombre <<endl; // Guardo la ruta y el nombre y lo muestro
 
-        char cmd[50];
-        cout<<"Ingresar ruta y  nombre del archivo: "<<endl;
-        cin>>ws; cin>>cmd;
-
-        FILE* File;
-        File = fopen(cmd, "wb");
-        fwrite(Buffer, 1, Size, File);
-        fclose(File);
-
-        cout<<"Archivo recibido."<<endl;
-        cout<<"Se recibieron " << Size << " bytes.";
+        if(strcmp(nombre,"Servicios.bin")==0){
+            FILE* File;
+            File = fopen("Servicios.bin", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
+        }else if(strcmp(nombre,"Destino.bin")==0){
+            FILE* File;
+            File = fopen("Destino.bin", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
+        }
         free(Buffer);
     }
 
@@ -175,19 +178,6 @@ int menu(Cliente &cliente){
                case 1:
                     enviarMensaje(cliente,"ALTA DE SERVICIO.");
                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
-                    /*Sleep(1000);
-                    recibirMensaje(cliente);
-                    cin >> destino;
-                    enviarMensaje(cliente,destino);
-                    Sleep(1000);
-                    recibirMensaje(cliente);
-                    cin >> fecha;
-                    enviarMensaje(cliente,fecha);
-                    Sleep(1000);
-                    recibirMensaje(cliente);
-                    cin >> turno;
-                    enviarMensaje(cliente,turno);
-                    Sleep(1000);*/
                break;
                case 2:
                     menu2(cliente);
@@ -234,6 +224,7 @@ int menu2(Cliente &cliente){
     cout<<" 2- LIBERAR UN ASIENTO \n"<<endl;
     cout<<" 3- VER SERVICIOS DISPONIBLES \n"<<endl;
     cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
+    cout<<" 5- VER VIAJES POR DESTINO \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
     system("cls");
@@ -242,61 +233,21 @@ int menu2(Cliente &cliente){
                      enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
                      validarDestinoFechaTurno(destino,fecha,turno,cliente);
                      validarFilaColumna(fila,columna,cliente);
-                     /*Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin >> destino;
-                     enviarMensaje(cliente,destino);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin >> fecha;
-                     enviarMensaje(cliente,fecha);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin >> turno;
-                     enviarMensaje(cliente,turno);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>fila;
-                     enviarMensaje(cliente,fila);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>columna;
-                     enviarMensaje(cliente,columna);
-                     Sleep(1000);*/
                break;
                case 2:
                      enviarMensaje(cliente,"LIBERAR UN ASIENTO.");
                      validarDestinoFechaTurno(destino,fecha,turno,cliente);
                      validarFilaColumna(fila,columna,cliente);
-                     /*Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>destino;
-                     enviarMensaje(cliente,destino);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>fecha;
-                     enviarMensaje(cliente,fecha);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>turno;
-                     enviarMensaje(cliente,turno);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>fila;
-                     enviarMensaje(cliente,fila);
-                     Sleep(1000);
-                     recibirMensaje(cliente);
-                     cin>>columna;
-                     enviarMensaje(cliente,columna);
-                     Sleep(1000);*/
                break;
                case 3:
                       enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
                       Sleep(1000);
                       recibirMensaje(cliente);
                       recibirArchivo(cliente);
+                      system("cls");
                       leerFichero();
-                      Sleep(1000);
+                      Sleep(2000);
+                      system("pause");
                       enviarMensaje(cliente,"RECIBIDO.");
                break;
                case 4:
@@ -304,6 +255,22 @@ int menu2(Cliente &cliente){
                    cout<<endl;
                    Sleep(2000);
                    cout<<menu(cliente)<<endl;
+               break;
+                case 5:
+                   system("cls");
+                   enviarMensaje(cliente,"VER POR DESTINO.");
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   cin>>destino;
+                   enviarMensaje(cliente,destino);
+                   Sleep(1000);
+                   recibirMensaje(cliente);
+                   recibirArchivo(cliente);
+                   system("cls");
+                   leerFicheroDestino();
+                   Sleep(2000);
+                   system("pause");
+                   enviarMensaje(cliente,"RECIBIDO.");
                break;
                default:
                    system("cls");
