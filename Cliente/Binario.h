@@ -20,18 +20,31 @@ struct Viaje{
 #define BINARIO_H_INCLUDED
 
 void leerFichero();
+
 void leerFicheroDestino();
+
 void leerFicheroFecha();
+
 void leerFicheroTurno();
+
 char* getDestino(Viaje &viaje);
+
 char* getFecha(Viaje &viaje);
+
 char* getTurno(Viaje &viaje);
+
 char* getFila1(Viaje &viaje);
+
 char* getFila2(Viaje &viaje);
+
 char* getFila3(Viaje &viaje);
+
 char* getFila6(Viaje &viaje);
+
 char* getFilaA(Viaje &viaje);
+
 char* getFilaB(Viaje &viaje);
+
 char* getFilaC(Viaje &viaje);
 
 void mostrarEsquema(Viaje &viaje);

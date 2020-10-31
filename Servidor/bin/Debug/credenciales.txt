@@ -3,3 +3,7 @@ melisa;5678
 rocio;9101112
 tomas;13141516
 diego;17181920
+Juan;Juan_20
+Maria;maria*123
+Gustavo;-Gus*tavo
+Josefina;2020_jose

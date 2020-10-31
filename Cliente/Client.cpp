@@ -138,6 +138,14 @@ void recibirArchivo(Cliente &cliente){
             cout<<"Archivo recibido."<<endl;
             cout<<"Se recibieron " << Size << " bytes.";
         }
+        else if(strcmp(nombre,"usuario.txt")==0){
+            FILE* File;
+            File = fopen("usuario.txt", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
+        }
 
         free(Buffer);
     }
@@ -201,7 +209,7 @@ int menu(Cliente &cliente){
                break;
                case 3:
                     enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
-                    Sleep(1000);
+                    registroDeActividades(cliente);
                break;
                case 4:
                    system("cls");
@@ -499,4 +507,37 @@ void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente){
                     }
                     enviarMensaje(cliente,columna);
                     Sleep(1000);
+}
+
+void lecturaRegistroActividades(){
+    ifstream archivo;
+    string texto;
+    //abrimos el archivo en modo lectura para ir ir recorriendo y mostrando por pantalla
+    archivo.open("usuario.txt",ios::in);
+
+        if(archivo.fail()){
+            cout<<"No se pudo abrir el archivo"<<endl;
+            exit(1);
+        }
+
+        while(!archivo.eof()){
+            getline(archivo,texto);
+            cout<<texto<<endl;
+        }
+        archivo.close();
+}
+
+
+
+void registroDeActividades(Cliente &cliente){
+
+    Sleep(1000);
+    recibirMensaje(cliente);
+    recibirArchivo(cliente);
+    system("cls");
+    lecturaRegistroActividades();
+    Sleep(2000);
+    system("pause");
+    enviarMensaje(cliente,"RECIBIDO.");
+    Sleep(1000);
 }
