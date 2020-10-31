@@ -18,13 +18,13 @@
 	<iostream>
 	<winsock2.h>
 
-1604060149 c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.h
+1604104507 c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.h
 	<iostream>
 	<string.h>
 	<winsock2.h>
 	<fstream>
 
-1604100092 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.cpp
+1604105012 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.cpp
 	"Client.h"
 	"Binario.h"
 

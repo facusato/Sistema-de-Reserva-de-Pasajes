@@ -41,6 +41,16 @@ void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente);
 
 int menu(Cliente &cliente);
 
-int menu2(Cliente &cliente);
+int menuGestionarPasajes(Cliente &cliente);
+
+int menuPorFiltros(Cliente &cliente);
+
+void solicitarServiciosDisponibles(Cliente &cliente);
+
+void servicioPorDestino(Cliente &cliente);
+
+void servicioPorTurno(Cliente &cliente);
+
+void servicioPorFecha(Cliente &cliente);
 
 #endif // CLIENT_H_INCLUDED

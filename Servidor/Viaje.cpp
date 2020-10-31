@@ -115,6 +115,7 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 
 					setFilaA(viaje, fila_temporal);					//SETEA EN EL VIAJE DEL PARAMETRO LA FILA COMPLETA YA MODIFICADA
 					cout<<"Se asigno el asiento para dicho viaje."<<endl;
+					system("cls");
 					mostrarEsquema(viaje);
 				}else{
 					cout<<"asiento ocupado"<<endl;					// sino avisa error en pantalla
