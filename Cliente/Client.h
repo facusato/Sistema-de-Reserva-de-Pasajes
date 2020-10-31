@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <stdlib.h>
 #include <winsock2.h>
 #include <fstream>
 
@@ -52,5 +53,9 @@ void servicioPorDestino(Cliente &cliente);
 void servicioPorTurno(Cliente &cliente);
 
 void servicioPorFecha(Cliente &cliente);
+
+void lecturaRegistroActividades();
+
+void registroDeActividades(Cliente &cliente);
 
 #endif // CLIENT_H_INCLUDED

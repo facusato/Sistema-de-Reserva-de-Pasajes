@@ -147,6 +147,12 @@ int recibirMensaje(Servidor &servidor){
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));
                 retorno=10;
             }
+            else if(!strcmp(servidor.buffer, "VER REGISTRO DE ACTIVIDADES."))
+            {
+                cout<< "\n El cliente esta pidiendo su archivo de actividad" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=11;
+            }
             else
             {
                 cout << "\nEl cliente dice: " << servidor.buffer << endl;

@@ -9,10 +9,11 @@ using namespace std;
 
 int main()
 {
-    string ruta = "Servicios.bin";
+    string servicios = "Servicios.bin";
     string destino= "Destino.bin";
     string fecha="Fecha.bin";
     string turno="Turno.bin";
+    string usuario="usuario.txt";
     Viaje viaje;
     ofstream archivo;
     Servidor servidor;
@@ -62,10 +63,10 @@ int main()
 
     respuesta=recibirMensaje(servidor);
         while(respuesta!=2){
-                if(respuesta==1){
-                    recibirArchivo(servidor);
-                }
-                else if(respuesta==3){
+                    if(respuesta==1){
+                        recibirArchivo(servidor);
+                    }
+                    else if(respuesta==3){
                         respuesta=menuCrearViaje(servidor,viaje);
                         enviarMensaje(servidor,"Alta correctamente");
                         Sleep(1000);
@@ -88,7 +89,7 @@ int main()
                     }
                     else if (respuesta==7){
                             system("cls");
-                            enviarArchivo(servidor,ruta);
+                            enviarArchivo(servidor,servicios);
                             Sleep(1000);
                             respuesta=80;
                     }
@@ -112,6 +113,12 @@ int main()
                             enviarArchivo(servidor,turno);
                             Sleep(1000);
                             remove("Turno.bin");
+                    }
+                    else if (respuesta==11){
+                            system("cls");
+                            enviarArchivo(servidor,usuario);
+                            Sleep(1000);
+                            respuesta=90;
                     }
                     else{
                         enviarMensaje(servidor,"ok");
