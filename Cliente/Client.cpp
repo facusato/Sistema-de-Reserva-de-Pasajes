@@ -46,6 +46,10 @@ int recibirMensaje(Cliente &cliente){
             cout << "\nEl servidor acepto el lngreso" << endl;
             memset(cliente.buffer, 0, sizeof(cliente.buffer));
             retorno=3;
+         }else if(!strcmp(cliente.buffer,"No existe ningun servicio, dar de alta.")|| !strcmp(cliente.buffer,"No existe el servicio filtrado.")){
+            cout << "\nEl servidor no tiene servicio que cumpla los requisitos" << endl;
+            memset(cliente.buffer, 0, sizeof(cliente.buffer));
+            retorno=4;
               }
         else{
             cout << "\nEl servidor dice: " << cliente.buffer << endl;
@@ -306,6 +310,7 @@ int menuPorFiltros(Cliente &cliente){
                break;
                case 2:
                    servicioPorTurno(cliente);
+               break;
                case 3:
                    servicioPorFecha(cliente);
                break;
@@ -345,12 +350,16 @@ void barraCargando(){
 void solicitarServiciosDisponibles(Cliente &cliente){
 
     Sleep(1000);
-    recibirMensaje(cliente);
-    recibirArchivo(cliente);
-    system("cls");
-    leerFichero();
-    Sleep(2000);
-    system("pause");
+    int resp=recibirMensaje(cliente);
+        if(resp==1){
+            recibirArchivo(cliente);
+            system("cls");
+            leerFichero();
+            Sleep(2000);
+            system("pause");
+            enviarMensaje(cliente,"RECIBIDO.");
+            Sleep(1000);
+        }
     enviarMensaje(cliente,"RECIBIDO.");
     Sleep(1000);
 }

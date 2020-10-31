@@ -68,6 +68,6 @@ int filtrarPorFecha(Servidor &servidor,Viaje &viaje);
 
 int filtrarPorTurno(Servidor &servidor,Viaje &viaje);
 
-
+bool is_file(string file);
 
 #endif // SERVER_H_INCLUDED

@@ -428,3 +428,14 @@ int filtrarPorTurno(Servidor &servidor,Viaje &viaje){
     return 45;
 }
 
+
+bool is_file(string file){
+    bool existe=false;
+    FILE * archivo;
+        if (archivo = fopen(file.c_str(), "rb")){
+            fclose(archivo);
+            existe=true;
+        }
+    return existe;
+}
+
