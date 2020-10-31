@@ -597,5 +597,3 @@ void consultaPorServicio(char destino[20], char fecha[20], char turno[20]){
 
 
 
-
-

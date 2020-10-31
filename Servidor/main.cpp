@@ -89,8 +89,13 @@ int main()
                     }
                     else if (respuesta==7){
                             system("cls");
+                            if(is_file(servicios)==true){
                             enviarArchivo(servidor,servicios);
                             Sleep(1000);
+                            }
+                            else{
+                                enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
+                            }
                             respuesta=80;
                     }
                     else if (respuesta==8){
