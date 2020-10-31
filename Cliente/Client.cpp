@@ -196,8 +196,8 @@ int menu(Cliente &cliente){
                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
                break;
                case 2:
-                    menu2(cliente);
-                    Sleep(1000);
+                    system("cls");
+                    menuGestionarPasajes(cliente);
                break;
                case 3:
                     enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
@@ -227,7 +227,7 @@ int menu(Cliente &cliente){
 
 
 
-int menu2(Cliente &cliente){
+int menuGestionarPasajes(Cliente &cliente){
     char destino[23];
 	char fecha[23];
 	char turno[23];
@@ -239,95 +239,80 @@ int menu2(Cliente &cliente){
     cout<<" 1- RESERVAR UN ASIENTO \n"<<endl;
     cout<<" 2- LIBERAR UN ASIENTO \n"<<endl;
     cout<<" 3- VER VIAJES DISPONIBLES \n"<<endl;
-    cout<<" 4- VER VIAJES POR DESTINO \n"<<endl;
-    cout<<" 5- VER VIAJES POR TURNO \n"<<endl;
-    cout<<" 6- VER VIAJES POR FECHA \n"<<endl;
-    cout<<" 7- VOLVER AL MENU ANTERIOR \n"<<endl;
+    cout<<" 4- RESERVAR PASAJES \n"<<endl;
+    cout<<" 5- VOLVER AL MENU ANTERIOR \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
     system("cls");
     switch(opcion){
                case 1:
-                     enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
-                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
-                     validarFilaColumna(fila,columna,cliente);
+                   enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
+                   validarDestinoFechaTurno(destino,fecha,turno,cliente);
+                   validarFilaColumna(fila,columna,cliente);
                break;
                case 2:
-                     enviarMensaje(cliente,"LIBERAR UN ASIENTO.");
-                     validarDestinoFechaTurno(destino,fecha,turno,cliente);
-                     validarFilaColumna(fila,columna,cliente);
+                   enviarMensaje(cliente,"LIBERAR UN ASIENTO.");
+                   validarDestinoFechaTurno(destino,fecha,turno,cliente);
+                   validarFilaColumna(fila,columna,cliente);
                break;
                case 3:
-                      enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
-                      Sleep(1000);
-                      recibirMensaje(cliente);
-                      recibirArchivo(cliente);
-                      system("cls");
-                      leerFichero();
-                      Sleep(2000);
-                      system("pause");
-                      enviarMensaje(cliente,"RECIBIDO.");
+                   enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
+                   solicitarServiciosDisponibles(cliente);
                break;
                case 4:
                    system("cls");
-                   enviarMensaje(cliente,"VER POR DESTINO.");
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   cin>>destino;
-                   enviarMensaje(cliente,destino);
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   recibirArchivo(cliente);
-                   system("cls");
-                   leerFicheroDestino();
-                   Sleep(2000);
-                   system("pause");
-                   enviarMensaje(cliente,"RECIBIDO.");
+                   menuPorFiltros(cliente);
                break;
                case 5:
                    system("cls");
-                   enviarMensaje(cliente,"VER POR TURNO.");
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   cin>>turno;
-                   enviarMensaje(cliente,turno);
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   recibirArchivo(cliente);
-                   system("cls");
-                   leerFicheroTurno();
-                   Sleep(2000);
-                   system("pause");
-                   enviarMensaje(cliente,"RECIBIDO.");
-               break;
-               case 6:
-                   system("cls");
-                   enviarMensaje(cliente,"VER POR FECHA.");
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   cin>>fecha;
-                   enviarMensaje(cliente,fecha);
-                   Sleep(1000);
-                   recibirMensaje(cliente);
-                   recibirArchivo(cliente);
-                   system("cls");
-                   leerFicheroFecha();
-                   Sleep(2000);
-                   system("pause");
-                   enviarMensaje(cliente,"RECIBIDO.");
-               break;
-               case 7:
-                   system("cls");
-                   cout<<endl;
-                   Sleep(2000);
-                   cout<<menu(cliente)<<endl;
+                   menu(cliente);
                break;
                default:
                system("cls");
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   menu2(cliente);
+                   menuGestionarPasajes(cliente);
+                   Sleep(1000);
+               break;
+    }
+    return opcion;
+}
+
+
+int menuPorFiltros(Cliente &cliente){
+
+    int opcion;
+    system("cls");
+    cout<<"\n"<<endl;
+    cout<<" 1- VER VIAJES POR DESTINO \n"<<endl;
+    cout<<" 2- VER VIAJES POR TURNO \n"<<endl;
+    cout<<" 3- VER VIAJES POR FECHA \n"<<endl;
+    cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
+    cout << "\n INGRESE LA OPCION DESEADA: ";
+    cin>>opcion;
+    system("cls");
+    switch(opcion){
+               case 1:
+                   servicioPorDestino(cliente);
+               break;
+               case 2:
+                   servicioPorTurno(cliente);
+               case 3:
+                   servicioPorFecha(cliente);
+               break;
+               case 4:
+                   system("cls");
+                   cout<<endl;
+                   Sleep(2000);
+                   cout<<menuGestionarPasajes(cliente)<<endl;
+               break;
+               default:
+               system("cls");
+                   cout << "----------------------------------" << endl;
+                   cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
+                   cout << "----------------------------------\n" << endl;
+                   menuPorFiltros(cliente);
                    Sleep(1000);
                break;
     }
@@ -347,6 +332,99 @@ void barraCargando(){
             cout<<char(219);
             Sleep(segundos*1000/175);
         }
+}
+
+void solicitarServiciosDisponibles(Cliente &cliente){
+
+    Sleep(1000);
+    recibirMensaje(cliente);
+    recibirArchivo(cliente);
+    system("cls");
+    leerFichero();
+    Sleep(2000);
+    system("pause");
+    enviarMensaje(cliente,"RECIBIDO.");
+    Sleep(1000);
+}
+
+
+void servicioPorDestino(Cliente &cliente){
+
+    char destino[23];
+    bool destinoCorrecto=false;
+    system("cls");
+    enviarMensaje(cliente,"VER POR DESTINO.");
+    Sleep(1000);
+    recibirMensaje(cliente);
+        while(destinoCorrecto==false){
+            cin >> destino;
+                if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
+                    destinoCorrecto=true;
+                }else{cout << "Destino Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+                }
+        }
+        enviarMensaje(cliente,destino);
+        Sleep(1000);
+        recibirMensaje(cliente);
+        recibirArchivo(cliente);
+        system("cls");
+        leerFicheroDestino();
+        Sleep(2000);
+        system("pause");
+        enviarMensaje(cliente,"RECIBIDO.");
+        Sleep(1000);
+}
+void servicioPorFecha(Cliente &cliente){
+    char fecha[23];
+    bool fechaCorrecta=false;
+    system("cls");
+    enviarMensaje(cliente,"VER POR FECHA.");
+    Sleep(1000);
+    recibirMensaje(cliente);
+        while(fechaCorrecta==false){
+            cin >> fecha;
+                if(strlen(fecha)==10){
+                    fechaCorrecta=true;
+                }else{
+                    cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
+        }
+        enviarMensaje(cliente,fecha);
+        Sleep(1000);
+        recibirMensaje(cliente);
+        recibirArchivo(cliente);
+        system("cls");
+        leerFicheroFecha();
+        Sleep(2000);
+        system("pause");
+        enviarMensaje(cliente,"RECIBIDO.");
+        Sleep(1000);
+}
+
+
+void servicioPorTurno(Cliente &cliente){
+    char turno[23];
+    bool turnoCorrecto=false;
+    system("cls");
+    enviarMensaje(cliente,"VER POR TURNO.");
+    Sleep(1000);
+    recibirMensaje(cliente);
+       while(turnoCorrecto==false){
+            cin >> turno;
+                if (strcmp(turno,"manana")==0||strcmp(turno,"tarde")==0||strcmp(turno,"noche")==0){
+                    turnoCorrecto=true;
+                }else{
+                    cout << "Turno Incorrecto. Por favor, vuelva a ingresarlo:" << endl;}
+                }
+     enviarMensaje(cliente,turno);
+     Sleep(1000);
+     recibirMensaje(cliente);
+     recibirArchivo(cliente);
+     system("cls");
+     leerFicheroTurno();
+     Sleep(2000);
+     system("pause");
+     enviarMensaje(cliente,"RECIBIDO.");
+     Sleep(1000);
 }
 
 void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],Cliente &cliente){

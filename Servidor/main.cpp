@@ -76,6 +76,7 @@ int main()
                             Sleep(1000);
                             respuesta=menuAsignarAsiento(servidor,viaje);
                     }else if(respuesta==5){
+                            system("cls");
                             respuesta=menuAsignarAsiento(servidor,viaje);
                             enviarMensaje(servidor,"Se asigno el asiento correctamente");
                             Sleep(1000);
