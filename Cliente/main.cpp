@@ -46,7 +46,7 @@ int main()
 
         if(respuesta==3){
                 while(opcion!=4 || respuesta!=2){
-                   opcion=menu(cliente);
+                   opcion=menu(cliente,usuario);
                    respuesta=recibirMensaje(cliente);
                    Sleep(1000);
                 }

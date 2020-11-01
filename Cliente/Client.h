@@ -26,7 +26,7 @@ int recibirMensaje(Cliente &cliente);
 
 void enviarArchivo(Cliente &cliente,string ruta);
 
-void recibirArchivo(Cliente &cliente);
+void recibirArchivo(Cliente &cliente,string usuario);
 
 int SafeSend(SOCKET s, char* buf, int buflen);
 
@@ -40,22 +40,22 @@ void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],C
 
 void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente);
 
-int menu(Cliente &cliente);
+int menu(Cliente &cliente,string usuario);
 
-int menuGestionarPasajes(Cliente &cliente);
+int menuGestionarPasajes(Cliente &cliente,string usuario);
 
-int menuPorFiltros(Cliente &cliente);
+int menuPorFiltros(Cliente &cliente,string usuario);
 
-void solicitarServiciosDisponibles(Cliente &cliente);
+void solicitarServiciosDisponibles(Cliente &cliente,string usuario);
 
-void servicioPorDestino(Cliente &cliente);
+void servicioPorDestino(Cliente &cliente,string usuario);
 
-void servicioPorTurno(Cliente &cliente);
+void servicioPorTurno(Cliente &cliente,string usuario);
 
-void servicioPorFecha(Cliente &cliente);
+void servicioPorFecha(Cliente &cliente,string usuario);
 
-void lecturaRegistroActividades();
+void lecturaRegistroActividades(string usuario);
 
-void registroDeActividades(Cliente &cliente);
+void registroDeActividades(Cliente &cliente,string usuario);
 
 #endif // CLIENT_H_INCLUDED

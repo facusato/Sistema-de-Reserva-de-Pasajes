@@ -13,11 +13,11 @@
 1601947933 source:c:\users\notebook\codeblock\codigo c++\servidor\server.cpp
 	"Server.h"
 
-1604183560 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
+1604206577 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
 	"Server.h"
 	"Viaje.h"
 
-1604183437 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
+1604198152 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
 	<iostream>
 	<string>
 	<winsock2.h>
@@ -29,13 +29,14 @@
 	<stdlib.h>
 	"Viaje.h"
 
-1604183707 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
+1604208055 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
 	<iostream>
 	<winsock2.h>
 	"Server.h"
 	<sstream>
 	<fstream>
 	<ctime>
+	<chrono>
 	"Viaje.h"
 
 1604183222 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.cpp
@@ -45,4 +46,38 @@
 1604181922 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.h
 	<string>
 	<iostream>
+
+1604183222 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\servidor\viaje.cpp
+	"Viaje.h"
+	<string.h>
+
+1604181922 c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\servidor\viaje.h
+	<string>
+	<iostream>
+
+1604197866 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\servidor\server.cpp
+	"Server.h"
+	"Viaje.h"
+
+1604198152 c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\servidor\server.h
+	<iostream>
+	<string>
+	<winsock2.h>
+	<fstream>
+	<sstream>
+	<iomanip>
+	<ctime>
+	<string>
+	<stdlib.h>
+	"Viaje.h"
+
+1604204159 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\servidor\main.cpp
+	<iostream>
+	<winsock2.h>
+	"Server.h"
+	<sstream>
+	<fstream>
+	<ctime>
+	<chrono>
+	"Viaje.h"
 

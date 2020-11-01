@@ -1,0 +1,24 @@
+=========================================================================
+31-10-2020 20:57:00 Inicia Servidor
+31-10-2020 20:57:00 Socket creado. Puerto de escucha: 5000
+31-10-2020 20:57:11 El cliente ingreso al sistema
+=========================================================================
+31-10-2020 21:01:31 Inicia Servidor
+31-10-2020 21:01:31 Socket creado. Puerto de escucha: 5000
+31-10-2020 21:01:36 El cliente ingreso al sistema
+=========================================================================
+31-10-2020 21:14:43 Inicia Servidor
+31-10-2020 21:14:43 Socket creado. Puerto de escucha: 5000
+31-10-2020 21:14:48 El cliente ingreso al sistema
+=========================================================================
+31-10-2020 21:15:29 Inicia Servidor
+31-10-2020 21:15:29 Socket creado. Puerto de escucha: 5000
+31-10-2020 21:15:32 El cliente ingreso al sistema
+=========================================================================
+31-10-2020 21:22:42 Inicia Servidor
+31-10-2020 21:22:42 Socket creado. Puerto de escucha: 5000
+31-10-2020 21:22:46 El cliente ingreso al sistema
+=========================================================================
+31-10-2020 21:24:35 Inicia Servidor
+31-10-2020 21:24:35 Socket creado. Puerto de escucha: 5000
+31-10-2020 21:24:39 El cliente ingreso al sistema

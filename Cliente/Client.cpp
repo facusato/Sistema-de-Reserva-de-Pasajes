@@ -94,12 +94,15 @@ void enviarArchivo(Cliente &cliente,string ruta){
 }
 
 
-void recibirArchivo(Cliente &cliente){
+void recibirArchivo(Cliente &cliente,string usuario){
         cout<<"Recibiendo archivo."<<endl;
         int Size;
         char Filesize[MAX_PATH] = "\0";
         char nombre[512] = "\0";
-
+        string extension=".txt";
+        string ruta=usuario+extension;
+        char usuarios[12];
+        strcpy(usuarios,ruta.c_str());
         recv(cliente.server, nombre, sizeof(nombre), 0);
 
         if(recv(cliente.server, Filesize, sizeof(Filesize), 0)) // Tamaño de archivo
@@ -142,9 +145,9 @@ void recibirArchivo(Cliente &cliente){
             cout<<"Archivo recibido."<<endl;
             cout<<"Se recibieron " << Size << " bytes.";
         }
-        else if(strcmp(nombre,"usuario.txt")==0){
+        else if(strcmp(nombre,usuarios)==0){
             FILE* File;
-            File = fopen("usuario.txt", "wb");
+            File = fopen(usuarios, "wb");
             fwrite(Buffer, 1, Size, File);
             fclose(File);
             cout<<"Archivo recibido."<<endl;
@@ -185,7 +188,7 @@ string msj(char* grupo){
     return cadena;
 }
 
-int menu(Cliente &cliente){
+int menu(Cliente &cliente,string usuario){
     char destino[23];
 	char fecha[23];
 	char turno[23];
@@ -209,11 +212,11 @@ int menu(Cliente &cliente){
                break;
                case 2:
                     system("cls");
-                    menuGestionarPasajes(cliente);
+                    menuGestionarPasajes(cliente,usuario);
                break;
                case 3:
                     enviarMensaje(cliente,"VER REGISTRO DE ACTIVIDADES.");
-                    registroDeActividades(cliente);
+                    registroDeActividades(cliente,usuario);
                break;
                case 4:
                    system("cls");
@@ -229,7 +232,7 @@ int menu(Cliente &cliente){
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   menu(cliente);
+                   menu(cliente,usuario);
                    Sleep(1000);
                break;
     }
@@ -239,7 +242,7 @@ int menu(Cliente &cliente){
 
 
 
-int menuGestionarPasajes(Cliente &cliente){
+int menuGestionarPasajes(Cliente &cliente,string usuario){
     char destino[23];
 	char fecha[23];
 	char turno[23];
@@ -269,22 +272,22 @@ int menuGestionarPasajes(Cliente &cliente){
                break;
                case 3:
                    enviarMensaje(cliente,"VER SERVICIOS DISPONIBLES.");
-                   solicitarServiciosDisponibles(cliente);
+                   solicitarServiciosDisponibles(cliente,usuario);
                break;
                case 4:
                    system("cls");
-                   menuPorFiltros(cliente);
+                   menuPorFiltros(cliente,usuario);
                break;
                case 5:
                    system("cls");
-                   menu(cliente);
+                   menu(cliente,usuario);
                break;
                default:
                system("cls");
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   menuGestionarPasajes(cliente);
+                   menuGestionarPasajes(cliente,usuario);
                    Sleep(1000);
                break;
     }
@@ -292,7 +295,7 @@ int menuGestionarPasajes(Cliente &cliente){
 }
 
 
-int menuPorFiltros(Cliente &cliente){
+int menuPorFiltros(Cliente &cliente,string usuario){
 
     int opcion;
     system("cls");
@@ -306,26 +309,26 @@ int menuPorFiltros(Cliente &cliente){
     system("cls");
     switch(opcion){
                case 1:
-                   servicioPorDestino(cliente);
+                   servicioPorDestino(cliente,usuario);
                break;
                case 2:
-                   servicioPorTurno(cliente);
+                   servicioPorTurno(cliente,usuario);
                break;
                case 3:
-                   servicioPorFecha(cliente);
+                   servicioPorFecha(cliente,usuario);
                break;
                case 4:
                    system("cls");
                    cout<<endl;
                    Sleep(2000);
-                   cout<<menuGestionarPasajes(cliente)<<endl;
+                   cout<<menuGestionarPasajes(cliente,usuario)<<endl;
                break;
                default:
                system("cls");
                    cout << "----------------------------------" << endl;
                    cout << "-- OPCION INGRESADA INEXISTENTE --" << endl;
                    cout << "----------------------------------\n" << endl;
-                   menuPorFiltros(cliente);
+                   menuPorFiltros(cliente,usuario);
                    Sleep(1000);
                break;
     }
@@ -347,12 +350,12 @@ void barraCargando(){
         }
 }
 
-void solicitarServiciosDisponibles(Cliente &cliente){
+void solicitarServiciosDisponibles(Cliente &cliente,string usuario){
 
     Sleep(1000);
     int resp=recibirMensaje(cliente);
         if(resp==1){
-            recibirArchivo(cliente);
+            recibirArchivo(cliente,usuario);
             system("cls");
             leerFichero();
             Sleep(2000);
@@ -360,12 +363,14 @@ void solicitarServiciosDisponibles(Cliente &cliente){
             enviarMensaje(cliente,"RECIBIDO.");
             Sleep(1000);
         }
-    enviarMensaje(cliente,"RECIBIDO.");
+        else{
+    enviarMensaje(cliente,"OK.");
     Sleep(1000);
+        }
 }
 
 
-void servicioPorDestino(Cliente &cliente){
+void servicioPorDestino(Cliente &cliente,string usuario){
 
     char destino[23];
     bool destinoCorrecto=false;
@@ -383,7 +388,7 @@ void servicioPorDestino(Cliente &cliente){
         enviarMensaje(cliente,destino);
         Sleep(1000);
         recibirMensaje(cliente);
-        recibirArchivo(cliente);
+        recibirArchivo(cliente,usuario);
         system("cls");
         leerFicheroDestino();
         Sleep(2000);
@@ -391,7 +396,7 @@ void servicioPorDestino(Cliente &cliente){
         enviarMensaje(cliente,"RECIBIDO.");
         Sleep(1000);
 }
-void servicioPorFecha(Cliente &cliente){
+void servicioPorFecha(Cliente &cliente,string usuario){
     char fecha[23];
     bool fechaCorrecta=false;
     system("cls");
@@ -400,7 +405,7 @@ void servicioPorFecha(Cliente &cliente){
     recibirMensaje(cliente);
         while(fechaCorrecta==false){
             cin >> fecha;
-                if(strlen(fecha)==10){
+                if(strlen(fecha)<=10){
                     fechaCorrecta=true;
                 }else{
                     cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
@@ -408,7 +413,7 @@ void servicioPorFecha(Cliente &cliente){
         enviarMensaje(cliente,fecha);
         Sleep(1000);
         recibirMensaje(cliente);
-        recibirArchivo(cliente);
+        recibirArchivo(cliente,usuario);
         system("cls");
         leerFicheroFecha();
         Sleep(2000);
@@ -418,7 +423,7 @@ void servicioPorFecha(Cliente &cliente){
 }
 
 
-void servicioPorTurno(Cliente &cliente){
+void servicioPorTurno(Cliente &cliente,string usuario){
     char turno[23];
     bool turnoCorrecto=false;
     system("cls");
@@ -435,7 +440,7 @@ void servicioPorTurno(Cliente &cliente){
      enviarMensaje(cliente,turno);
      Sleep(1000);
      recibirMensaje(cliente);
-     recibirArchivo(cliente);
+     recibirArchivo(cliente,usuario);
      system("cls");
      leerFicheroTurno();
      Sleep(2000);
@@ -466,7 +471,7 @@ void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],C
         //Fecha
             while(fechaCorrecta==false){
                     cin >> fecha;
-                        if(strlen(fecha)==10){
+                        if(strlen(fecha)<=10){
                             fechaCorrecta=true;
                         }else{
                         cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
@@ -518,11 +523,12 @@ void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente){
                     Sleep(1000);
 }
 
-void lecturaRegistroActividades(){
+void lecturaRegistroActividades(string usuario){
     ifstream archivo;
     string texto;
-    //abrimos el archivo en modo lectura para ir ir recorriendo y mostrando por pantalla
-    archivo.open("usuario.txt",ios::in);
+    string extension=".txt";
+    //abrimos el archivo en modo lectura para ir recorriendo y mostrando por pantalla
+    archivo.open(usuario+extension,ios::in);
 
         if(archivo.fail()){
             cout<<"No se pudo abrir el archivo"<<endl;
@@ -538,13 +544,13 @@ void lecturaRegistroActividades(){
 
 
 
-void registroDeActividades(Cliente &cliente){
+void registroDeActividades(Cliente &cliente,string usuario){
 
     Sleep(1000);
     recibirMensaje(cliente);
-    recibirArchivo(cliente);
+    recibirArchivo(cliente,usuario);
     system("cls");
-    lecturaRegistroActividades();
+    lecturaRegistroActividades(usuario);
     Sleep(2000);
     system("pause");
     enviarMensaje(cliente,"RECIBIDO.");

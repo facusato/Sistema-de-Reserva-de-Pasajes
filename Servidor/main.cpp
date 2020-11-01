@@ -4,6 +4,7 @@
 #include <sstream>
 #include <fstream>
 #include <ctime>
+#include <chrono>
 #include "Viaje.h"
 using namespace std;
 
@@ -13,7 +14,8 @@ int main()
     string destino= "Destino.bin";
     string fecha="Fecha.bin";
     string turno="Turno.bin";
-    string usuario="usuario.txt";
+    string extension=".txt";
+    string usuario;
     Viaje viaje;
     ofstream archivo;
     Servidor servidor;
@@ -29,6 +31,7 @@ int main()
         if(archivo.fail()){
             cout<<"error al abrir o crear el archivo"<<endl;
         }
+
     cout<< "...BIENVENIDO AL SERVIDOR..."<<endl;
     cout<< "Ingrese el puerto: ";
     cin>> puerto;
@@ -39,6 +42,7 @@ int main()
     archivo<<"========================================================================="<<endl;
     archivo<<fechaHora();
     archivo<<" Inicia Servidor"<<endl;
+    archivo<<"========================================================================="<<endl;
     archivo<<fechaHora();
     archivo<<" Socket creado. Puerto de escucha: "<<puerto<<endl;
 
@@ -47,19 +51,26 @@ int main()
             intentos=0;
 
                 while (intentos<3 && !valido){
-                    if(validarCredencial(servidor)==true){
-                        enviarMensaje(servidor,"Correcto.");
-                        archivo<<fechaHora();
-                        archivo<<" El cliente ingreso al sistema"<<endl;
-                        valido=true;
-                    }
-                    else{
-                        enviarMensaje(servidor,"Incorrecto.");
-                        archivo<<fechaHora();
-                        archivo<<" El cliente fallo al logueo en el intento:"<<intentos+1<<endl;
-                    }
+                    usuario= recibirUsuario(servidor, usuario);
+                        if(validarCredencial(servidor, usuario)==true){
+                            enviarMensaje(servidor,"Correcto.");
+                            archivo<<fechaHora();
+                            archivo<<" El cliente ingreso al sistema"<<endl;
+                            valido=true;
+                            ingresarActividadCliente(usuario, " ===================================================");
+                            ingresarActividadCliente(usuario, ""+fechaHora()+" INICIA SESIÓN EL CLIENTE "+usuario+"");
+                            ingresarActividadCliente(usuario, " ===================================================");
+
+                        }
+                        else{
+                            enviarMensaje(servidor,"Incorrecto.");
+                            archivo<<fechaHora();
+                            archivo<<" El cliente fallo al logueo en el intento:"<<intentos+1<<endl;
+                        }
                     intentos++;
                 }
+
+
 
     respuesta=recibirMensaje(servidor);
         while(respuesta!=2){
@@ -67,61 +78,68 @@ int main()
                         recibirArchivo(servidor);
                     }
                     else if(respuesta==3){
-                        respuesta=menuCrearViaje(servidor,viaje);
+                        ingresarActividadCliente(usuario, ""+fechaHora()+" Ingresa a la opción: Alta Servicio");
+                        ingresarActividadCliente(usuario, ""+fechaHora()+" Descripción del servicio: ");
+
+                        respuesta=menuCrearViaje(servidor,viaje, usuario);
+
                         enviarMensaje(servidor,"Alta correctamente");
                         Sleep(1000);
                     }
                     else if(respuesta==4){
                             system("cls");
                             enviarMensaje(servidor,"Entrando a otro menu");
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Ingresa a otro menú");
                             Sleep(1000);
-                            respuesta=menuAsignarAsiento(servidor,viaje);
+                            respuesta=menuAsignarAsiento(servidor,viaje, usuario);
                     }else if(respuesta==5){
                             system("cls");
-                            respuesta=menuAsignarAsiento(servidor,viaje);
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Reserva un asiento");
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
+                            respuesta=menuAsignarAsiento(servidor,viaje, usuario);
                             enviarMensaje(servidor,"Se asigno el asiento correctamente");
                             Sleep(1000);
                     }else if (respuesta==6){
                             system("cls");
-                            respuesta=menuLiberarAsiento(servidor,viaje);
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Libera un asiento");
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
+                            respuesta=menuLiberarAsiento(servidor,viaje, usuario);
                             enviarMensaje(servidor,"Se libero el asiento correspondiente");
                             Sleep(1000);
                     }
                     else if (respuesta==7){
                             system("cls");
-                            if(is_file(servicios)==true){
                             enviarArchivo(servidor,servicios);
                             Sleep(1000);
-                            }
-                            else{
-                                enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
-                            }
                             respuesta=80;
                     }
                     else if (respuesta==8){
                             system("cls");
-                            respuesta=filtrarPorDestino(servidor,viaje);
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
+                            respuesta=filtrarPorDestino(servidor,viaje, usuario);
                             enviarArchivo(servidor,destino);
                             Sleep(1000);
                             remove("Destino.bin");
                     }
                      else if (respuesta==9){
                             system("cls");
-                            respuesta=filtrarPorFecha(servidor,viaje);
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
+                            respuesta=filtrarPorFecha(servidor,viaje, usuario);
                             enviarArchivo(servidor,fecha);
                             Sleep(1000);
                             remove("Fecha.bin");
                     }
                     else if (respuesta==10){
                             system("cls");
-                            respuesta=filtrarPorTurno(servidor,viaje);
+                            ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
+                            respuesta=filtrarPorTurno(servidor,viaje, usuario);
                             enviarArchivo(servidor,turno);
                             Sleep(1000);
                             remove("Turno.bin");
                     }
                     else if (respuesta==11){
                             system("cls");
-                            enviarArchivo(servidor,usuario);
+                            enviarArchivo(servidor,usuario+extension);
                             Sleep(1000);
                             respuesta=90;
                     }
@@ -134,6 +152,7 @@ int main()
 
     archivo<<fechaHora();
     archivo<<" El cliente se retiro de la conexion"<<endl;
+    ingresarActividadCliente(usuario,""+fechaHora()+" Cierra sesión");
     Sleep(1000);
     enviarMensaje(servidor,"Se cerro el socket.");
 

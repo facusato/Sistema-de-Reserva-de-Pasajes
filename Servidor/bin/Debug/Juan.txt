@@ -1,0 +1,9 @@
+ ===================================================
+01-11-2020 02:51:17 INICIA SESIÓN EL CLIENTE Juan
+ ===================================================
+01-11-2020 02:52:36 Consulta por un servicio con las siguientes caracteristicas
+01-11-2020 02:52:39 Destino:
+01-11-2020 02:52:39 BSAS
+01-11-2020 02:53:09 Consulta por un servicio con las siguientes caracteristicas
+01-11-2020 02:53:17 Fecha:
+01-11-2020 02:53:17 17/12/1992

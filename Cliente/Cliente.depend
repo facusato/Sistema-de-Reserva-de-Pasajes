@@ -13,19 +13,19 @@
 	<iostream>
 	<winsock2.h>
 
-1604148733 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\main.cpp
+1604208214 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\main.cpp
 	"Client.h"
 	<iostream>
 	<winsock2.h>
 
-1604148733 c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.h
+1604208907 c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.h
 	<iostream>
 	<string.h>
 	<stdlib.h>
 	<winsock2.h>
 	<fstream>
 
-1604148733 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.cpp
+1604209816 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\client.cpp
 	"Client.h"
 	"Binario.h"
 
@@ -39,5 +39,28 @@
 1604148733 source:c:\users\notebook\sistema-de-reserva-de-pasajes\cliente\binario.cpp
 	<iostream>
 	<cstdlib>
+	"Binario.h"
+
+1604148733 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\cliente\binario.cpp
+	<iostream>
+	<cstdlib>
+	"Binario.h"
+
+1604148733 c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\cliente\binario.h
+
+1604148733 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\cliente\main.cpp
+	"Client.h"
+	<iostream>
+	<winsock2.h>
+
+1604148733 c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\cliente\client.h
+	<iostream>
+	<string.h>
+	<stdlib.h>
+	<winsock2.h>
+	<fstream>
+
+1604204262 source:c:\users\tohmy\downloads\nuevo_archivo_winrar_zip\cliente\client.cpp
+	"Client.h"
 	"Binario.h"
 
