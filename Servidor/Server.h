@@ -28,7 +28,7 @@ int recibirMensaje(Servidor &servidor);
 
 void escuchando(Servidor &servidor);
 
-bool validarCredencial(Servidor &servidor);
+bool validarCredencial(Servidor &servidor,string usuario);
 
 void enviarMensaje(Servidor &servidor,string mensaje);
 
@@ -52,22 +52,26 @@ void recibirFecha(Servidor &servidor,Viaje &viaje);
 
 void recibirTurno(Servidor &servidor,Viaje &viaje);
 
-char recibirFila(Servidor &servidor);
+char recibirFila(Servidor &servidor,string usuario);
 
 int recibirColumna(Servidor &servidor);
 
-int menuCrearViaje(Servidor &servidor,Viaje &viaje);
+int menuCrearViaje(Servidor &servidor,Viaje &viaje,string usuario);
 
-int menuAsignarAsiento(Servidor &servidor,Viaje &viaje);
+int menuAsignarAsiento(Servidor &servidor,Viaje &viaje,string usuario);
 
-int menuLiberarAsiento(Servidor &servidor, Viaje &viaje);
+int menuLiberarAsiento(Servidor &servidor, Viaje &viaje,string usuario);
 
-int filtrarPorDestino(Servidor &servidor,Viaje &viaje);
+int filtrarPorDestino(Servidor &servidor,Viaje &viaje, string usuario);
 
-int filtrarPorFecha(Servidor &servidor,Viaje &viaje);
+int filtrarPorFecha(Servidor &servidor,Viaje &viaje,string usuario);
 
-int filtrarPorTurno(Servidor &servidor,Viaje &viaje);
+int filtrarPorTurno(Servidor &servidor,Viaje &viaje,string usuario);
 
 bool is_file(string file);
+
+void ingresarActividadCliente(string usuario, string actividad);
+
+string recibirUsuario (Servidor &servidor, string usuario);
 
 #endif // SERVER_H_INCLUDED

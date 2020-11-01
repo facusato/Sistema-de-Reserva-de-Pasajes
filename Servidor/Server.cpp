@@ -40,17 +40,17 @@ void escuchando(Servidor &servidor){
 }
 
 
-bool validarCredencial(Servidor &servidor){
+bool validarCredencial(Servidor &servidor, string usuario){
     servidor.buffer[0] = '\0';
-    string usuario;
+    //string usuario;
     string password;
     string txt= ".txt";
     bool valido=false;
-    enviarMensaje(servidor,"INGRESE USUARIO");
+    /*enviarMensaje(servidor,"INGRESE USUARIO");
     Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     usuario=servidor.buffer;
-    memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    memset(servidor.buffer, 0, sizeof(servidor.buffer));*/
     enviarMensaje(servidor,"INGRESE PASSWORD");
     Sleep(1000);
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
@@ -303,30 +303,36 @@ string fechaHora(){
     auto str = oss.str();
     return str;
 }
-void recibirDestino(Servidor &servidor,Viaje &viaje){
+void recibirDestino(Servidor &servidor,Viaje &viaje, string usuario){
     servidor.buffer[0] = '\0';
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     strcpy(viaje.destino,servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    ingresarActividadCliente(usuario,""+fechaHora()+" Destino:");
+    ingresarActividadCliente(usuario,""+fechaHora()+" "+ viaje.destino);
 }
 
 
-void recibirFecha(Servidor &servidor,Viaje &viaje){
+void recibirFecha(Servidor &servidor,Viaje &viaje, string usuario){
     servidor.buffer[0] = '\0';
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     strcpy(viaje.fecha,servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    ingresarActividadCliente(usuario,""+fechaHora()+" Fecha:");
+    ingresarActividadCliente(usuario,""+fechaHora()+" "+ viaje.fecha);
 }
 
-void recibirTurno(Servidor &servidor,Viaje &viaje){
+void recibirTurno(Servidor &servidor,Viaje &viaje, string usuario){
     servidor.buffer[0] = '\0';
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     strcpy(viaje.turno,servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    ingresarActividadCliente(usuario,""+fechaHora()+ " Turno:");
+    ingresarActividadCliente(usuario,""+fechaHora()+" "+ viaje.turno);
 }
 
 
-char recibirFila(Servidor &servidor){
+char recibirFila(Servidor &servidor, string usuario){
     servidor.buffer[0] = '\0';
     char unCaracter;
     char *puntero = NULL;
@@ -334,29 +340,33 @@ char recibirFila(Servidor &servidor){
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     strcpy(puntero,servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    std::string fila;
+    fila.push_back(unCaracter);
+    ingresarActividadCliente(usuario,""+fechaHora()+" Fila: "+ fila);
     return unCaracter;
 }
 
-int recibirColumna(Servidor &servidor){
+int recibirColumna(Servidor &servidor, string usuario){
     servidor.buffer[0] = '\0';
     int columna;
     recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
     columna=atoi(servidor.buffer);
     memset(servidor.buffer, 0, sizeof(servidor.buffer));
+    ingresarActividadCliente(usuario,""+fechaHora()+" Columna: "+ std::to_string(columna));
     return columna;
 }
 
-int menuCrearViaje(Servidor &servidor,Viaje &viaje){
+int menuCrearViaje(Servidor &servidor,Viaje &viaje, string usuario){
 
 	enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
-    recibirDestino(servidor,viaje);
+    recibirDestino(servidor,viaje, usuario);
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
     Sleep(1000);
-    recibirFecha(servidor,viaje);
+    recibirFecha(servidor,viaje,usuario);
     enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
-    recibirTurno(servidor,viaje);
+    recibirTurno(servidor,viaje,usuario);
 	viaje = crearViaje(viaje.destino,viaje.fecha,viaje.turno);
 	mostrarEsquema(viaje);
     return 40;
@@ -364,78 +374,92 @@ int menuCrearViaje(Servidor &servidor,Viaje &viaje){
 
 
 
-int menuAsignarAsiento(Servidor &servidor,Viaje &viaje){
+int menuAsignarAsiento(Servidor &servidor,Viaje &viaje, string usuario){
     char fila;
+    int flag=0;
     enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
-    recibirDestino(servidor,viaje);
+    recibirDestino(servidor,viaje, usuario);
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
     Sleep(1000);
-    recibirFecha(servidor,viaje);
+    recibirFecha(servidor,viaje, usuario);
     enviarMensaje(servidor,"Ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
-    recibirTurno(servidor,viaje);
+    recibirTurno(servidor,viaje, usuario);
     enviarMensaje(servidor,"Ingrese fila (A | B | C) : ");
-    fila=recibirFila(servidor);
+    fila=recibirFila(servidor, usuario);
     enviarMensaje(servidor,"Ingrese columna (1 al 20) : ");
-	modificacionFicheroAsignar(viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor));
-	return 41;
+	modificacionFicheroAsignar(viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor,usuario));
+	return flag;
 }
 
-int menuLiberarAsiento(Servidor &servidor, Viaje &viaje){
+int menuLiberarAsiento(Servidor &servidor, Viaje &viaje, string usuario){
     char fila;
     enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
-    recibirDestino(servidor,viaje);
+    recibirDestino(servidor,viaje,usuario);
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
     Sleep(1000);
-    recibirFecha(servidor,viaje);
+    recibirFecha(servidor,viaje,usuario);
     enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
-    recibirTurno(servidor,viaje);
+    recibirTurno(servidor,viaje,usuario);
     enviarMensaje(servidor,"Ingrese fila: (A | B | C):");
-    fila=recibirFila(servidor);
+    fila=recibirFila(servidor, usuario);
     enviarMensaje(servidor,"Ingrese columna (1 al 20)");
-    modificacionFicheroLiberar(viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor));
+    modificacionFicheroLiberar(viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor,usuario));
     return 42;
 }
 
 
-int filtrarPorDestino(Servidor &servidor,Viaje &viaje){
+int filtrarPorDestino(Servidor &servidor,Viaje &viaje, string usuario){
 
     enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
-    recibirDestino(servidor,viaje);
+    recibirDestino(servidor,viaje,usuario);
     consultaPorDestino(viaje.destino);
     return 43;
 }
 
-int filtrarPorFecha(Servidor &servidor,Viaje &viaje){
+int filtrarPorFecha(Servidor &servidor,Viaje &viaje, string usuario){
 
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
     Sleep(1000);
-    recibirFecha(servidor,viaje);
+    recibirFecha(servidor,viaje,usuario);
     consultaPorFecha(viaje.fecha);
     return 44;
 }
 
-int filtrarPorTurno(Servidor &servidor,Viaje &viaje){
+int filtrarPorTurno(Servidor &servidor,Viaje &viaje, string usuario){
 
     enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
-    recibirTurno(servidor,viaje);
+    recibirTurno(servidor,viaje, usuario);
     consultaPorTurno(viaje.turno);
     return 45;
 }
 
+void ingresarActividadCliente(string usuario, string actividad){
 
-bool is_file(string file){
-    bool existe=false;
-    FILE * archivo;
-        if (archivo = fopen(file.c_str(), "rb")){
-            fclose(archivo);
-            existe=true;
-        }
-    return existe;
+    ofstream archivoCliente;
+
+    archivoCliente.open(""+usuario+".txt",ios::app);
+    if(archivoCliente.fail()){
+    cout<<"error al abrir o crear el archivo del cliente"<<endl;}
+
+    archivoCliente <<actividad<<endl;
+
+    archivoCliente.close();
 }
+
+string recibirUsuario (Servidor &servidor, string usuario){
+    enviarMensaje(servidor,"INGRESE USUARIO");
+    Sleep(1000);
+    recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
+    usuario=servidor.buffer;
+    memset(servidor.buffer, 0, sizeof(servidor.buffer));
+
+    return usuario;
+}
+
 
