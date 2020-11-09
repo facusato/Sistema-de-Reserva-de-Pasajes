@@ -364,8 +364,8 @@ void solicitarServiciosDisponibles(Cliente &cliente,string usuario){
             Sleep(1000);
         }
         else{
-    enviarMensaje(cliente,"OK.");
-    Sleep(1000);
+            enviarMensaje(cliente,"OK.");
+            Sleep(1000);
         }
 }
 
@@ -377,76 +377,117 @@ void servicioPorDestino(Cliente &cliente,string usuario){
     system("cls");
     enviarMensaje(cliente,"VER POR DESTINO.");
     Sleep(1000);
-    recibirMensaje(cliente);
-        while(destinoCorrecto==false){
-            cin >> destino;
-                if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
-                    destinoCorrecto=true;
-                }else{cout << "Destino Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+    int resp=recibirMensaje(cliente);
+      if(resp!=4){
+            while(destinoCorrecto==false){
+                cin >> destino;
+                    if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
+                        destinoCorrecto=true;
+                    }else{
+                        cout << "Destino Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+                    }
+            }
+            enviarMensaje(cliente,destino);
+            Sleep(1000);
+            int resp2=recibirMensaje(cliente);
+                if(resp2==1){
+                    recibirArchivo(cliente,usuario);
+                    system("cls");
+                    leerFicheroDestino();
+                    Sleep(2000);
+                    system("pause");
+                    enviarMensaje(cliente,"RECIBIDO.");
+                    Sleep(1000);
                 }
-        }
-        enviarMensaje(cliente,destino);
-        Sleep(1000);
-        recibirMensaje(cliente);
-        recibirArchivo(cliente,usuario);
-        system("cls");
-        leerFicheroDestino();
-        Sleep(2000);
-        system("pause");
-        enviarMensaje(cliente,"RECIBIDO.");
-        Sleep(1000);
+                else{
+                   enviarMensaje(cliente,"OK.");
+                   Sleep(1000);
+                }
+        }else{
+                enviarMensaje(cliente,"OK.");
+                Sleep(1000);
+            }
+
 }
+
+
 void servicioPorFecha(Cliente &cliente,string usuario){
     char fecha[23];
     bool fechaCorrecta=false;
     system("cls");
     enviarMensaje(cliente,"VER POR FECHA.");
     Sleep(1000);
-    recibirMensaje(cliente);
+    int resp=recibirMensaje(cliente);
+     if(resp!=4){
         while(fechaCorrecta==false){
             cin >> fecha;
                 if(strlen(fecha)<=10){
                     fechaCorrecta=true;
                 }else{
-                    cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;}
+                    cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;
+                    }
+            }
+            enviarMensaje(cliente,fecha);
+            Sleep(1000);
+            int resp2= recibirMensaje(cliente);
+                if(resp2==1){
+                    recibirArchivo(cliente,usuario);
+                    system("cls");
+                    leerFicheroFecha();
+                    Sleep(2000);
+                    system("pause");
+                    enviarMensaje(cliente,"RECIBIDO.");
+                    Sleep(1000);
+                }
+                else{
+                    enviarMensaje(cliente,"OK.");
+                    Sleep(1000);
+                }
         }
-        enviarMensaje(cliente,fecha);
-        Sleep(1000);
-        recibirMensaje(cliente);
-        recibirArchivo(cliente,usuario);
-        system("cls");
-        leerFicheroFecha();
-        Sleep(2000);
-        system("pause");
-        enviarMensaje(cliente,"RECIBIDO.");
-        Sleep(1000);
+        else{
+            enviarMensaje(cliente,"OK.");
+            Sleep(1000);
+        }
 }
 
 
 void servicioPorTurno(Cliente &cliente,string usuario){
+
     char turno[23];
     bool turnoCorrecto=false;
     system("cls");
     enviarMensaje(cliente,"VER POR TURNO.");
     Sleep(1000);
-    recibirMensaje(cliente);
-       while(turnoCorrecto==false){
-            cin >> turno;
-                if (strcmp(turno,"manana")==0||strcmp(turno,"tarde")==0||strcmp(turno,"noche")==0){
-                    turnoCorrecto=true;
-                }else{
-                    cout << "Turno Incorrecto. Por favor, vuelva a ingresarlo:" << endl;}
+    int resp=recibirMensaje(cliente);
+      if(resp!=4){
+             while(turnoCorrecto==false){
+                        cin >> turno;
+                            if (strcmp(turno,"manana")==0||strcmp(turno,"tarde")==0||strcmp(turno,"noche")==0){
+                                    turnoCorrecto=true;
+                            }else{
+                            cout << "Turno Incorrecto. Por favor, vuelva a ingresarlo:" << endl;}
                 }
-     enviarMensaje(cliente,turno);
-     Sleep(1000);
-     recibirMensaje(cliente);
-     recibirArchivo(cliente,usuario);
-     system("cls");
-     leerFicheroTurno();
-     Sleep(2000);
-     system("pause");
-     enviarMensaje(cliente,"RECIBIDO.");
-     Sleep(1000);
+            enviarMensaje(cliente,turno);
+            Sleep(1000);
+            int resp2=recibirMensaje(cliente);
+                if(resp2==1){
+                    recibirArchivo(cliente,usuario);
+                    system("cls");
+                    leerFicheroTurno();
+                    Sleep(2000);
+                    system("pause");
+                    enviarMensaje(cliente,"RECIBIDO.");
+                    Sleep(1000);
+                }
+                else{
+                    enviarMensaje(cliente,"OK.");
+                    Sleep(1000);
+                }
+
+        }else{
+            enviarMensaje(cliente,"OK.");
+            Sleep(1000);
+        }
 }
 
 void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],Cliente &cliente){

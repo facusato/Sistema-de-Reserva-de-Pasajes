@@ -74,4 +74,19 @@ void ingresarActividadCliente(string usuario, string actividad);
 
 string recibirUsuario (Servidor &servidor, string usuario);
 
+int consultaPorDestino1(Servidor &servidor,char destino[20]);
+
+int consultaPorFecha2(Servidor &servidor,char fecha[20]);
+
+int consultaPorTurno2(Servidor &servidor,char turno[20]);
+
+void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
+
+void asignarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna);
+
+void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
+
+void liberarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna);
+
+
 #endif // SERVER_H_INCLUDED

@@ -1,0 +1,112 @@
+ ===================================================
+09-11-2020 12:21:29 INICIA SESION EL CLIENTE Maria
+ ===================================================
+09-11-2020 12:21:35 Ingresa a la opcion: Alta Servicio
+09-11-2020 12:21:35 Descripcion del servicio: 
+09-11-2020 12:21:37 Destino:
+09-11-2020 12:21:37 MDQ
+09-11-2020 12:21:40 Fecha:
+09-11-2020 12:21:40 12/12/2020
+09-11-2020 12:21:42 Turno:
+09-11-2020 12:21:42 manana
+09-11-2020 12:21:45 Ingresa a la opcion: Alta Servicio
+09-11-2020 12:21:45 Descripcion del servicio: 
+09-11-2020 12:21:48 Destino:
+09-11-2020 12:21:48 MDQ
+09-11-2020 12:21:53 Fecha:
+09-11-2020 12:21:53 10/12/2020
+09-11-2020 12:21:56 Turno:
+09-11-2020 12:21:56 tarde
+09-11-2020 12:22:00 Reserva un asiento
+09-11-2020 12:22:00 Servicio: 
+09-11-2020 12:22:03 Destino:
+09-11-2020 12:22:03 MDQ
+09-11-2020 12:22:09 Fecha:
+09-11-2020 12:22:09 12/12/2020
+09-11-2020 12:22:14 Turno:
+09-11-2020 12:22:14 manana
+09-11-2020 12:22:16 Fila: c
+09-11-2020 12:22:18 Columna: 12
+09-11-2020 12:22:43 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:22:47 Destino:
+09-11-2020 12:22:47 MDQ
+09-11-2020 12:23:03 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:23:10 Destino:
+09-11-2020 12:23:10 MDQ
+09-11-2020 12:23:50 Ingresa a la opcion: Alta Servicio
+09-11-2020 12:23:50 Descripcion del servicio: 
+09-11-2020 12:23:53 Destino:
+09-11-2020 12:23:53 MDQ
+09-11-2020 12:24:02 Fecha:
+09-11-2020 12:24:02 25/12/2020
+09-11-2020 12:24:06 Turno:
+09-11-2020 12:24:06 manana
+09-11-2020 12:24:31 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:24:35 Destino:
+09-11-2020 12:24:35 MDQ
+09-11-2020 12:25:10 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:25:22 Destino:
+09-11-2020 12:25:22 BSAS
+ ===================================================
+09-11-2020 12:35:14 INICIA SESION EL CLIENTE Maria
+ ===================================================
+09-11-2020 12:35:54 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:35:57 Destino:
+09-11-2020 12:35:57 MDQ
+09-11-2020 12:36:09 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:36:13 Destino:
+09-11-2020 12:36:13 BSAS
+09-11-2020 12:36:25 Ingresa a la opcion: Alta Servicio
+09-11-2020 12:36:25 Descripcion del servicio: 
+09-11-2020 12:36:31 Destino:
+09-11-2020 12:36:31 BSAS
+09-11-2020 12:36:39 Fecha:
+09-11-2020 12:36:39 10/10/2020
+09-11-2020 12:36:44 Turno:
+09-11-2020 12:36:44 noche
+09-11-2020 12:37:27 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:37:31 Destino:
+09-11-2020 12:37:31 MDQ
+09-11-2020 12:37:47 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:37:51 Destino:
+09-11-2020 12:37:51 BSAS
+09-11-2020 12:38:21 Cierra sesion
+ ===================================================
+09-11-2020 12:51:45 INICIA SESION EL CLIENTE Maria
+ ===================================================
+09-11-2020 12:52:01 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:52:05 Destino:
+09-11-2020 12:52:05 MDQ
+09-11-2020 12:52:15 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:52:19 Destino:
+09-11-2020 12:52:19 BSAS
+09-11-2020 12:52:54 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:53:00 Turno:
+09-11-2020 12:53:00 manana
+09-11-2020 12:53:13 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:53:16 Turno:
+09-11-2020 12:53:16 tarde
+09-11-2020 12:53:28 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:53:31 Turno:
+09-11-2020 12:53:31 noche
+09-11-2020 12:54:09 Ingresa a la opcion: Alta Servicio
+09-11-2020 12:54:09 Descripcion del servicio: 
+09-11-2020 12:54:14 Destino:
+09-11-2020 12:54:14 BSAS
+09-11-2020 12:54:17 Fecha:
+09-11-2020 12:54:17 12/12/2020
+09-11-2020 12:54:23 Turno:
+09-11-2020 12:54:23 noche
+09-11-2020 12:54:31 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:54:41 Fecha:
+09-11-2020 12:54:41 11/12/1996
+09-11-2020 12:54:49 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:54:58 Fecha:
+09-11-2020 12:54:58 12/12/2020
+09-11-2020 12:55:11 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:55:19 Fecha:
+09-11-2020 12:55:19 10/12/2020
+09-11-2020 12:55:38 Consulta por un servicio con las siguientes caracteristicas
+09-11-2020 12:55:43 Destino:
+09-11-2020 12:55:43 MDQ
+09-11-2020 12:56:27 Cierra sesion
