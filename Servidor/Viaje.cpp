@@ -13,73 +13,73 @@ Viaje crearViaje(char destino[20], char fecha[20], char turno[20]){
 	setEsquema(viaje, esquema);		// EL ESQUEMA YA SE SETEA DESDE SU DECLARACION VACIO, ES DECIR, CON O'S EN TODOS LOS ASIENTOS.
 	escribirFichero(viaje);			// guarda en el fichero el viaje creado
 	return viaje;					//DEVUELVE EL VIAJE CON LOS DATOS SETEADOS POR PARAMETRO Y UN ESQUEMA DE BUS VACIO
-};
+}
 
 /*******************************************************///SETTERS
 
 void setDestino(Viaje &viaje, char destino[20]){
 	strcpy(viaje.destino, destino);
-};
+}
 
 void setFecha(Viaje &viaje, char fecha[20]){
 	strcpy(viaje.fecha, fecha);
-};
+}
 
 void setTurno(Viaje &viaje, char turno[20]){
 	strcpy(viaje.turno, turno);
-};
+}
 
 void setEsquema(Viaje &viaje, Esquema &esquema){
 	viaje.esquema = esquema;
-};
+}
 
 //SOLO NECESITO TRABAJAR SOBRE LAS FILAS A, B Y C QUEDANDO EL RESTO DE LAS FILAS ESTATICAS COMO SE DECLARARON EN UN PRINCIPIO.
 void setFilaA(Viaje &viaje, char fila[23]){
 	strcpy(viaje.esquema.fila4, fila);
-};
+}
 void setFilaB(Viaje &viaje, char fila[23]){
 	strcpy(viaje.esquema.fila5, fila);
-};
+}
 void setFilaC(Viaje &viaje, char fila[23]){
 	strcpy(viaje.esquema.fila7, fila);
-};
+}
 
 
 void setFila2(Viaje &viaje, char fila[23]){
 	strcpy(viaje.esquema.fila2, fila);
-};
+}
 
 /*******************************************************///GETTERS
 char* getDestino(Viaje &viaje){
 	return viaje.destino;
-};
+}
 char* getFecha(Viaje &viaje){
 	return viaje.fecha;
-};
+}
 char* getTurno(Viaje &viaje){
 	return viaje.turno;
-};
+}
 char* getFila1(Viaje &viaje){
 	return viaje.esquema.fila1;
-};
+}
 char* getFila2(Viaje &viaje){
 	return viaje.esquema.fila2;
-};
+}
 char* getFila3(Viaje &viaje){
 	return viaje.esquema.fila3;
-};
+}
 char* getFilaA(Viaje &viaje){
 	return viaje.esquema.fila4;
-};
+}
 char* getFilaB(Viaje &viaje){
 	return viaje.esquema.fila5;
 };
 char* getFila6(Viaje &viaje){
 	return viaje.esquema.fila6;
-};
+}
 char* getFilaC(Viaje &viaje){
 	return viaje.esquema.fila7;
-};
+}
 
 /*******************************************************///METODOS
 
@@ -92,7 +92,7 @@ void mostrarEsquema(Viaje &viaje){
 	cout<< getFila6(viaje)<<endl;
 	cout<< getFilaC(viaje)<<endl;
 	cout<<endl;
-};
+}
 
 
 void asignarAsiento(Viaje &viaje, char fila, int columna){
@@ -158,7 +158,7 @@ void asignarAsiento(Viaje &viaje, char fila, int columna){
 		cout<<"No existe el viaje, proceda a dar de alta el servicio"<<endl;
 	}
 
-};
+}
 
 
 void liberarAsiento(Viaje &viaje, char fila, int columna){
@@ -220,7 +220,7 @@ void liberarAsiento(Viaje &viaje, char fila, int columna){
 		cout<<"no existe viaje, favor de crearlo primero"<<endl;
 	}
 
-};
+}
 
 /*****************************************************************************///FICHERO
 
@@ -235,7 +235,7 @@ void escribirFichero(Viaje &viaje){			//escribe un registro al final del fichero
 		fwrite(&viaje,sizeof(viaje),1,fichero);				//sino, escribe toda la estructura en el fichero
 		fclose(fichero);									//cierra fichero
 	}
-};
+}
 
 
 
@@ -251,7 +251,7 @@ void escribirFicheroDestino(Viaje &viaje){			//escribe un registro al final del 
 		fclose(ficheroDestino);
                                         //cierra fichero
 	}
-};
+}
 
 
 void escribirFicheroFecha(Viaje &viaje){			//escribe un registro al final del fichero.
@@ -264,7 +264,7 @@ void escribirFicheroFecha(Viaje &viaje){			//escribe un registro al final del fi
 		fwrite(&viaje,sizeof(viaje),1,ficheroFecha);				//sino, escribe toda la estructura en el fichero
 		fclose(ficheroFecha);									//cierra fichero
 	}
-};
+}
 
 void escribirFicheroTurno(Viaje &viaje){			//escribe un registro al final del fichero.
 
@@ -276,7 +276,7 @@ void escribirFicheroTurno(Viaje &viaje){			//escribe un registro al final del fi
 		fwrite(&viaje,sizeof(viaje),1,ficheroTurno);				//sino, escribe toda la estructura en el fichero
 		fclose(ficheroTurno);									//cierra fichero
 	}
-};
+}
 
 
 void leerFichero(){			//lee el fichero completo
@@ -397,9 +397,11 @@ void consultaPorDestino(char destino[20]){
         	existe=1;
         }
         fread(&viaje, sizeof(Viaje), 1, fichero);
+
     }
     if (existe==0)
         cout<<"No existe servicio con dichos parametros"<<endl;
+
     fclose(fichero);
 }
 
