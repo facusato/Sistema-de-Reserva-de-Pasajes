@@ -15,21 +15,21 @@ int main()
     int intentos=0;
     int fLagConexion=0;
     int opcion=0;
-    do{
-        barraCargando();
-        system("cls");
-        cout<< "...BIENVENIDO AL CLIENTE..."<<endl;
-        cout<< "INGRESE EL IP DEL SERVIDOR"<<endl;
-        cout<< "IP: ";  cin>> ip; cout<< endl;
-        cout<< "INGRESE EL PUERTO"<< endl;
-        cout<< "PUERTO: "; cin>> puerto;
-        crearCliente(cliente,ip,puerto);
-        fLagConexion = cliente.conectado;
-            if(fLagConexion != 0 ){
-                WSACleanup();
-                cout<<endl<<endl;
-            }
-    }while(fLagConexion != 0);
+        do{
+            barraCargando();
+            system("cls");
+            cout<< "...BIENVENIDO AL CLIENTE..."<<endl;
+            cout<< "INGRESE EL IP DEL SERVIDOR"<<endl;
+            cout<< "IP: ";  cin>> ip; cout<< endl;
+            cout<< "INGRESE EL PUERTO"<< endl;
+            cout<< "PUERTO: "; cin>> puerto;
+            crearCliente(cliente,ip,puerto);
+            fLagConexion = cliente.conectado;
+                if(fLagConexion != 0 ){
+                    WSACleanup();
+                    cout<<endl<<endl;
+                }
+        }while(fLagConexion != 0);
 
         while(intentos<3 && respuesta!=3){
             recibirMensaje(cliente);

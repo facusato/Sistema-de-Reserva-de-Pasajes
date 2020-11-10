@@ -43,7 +43,6 @@ void escuchando(Servidor &servidor){
 bool validarCredencial(Servidor &servidor, string usuario){
     servidor.buffer[0] = '\0';
     string password;
-    string txt= ".txt";
     bool valido=false;
     enviarMensaje(servidor,"INGRESE PASSWORD");
     Sleep(1000);
@@ -63,7 +62,6 @@ bool validarCredencial(Servidor &servidor, string usuario){
                     if( (linea==usuario) && (linea2==password)){
                         cout<<"correcto"<<endl;
                         valido=true;
-
                     }
         }
         archivo.close();
@@ -170,25 +168,19 @@ void enviarMensaje(Servidor &servidor,string mensaje){
         }
 }
 
-void enviarArchivo(Servidor &servidor,string ruta)
-    {
-        FILE *File;
-        char *Buffer;
-        unsigned long Size;
-        char nombre[512]= "\0";
-        char rutaChar[1024] = "\0";
-        string mensaje = "Enviando archivo.";
-
-        cout<<mensaje<<endl;
-        enviarMensaje(servidor,mensaje); // manda aviso para que limpie buffer
-
-        strcpy(nombre, &ruta[0]); //Mando ruta y nombre de archivo
-
-        SafeSend(servidor.client, nombre, sizeof(nombre));
-
-        strcpy(rutaChar, &ruta[0]);
-
-        File = fopen(rutaChar, "rb");
+void enviarArchivo(Servidor &servidor,string ruta){
+    FILE *File;
+    char *Buffer;
+    unsigned long Size;
+    char nombre[512]= "\0";
+    char rutaChar[1024] = "\0";
+    string mensaje = "Enviando archivo.";
+    cout<<mensaje<<endl;
+    enviarMensaje(servidor,mensaje); // manda aviso para que limpie buffer
+    strcpy(nombre, &ruta[0]); //Mando ruta y nombre de archivo
+    SafeSend(servidor.client, nombre, sizeof(nombre));
+    strcpy(rutaChar, &ruta[0]);
+    File = fopen(rutaChar, "rb");
 
         if(!File)
         {
@@ -360,11 +352,28 @@ int menuCrearViaje(Servidor &servidor,Viaje &viaje, string usuario){
     enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
     recibirTurno(servidor,viaje,usuario);
-    viaje = crearViaje(viaje.destino,viaje.fecha,viaje.turno);
-    mostrarEsquema(viaje);
-    enviarMensaje(servidor,"Alta correctamente");
+        if (is_file("servicios.bin")==true){
+                if(existeViaje(viaje.destino,viaje.fecha,viaje.turno)==true){
+                    enviarMensaje(servidor,"Ese servicio ya ha sido creado");
+                    Sleep(1000);
+                    ingresarActividadCliente(usuario,""+fechaHora()+" El servicio ya había sido creado");
+                }
+                else{
+                    viaje = crearViaje(viaje.destino,viaje.fecha,viaje.turno);
+                    mostrarEsquema(viaje);
+                    enviarMensaje(servidor,"Alta correctamente");
+                    Sleep(1000);
+                    ingresarActividadCliente(usuario,""+fechaHora()+" El servicio se dio de alta de manera correcta");
+                }
+     }
+     else{
+                viaje = crearViaje(viaje.destino,viaje.fecha,viaje.turno);
+                mostrarEsquema(viaje);
+                enviarMensaje(servidor,"Alta correctamente");
+     }
     return 40;
 }
+
 
 
 
@@ -434,13 +443,11 @@ int filtrarPorTurno(Servidor &servidor,Viaje &viaje, string usuario){
 void ingresarActividadCliente(string usuario, string actividad){
 
     ofstream archivoCliente;
-
     archivoCliente.open(""+usuario+".txt",ios::app);
-    if(archivoCliente.fail()){
-    cout<<"error al abrir o crear el archivo del cliente"<<endl;}
-
+        if(archivoCliente.fail()){
+            cout<<"error al abrir o crear el archivo del cliente"<<endl;
+        }
     archivoCliente <<actividad<<endl;
-
     archivoCliente.close();
 }
 
@@ -455,14 +462,13 @@ string recibirUsuario (Servidor &servidor, string usuario){
 
 
 bool is_file(string file){
- bool existe=false;
- FILE * archivo;
-    if (archivo = fopen(file.c_str(), "rb"))
-    {
-    fclose(archivo);
-    existe=true;
-    }
- return existe;
+    bool existe=false;
+    FILE * archivo;
+        if (archivo = fopen(file.c_str(), "rb")){
+            fclose(archivo);
+            existe=true;
+        }
+    return existe;
 }
 
 int consultaPorDestino1(Servidor &servidor,char destino[20]){
@@ -566,8 +572,6 @@ void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
-        if (fichero==NULL)
-            exit(1);
 
     Viaje viaje;
     int existe=0;			//flag para comprobar si existe el registro buscado.
@@ -671,8 +675,6 @@ void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
-    if (fichero==NULL)
-        exit(1);
 
     Viaje viaje;
     int existe=0;			//flag para comprobar si existe el registro buscado.
@@ -770,5 +772,31 @@ void liberarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna){
 	}
 
 }
+
+bool existeViaje(char destino[20], char fecha[20], char turno[20]){
+
+    FILE *fichero;
+    fichero=fopen("Servicios.bin","r+b");
+
+    Viaje viaje;
+    bool existe=false;
+
+    fread(&viaje, sizeof(Viaje), 1,fichero);
+        while(!feof(fichero))
+        {
+            if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
+            {
+                existe=true;
+                break;
+            }
+         fread(&viaje, sizeof(Viaje), 1, fichero);
+        }
+
+    fclose(fichero);
+
+    return existe;
+}
+
+
 
 

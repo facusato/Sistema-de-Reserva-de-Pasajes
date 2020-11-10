@@ -72,115 +72,14 @@ int main(){
 
     respuesta=recibirMensaje(servidor);
         while(respuesta!=2){
-                /*switch(respuesta){
-                    case 1:
-                        recibirArchivo(servidor);
-                        break;
-                    case 3:
-                        ingresarActividadCliente(usuario, ""+fechaHora()+" Ingresa a la opcion: Alta Servicio");
-                        ingresarActividadCliente(usuario, ""+fechaHora()+" Descripcion del servicio: ");
-                        respuesta=menuCrearViaje(servidor,viaje, usuario);
-                        Sleep(1000);
-                        break;
-                    case 4:
-                        system("cls");
-                        enviarMensaje(servidor,"Entrando a otro menu");
-                        ingresarActividadCliente(usuario,""+fechaHora()+" Ingresa a otro menu");
-                        Sleep(1000);
-                        respuesta=menuAsignarAsiento(servidor,viaje, usuario);
-                        break;
-                    case 5:
-                        system("cls");
-                        ingresarActividadCliente(usuario,""+fechaHora()+" Reserva un asiento");
-                        ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
-                        respuesta=menuAsignarAsiento(servidor,viaje, usuario);
-                        Sleep(1000);
-                        break;
-                    case 6:
-                        system("cls");
-                        ingresarActividadCliente(usuario,""+fechaHora()+" Libera un asiento");
-                        ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
-                        respuesta=menuLiberarAsiento(servidor,viaje, usuario);
-                        enviarMensaje(servidor,"Se libero el asiento correspondiente");
-                        Sleep(1000);
-                        break;
-                    case 7:
-                         if(is_file(servicios)==true){
-                             system("cls");
-                             enviarArchivo(servidor,servicios);
-                             Sleep(1000);
-                         }
-                        else{
-                             enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
-                             Sleep(1000);
-                              }
-                        break;
-                    case 8:
-                        if(is_file(servicios)==true){
-                                system("cls");
-                                ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
-                                filtrarPorDestino(servidor,viaje, usuario);
-                                enviarArchivo(servidor,destino);
-                                Sleep(1000);
-                                remove("Destino.bin");
-                        }
-                        else{
-                                enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
-                                Sleep(1000);
-                                }
-                        break;
-                    case 9:
-                        if(is_file(servicios)==true){
-                                system("cls");
-                                ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
-                                respuesta=filtrarPorFecha(servidor,viaje, usuario);
-                                enviarArchivo(servidor,fecha);
-                                Sleep(1000);
-                                remove("Fecha.bin");
-                                }
-                        else{
-                                 enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
-                                 Sleep(1000);
-                            }
-                        break;
-                    case 10:
-                        if(is_file(servicios)==true){
-                                system("cls");
-                                ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
-                                filtrarPorTurno(servidor,viaje, usuario);
-                                enviarArchivo(servidor,turno);
-                                Sleep(1000);
-                                remove("Turno.bin");
-                        }else{
-                                 enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
-                                 Sleep(1000);
-                            }
-                        break;
-                    case 11:
-                        system("cls");
-                        enviarArchivo(servidor,usuario+extension);
-                        Sleep(1000);
-                        respuesta=90;
-                        break;
-                    case 50:
-                        system("cls");
-                        enviarMensaje(servidor,"ok");
-                        Sleep(1000);
-                        break;
-                   default:
-                        respuesta=recibirMensaje(servidor);
-
-
-                    break;*/
-
                     if(respuesta==1){
                         recibirArchivo(servidor);
                     }
                     else if(respuesta==3){
-                        ingresarActividadCliente(usuario, ""+fechaHora()+" Ingresa a la opcion: Alta Servicio");
-                        ingresarActividadCliente(usuario, ""+fechaHora()+" Descripcion del servicio: ");
-                        respuesta=menuCrearViaje(servidor,viaje, usuario);
-                        Sleep(1000);
+                            ingresarActividadCliente(usuario, ""+fechaHora()+" Ingresa a la opcion: Alta Servicio");
+                            ingresarActividadCliente(usuario, ""+fechaHora()+" Descripcion del servicio: ");
+                            respuesta=menuCrearViaje(servidor,viaje, usuario);
+                            Sleep(1000);
                     }
                     else if(respuesta==4){
                             system("cls");
@@ -218,7 +117,6 @@ int main(){
                                 system("cls");
                                 ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
                                 int a=filtrarPorDestino(servidor,viaje, usuario);
-                                //SI EXISTE EL FILTRAR POR DESTINO ENVIA SINO ENVIA MESAJE QUE NO EXISTE FILTRO
                                     if(a==1){
                                         enviarArchivo(servidor,destino);
                                         Sleep(1000);
@@ -226,6 +124,7 @@ int main(){
                                     }
                                     else{
                                           enviarMensaje(servidor,"No existe el servicio filtrado.");
+                                          Sleep(1000);
                                             }
                                 }
                                 else{
@@ -265,6 +164,7 @@ int main(){
                                     }
                                     else{
                                          enviarMensaje(servidor,"No existe el servicio filtrado.");
+                                         Sleep(1000);
                                     }
                             }
                             else{
