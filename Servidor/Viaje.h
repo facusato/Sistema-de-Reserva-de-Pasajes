@@ -66,12 +66,13 @@ void escribirFichero(Viaje &viaje);
 void escribirFicheroDestino(Viaje &viaje);
 void escribirFicheroFecha(Viaje &viaje);
 void escribirFicheroTurno(Viaje &viaje);
+void escribirFicheroDestinoFechaTurno(Viaje &viaje);
 void leerFichero();
 void modificacionFicheroAsignar(char destino[20], char fecha[20], char turno[20], char fila, int columna );
 void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20], char fila, int columna );
 
 /*****************************************************************************///CONSULTAS
-
+/*
 void consultaPorDestino(char destino[20]);
 void consultaPorFecha(char fecha[20]);
 void consultaPorTurno(char turno[20]);
@@ -79,5 +80,6 @@ void consultaPorDestinoFecha(char destino[20], char fecha[20]);
 void consultaPorDestinoTurno(char destino[20], char turno[20]);
 void consultaPorFechaTurno( char fecha[20], char turno[20]);
 void consultaPorServicio(char destino[20], char fecha[20], char turno[20]);
+*/
 
 #endif

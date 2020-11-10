@@ -278,6 +278,18 @@ void escribirFicheroTurno(Viaje &viaje){			//escribe un registro al final del fi
 	}
 }
 
+void escribirFicheroDestinoFechaTurno(Viaje &viaje){			//escribe un registro al final del fichero.
+
+	FILE *ficheroDestinoFechaTurno;					//crea puntero a fichero
+	ficheroDestinoFechaTurno = fopen("ServicioCompleto.bin","ab");
+	if(ficheroDestinoFechaTurno ==NULL){			//verifica si fichero existe y lo crea añadiendo datos al final sin pisar los datos ya guardados
+		cout<<"no existe fichero"<<endl;					//imprime error en pantalla
+	}else{
+		fwrite(&viaje,sizeof(viaje),1,ficheroDestinoFechaTurno);				//sino, escribe toda la estructura en el fichero
+		fclose(ficheroDestinoFechaTurno);									//cierra fichero
+	}
+}
+
 
 void leerFichero(){			//lee el fichero completo
 
@@ -369,6 +381,8 @@ void modificacionFicheroLiberar(char destino[20], char fecha[20], char turno[20]
 }
 
 /*****************************************************************************///CONSULTAS
+
+/*
 
 void consultaPorDestino(char destino[20]){
 
@@ -596,6 +610,6 @@ void consultaPorServicio(char destino[20], char fecha[20], char turno[20]){
         cout<<"No existe servicio con dichos parametros"<<endl;
     fclose(fichero);
 }
-
+*/
 
 

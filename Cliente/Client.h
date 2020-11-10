@@ -54,6 +54,8 @@ void servicioPorTurno(Cliente &cliente,string usuario);
 
 void servicioPorFecha(Cliente &cliente,string usuario);
 
+void servicioPorDestinoFechaTurno(Cliente &cliente,string usuario);
+
 void lecturaRegistroActividades(string usuario);
 
 void registroDeActividades(Cliente &cliente,string usuario);
