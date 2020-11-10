@@ -27,6 +27,8 @@ void leerFicheroFecha();
 
 void leerFicheroTurno();
 
+void leerFicheroDestinoFechaTurno();
+
 char* getDestino(Viaje &viaje);
 
 char* getFecha(Viaje &viaje);

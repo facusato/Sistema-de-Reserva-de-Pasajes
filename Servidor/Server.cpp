@@ -145,6 +145,12 @@ int recibirMensaje(Servidor &servidor){
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));
                 retorno=11;
             }
+             else if(!strcmp(servidor.buffer, "VER POR DESTINO FECHA TURNO."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=12;
+            }
             else
             {
                 cout << "\nEl cliente dice: " << servidor.buffer << endl;
@@ -437,6 +443,20 @@ int filtrarPorTurno(Servidor &servidor,Viaje &viaje, string usuario){
     Sleep(1000);
     recibirTurno(servidor,viaje, usuario);
     return consultaPorTurno2(servidor,viaje.turno);
+
+}
+
+int filtrarPorServicioCompleto(Servidor &servidor,Viaje &viaje, string usuario){
+    enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
+    Sleep(1000);
+    recibirDestino(servidor,viaje,usuario);
+    enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
+    Sleep(1000);
+    recibirFecha(servidor,viaje,usuario);
+    enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
+    Sleep(1000);
+    recibirTurno(servidor,viaje, usuario);
+    return consultaPorServicioCompleto(servidor,viaje.destino,viaje.fecha,viaje.turno);
 
 }
 
@@ -794,6 +814,38 @@ bool existeViaje(char destino[20], char fecha[20], char turno[20]){
 
     fclose(fichero);
 
+    return existe;
+}
+
+
+int consultaPorServicioCompleto(Servidor &servidor,char destino[20], char fecha[20], char turno[20]){
+
+    FILE *fichero;
+    fichero=fopen("Servicios.bin","rb");
+
+    Viaje viaje;
+    int existe=0;
+    fread(&viaje, sizeof(Viaje), 1, fichero);
+    while(!feof(fichero))
+    {
+        if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)
+        {
+        	cout<<"------------------------"<<endl;
+			cout<< getDestino(viaje)<<endl;
+			cout<< getFecha(viaje)<<endl;
+			cout<< getTurno(viaje)<<endl;
+			cout<<endl;
+			mostrarEsquema(viaje);
+			escribirFicheroDestinoFechaTurno(viaje);
+			cout<<endl;
+			cout<<"------------------------"<<endl;
+        	existe=1;
+        }
+        fread(&viaje, sizeof(Viaje), 1, fichero);
+    }
+    if (existe==0)
+        cout<<"No existe servicio con dichos parametros"<<endl;
+    fclose(fichero);
     return existe;
 }
 

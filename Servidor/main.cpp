@@ -13,6 +13,7 @@ int main(){
     string destino= "Destino.bin";
     string fecha="Fecha.bin";
     string turno="Turno.bin";
+    string servicioCompleto="ServicioCompleto.bin";
     string extension=".txt";
     string usuario;
     Viaje viaje;
@@ -36,8 +37,8 @@ int main(){
     cin>> puerto;
     crearServidor(servidor,puerto);
     //Poner condicion para que si el cliente esta conectado y por 2 min no envia nada lo saque de la conexion
-    //DWORD time_out=120*1000;
-    //int tiempo=setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out));
+   // DWORD time_out=30*1000;
+    //setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out));
     archivo<<"========================================================================="<<endl;
     archivo<<fechaHora();
     archivo<<" Inicia Servidor"<<endl;
@@ -88,11 +89,17 @@ int main(){
                             Sleep(1000);
                             respuesta=menuAsignarAsiento(servidor,viaje, usuario);
                     }else if(respuesta==5){
-                            system("cls");
-                            ingresarActividadCliente(usuario,""+fechaHora()+" Reserva un asiento");
-                            ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
-                            respuesta=menuAsignarAsiento(servidor,viaje, usuario);
-                            Sleep(1000);
+                            if(is_file(servicios)==true){
+                                system("cls");
+                                ingresarActividadCliente(usuario,""+fechaHora()+" Reserva un asiento");
+                                ingresarActividadCliente(usuario,""+fechaHora()+" Servicio: ");
+                                respuesta=menuAsignarAsiento(servidor,viaje, usuario);
+                                Sleep(1000);
+                            }
+                            else{
+                               enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
+                                Sleep(1000);
+                            }
                     }else if (respuesta==6){
                             system("cls");
                             ingresarActividadCliente(usuario,""+fechaHora()+" Libera un asiento");
@@ -177,6 +184,26 @@ int main(){
                             enviarArchivo(servidor,usuario+extension);
                             Sleep(1000);
                             respuesta=90;
+                    }
+                    else if (respuesta==12){
+                            if(is_file(servicios)==true){
+                                system("cls");
+                                ingresarActividadCliente(usuario,""+fechaHora()+" Consulta por un servicio con las siguientes caracteristicas");
+                                int d=filtrarPorServicioCompleto(servidor,viaje, usuario);
+                                    if(d==1){
+                                        enviarArchivo(servidor,servicioCompleto);
+                                        Sleep(1000);
+                                        remove("ServicioCompleto.bin");
+                                    }
+                                    else{
+                                         enviarMensaje(servidor,"No existe el servicio filtrado.");
+                                         Sleep(1000);
+                                    }
+                            }
+                            else{
+                                 enviarMensaje(servidor,"No existe ningun servicio, dar de alta.");
+                                 Sleep(1000);
+                            }
                     }
                     else{
                         enviarMensaje(servidor,"ok");

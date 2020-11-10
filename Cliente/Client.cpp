@@ -145,6 +145,14 @@ void recibirArchivo(Cliente &cliente,string usuario){
             cout<<"Archivo recibido."<<endl;
             cout<<"Se recibieron " << Size << " bytes.";
         }
+        else if(strcmp(nombre,"ServicioCompleto.bin")==0){
+            FILE* File;
+            File = fopen("ServicioCompleto.bin", "wb");
+            fwrite(Buffer, 1, Size, File);
+            fclose(File);
+            cout<<"Archivo recibido."<<endl;
+            cout<<"Se recibieron " << Size << " bytes.";
+        }
         else if(strcmp(nombre,usuarios)==0){
             FILE* File;
             File = fopen(usuarios, "wb");
@@ -153,7 +161,6 @@ void recibirArchivo(Cliente &cliente,string usuario){
             cout<<"Archivo recibido."<<endl;
             cout<<"Se recibieron " << Size << " bytes.";
         }
-
         free(Buffer);
     }
 
@@ -303,7 +310,8 @@ int menuPorFiltros(Cliente &cliente,string usuario){
     cout<<" 1- VER VIAJES POR DESTINO \n"<<endl;
     cout<<" 2- VER VIAJES POR TURNO \n"<<endl;
     cout<<" 3- VER VIAJES POR FECHA \n"<<endl;
-    cout<<" 4- VOLVER AL MENU ANTERIOR \n"<<endl;
+    cout<<" 4- VER VIAJE POR DESTINO-FECHA-TURNO \n"<<endl;
+    cout<<" 5- VOLVER AL MENU ANTERIOR \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
     system("cls");
@@ -318,9 +326,12 @@ int menuPorFiltros(Cliente &cliente,string usuario){
                    servicioPorFecha(cliente,usuario);
                break;
                case 4:
+                   servicioPorDestinoFechaTurno(cliente,usuario);
+               break;
+               case 5:
                    system("cls");
                    cout<<endl;
-                   Sleep(2000);
+                   Sleep(1000);
                    cout<<menuGestionarPasajes(cliente,usuario)<<endl;
                break;
                default:
@@ -490,6 +501,75 @@ void servicioPorTurno(Cliente &cliente,string usuario){
         }
 }
 
+void servicioPorDestinoFechaTurno(Cliente &cliente,string usuario){
+
+    char destino[23];
+    char turno[23];
+    char fecha[23];
+    bool turnoCorrecto=false;
+    bool destinoCorrecto=false;
+    bool fechaCorrecta=false;
+
+    system("cls");
+    enviarMensaje(cliente,"VER POR DESTINO FECHA TURNO.");
+    Sleep(1000);
+    int resp=recibirMensaje(cliente);
+      if(resp!=4){
+            while(destinoCorrecto==false){
+                cin >> destino;
+                        if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
+                            destinoCorrecto=true;
+                        }else{
+                            cout << "Destino Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+                        }
+            }
+            enviarMensaje(cliente,destino);
+            Sleep(1000);
+            recibirMensaje(cliente);
+            //Fecha
+                while(fechaCorrecta==false){
+                    cin >> fecha;
+                        if(strlen(fecha)<=10){
+                            fechaCorrecta=true;
+                        }else{
+                        cout << "Fecha Incorrecta. Por favor, vuelva a ingresarla:" << endl;
+                        }
+                }
+                enviarMensaje(cliente,fecha);
+                Sleep(1000);
+                recibirMensaje(cliente);
+                //turno
+                    while(turnoCorrecto==false){
+                        cin >> turno;
+                            if (strcmp(turno,"manana")==0||strcmp(turno,"tarde")==0||strcmp(turno,"noche")==0){
+                                    turnoCorrecto=true;
+                            }else{
+                            cout << "Turno Incorrecto. Por favor, vuelva a ingresarlo:" << endl;
+                            }
+                    }
+                    enviarMensaje(cliente,turno);
+                    Sleep(1000);
+                    int resp2=recibirMensaje(cliente);
+                        if(resp2==1){
+                        recibirArchivo(cliente,usuario);
+                        system("cls");
+                        leerFicheroDestinoFechaTurno();
+                        Sleep(2000);
+                        system("pause");
+                        enviarMensaje(cliente,"RECIBIDO.");
+                        Sleep(1000);
+                        }
+                        else{
+                        enviarMensaje(cliente,"OK.");
+                        Sleep(1000);
+                        }
+                }
+                else{
+                    enviarMensaje(cliente,"OK.");
+                    Sleep(1000);
+        }
+}
+
 void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],Cliente &cliente){
     bool destinoCorrecto=false;
     bool fechaCorrecta=false;
@@ -497,7 +577,6 @@ void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],C
     Sleep(1000);
     //Destino
     recibirMensaje(cliente);
-
         while(destinoCorrecto==false){
                 cin >> destino;
                         if (strcmp(destino,"MDQ")==0||strcmp(destino,"BSAS")==0){
@@ -533,7 +612,9 @@ void validarDestinoFechaTurno(char destino[23], char fecha[23], char turno[23],C
                 enviarMensaje(cliente,turno);
                 Sleep(1000);
 
+
 }
+
 
 void validarFilaColumna(char fila[5], char columna[5], Cliente &cliente){
     bool filaCorrecta=false;

@@ -13,11 +13,11 @@
 1601947933 source:c:\users\notebook\codeblock\codigo c++\servidor\server.cpp
 	"Server.h"
 
-1605022643 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
+1605040525 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.cpp
 	"Server.h"
 	"Viaje.h"
 
-1605012274 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
+1605040622 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\server.h
 	<iostream>
 	<string>
 	<winsock2.h>
@@ -29,7 +29,7 @@
 	<stdlib.h>
 	"Viaje.h"
 
-1605021944 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
+1605038680 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\main.cpp
 	<iostream>
 	<winsock2.h>
 	"Server.h"
@@ -39,11 +39,11 @@
 	<chrono>
 	"Viaje.h"
 
-1604933283 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.cpp
+1605040571 source:c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.cpp
 	"Viaje.h"
 	<string.h>
 
-1604240714 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.h
+1605040636 c:\users\notebook\sistema-de-reserva-de-pasajes\servidor\viaje.h
 	<string>
 	<iostream>
 

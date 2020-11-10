@@ -90,4 +90,8 @@ void liberarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna);
 
 bool existeViaje(char destino[20], char fecha[20], char turno[20]);
 
+int consultaPorServicioCompleto(Servidor &servidor,char destino[20], char fecha[20], char turno[20]);
+
+int filtrarPorServicioCompleto(Servidor &servidor,Viaje &viaje, string usuario);
+
 #endif // SERVER_H_INCLUDED
