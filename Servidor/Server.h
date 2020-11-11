@@ -68,30 +68,34 @@ int filtrarPorFecha(Servidor &servidor,Viaje &viaje,string usuario);
 
 int filtrarPorTurno(Servidor &servidor,Viaje &viaje,string usuario);
 
+int filtrarPorDestinoFecha(Servidor &servidor,Viaje &viaje, string usuario);
+
+int filtrarPorServicioCompleto(Servidor &servidor,Viaje &viaje, string usuario);
+
 bool is_file(string file);
 
 void ingresarActividadCliente(string usuario, string actividad);
 
 string recibirUsuario (Servidor &servidor, string usuario);
 
-int consultaPorDestino1(Servidor &servidor,char destino[20]);
+int consultaPorDestino(Servidor &servidor,char destino[20]);
 
-int consultaPorFecha2(Servidor &servidor,char fecha[20]);
+int consultaPorFecha(Servidor &servidor,char fecha[20]);
 
-int consultaPorTurno2(Servidor &servidor,char turno[20]);
+int consultaPorTurno(Servidor &servidor,char turno[20]);
 
-void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
-
-void asignarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna);
-
-void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
-
-void liberarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna);
-
-bool existeViaje(char destino[20], char fecha[20], char turno[20]);
+int consultaPorDestinoFecha(Servidor &servidor,char destino[20], char fecha[20]);
 
 int consultaPorServicioCompleto(Servidor &servidor,char destino[20], char fecha[20], char turno[20]);
 
-int filtrarPorServicioCompleto(Servidor &servidor,Viaje &viaje, string usuario);
+void modificacionFicheroAsignar(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
+
+void asignarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna);
+
+void modificacionFicheroLiberar(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna );
+
+void liberarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna);
+
+bool existeViaje(char destino[20], char fecha[20], char turno[20]);
 
 #endif // SERVER_H_INCLUDED

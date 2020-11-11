@@ -1,22 +1,28 @@
 =========================================================================
-10-11-2020 16:34:18 Inicia Servidor
+11-11-2020 12:59:55 Inicia Servidor
 =========================================================================
-10-11-2020 16:34:18 Socket creado. Puerto de escucha: 5000
-10-11-2020 16:34:26 El cliente ingreso al sistema
+11-11-2020 12:59:55 Socket creado. Puerto de escucha: 5000
+11-11-2020 13:00:37 El cliente ingreso al sistema
+11-11-2020 13:04:21 El cliente se retiro de la conexion
 =========================================================================
-10-11-2020 17:38:13 Inicia Servidor
+11-11-2020 13:06:18 Inicia Servidor
 =========================================================================
-10-11-2020 17:38:13 Socket creado. Puerto de escucha: 8000
-10-11-2020 17:38:21 El cliente ingreso al sistema
+11-11-2020 13:06:18 Socket creado. Puerto de escucha: 5000
+11-11-2020 13:06:27 El cliente ingreso al sistema
+11-11-2020 13:06:30 El cliente se retiro de la conexion
 =========================================================================
-10-11-2020 17:42:38 Inicia Servidor
+11-11-2020 13:06:37 Esperando a un nuevo cliente
+11-11-2020 13:07:06 El cliente ingreso al sistema
+11-11-2020 13:10:17 El cliente se retiro de la conexion
 =========================================================================
-10-11-2020 17:42:38 Socket creado. Puerto de escucha: 8000
-10-11-2020 17:42:44 El cliente ingreso al sistema
+11-11-2020 13:12:31 Inicia Servidor
 =========================================================================
-10-11-2020 17:47:20 Inicia Servidor
+11-11-2020 13:12:31 Socket creado. Puerto de escucha: 5000
+11-11-2020 13:12:49 El cliente fallo al logueo en el intento:1
 =========================================================================
-10-11-2020 17:47:20 Socket creado. Puerto de escucha: 5000
-10-11-2020 17:47:29 El cliente ingreso al sistema
-10-11-2020 17:51:02 El cliente se retiro de la conexion
-10-11-2020 17:51:15 El Servidor cerro la conexion
+11-11-2020 13:13:57 Inicia Servidor
+=========================================================================
+11-11-2020 13:13:57 Socket creado. Puerto de escucha: 5000
+11-11-2020 13:14:08 El cliente ingreso al sistema
+11-11-2020 13:14:11 El cliente se retiro de la conexion
+11-11-2020 13:14:23 El Servidor cerro la conexion

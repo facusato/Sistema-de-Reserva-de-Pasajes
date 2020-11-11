@@ -8,6 +8,8 @@ void crearServidor(Servidor &servidor,int puerto){
     servidor.serverAddr.sin_addr.s_addr = INADDR_ANY;
     servidor.serverAddr.sin_family = AF_INET;
     servidor.serverAddr.sin_port = htons(puerto);
+    DWORD time_out=120*1000;
+    setsockopt(servidor.server,SOL_SOCKET,SO_RCVTIMEO,(const char *)&time_out,sizeof(time_out));
     /**Suministra un número a una dirección local a asociar con el socket, ya que
     cuando un socket es creado no cuenta con dirección alguna*/
     bind(servidor.server, (SOCKADDR *)&servidor.serverAddr, sizeof(servidor.serverAddr));
@@ -74,8 +76,12 @@ int recibirMensaje(Servidor &servidor){
       servidor.buffer[0] = '\0';
       int retorno;
       /**Esta rutina lee datos desde un socket conectado es decir recibe el msj*/
-      recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
-            if(!strcmp(servidor.buffer, "Enviando archivo.")){
+     // recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
+            if(recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0)==SOCKET_ERROR){
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));  //reinicia el buffer
+                retorno=-1;
+            }
+            else if(!strcmp(servidor.buffer, "Enviando archivo.")){
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));  //reinicia el buffer
                 retorno= 1;
             }
@@ -150,6 +156,12 @@ int recibirMensaje(Servidor &servidor){
                 cout<< "\n El cliente esta pidiendo el archivo" << endl;
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));
                 retorno=12;
+            }
+              else if(!strcmp(servidor.buffer, "VER POR DESTINO FECHA."))
+            {
+                cout<< "\n El cliente esta pidiendo el archivo" << endl;
+                memset(servidor.buffer, 0, sizeof(servidor.buffer));
+                retorno=13;
             }
             else
             {
@@ -398,7 +410,7 @@ int menuAsignarAsiento(Servidor &servidor,Viaje &viaje, string usuario){
     enviarMensaje(servidor,"Ingrese fila (A | B | C) : ");
     fila=recibirFila(servidor, usuario);
     enviarMensaje(servidor,"Ingrese columna (1 al 20) : ");
-	modificacionFicheroAsignar1(servidor,viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor,usuario));
+	modificacionFicheroAsignar(servidor,viaje.destino,viaje.fecha,viaje.turno,fila,recibirColumna(servidor,usuario));
 	return flag;
 }
 
@@ -416,7 +428,7 @@ int menuLiberarAsiento(Servidor &servidor, Viaje &viaje, string usuario){
     enviarMensaje(servidor,"Ingrese fila: (A | B | C):");
     fila=recibirFila(servidor, usuario);
     enviarMensaje(servidor,"Ingrese columna (1 al 20)");
-    modificacionFicheroLiberar1(servidor,viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor,usuario));
+    modificacionFicheroLiberar(servidor,viaje.destino,viaje.fecha,viaje.turno,fila, recibirColumna(servidor,usuario));
     return 42;
 }
 
@@ -426,7 +438,7 @@ int filtrarPorDestino(Servidor &servidor,Viaje &viaje, string usuario){
     enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
     Sleep(1000);
     recibirDestino(servidor,viaje,usuario);
-    return consultaPorDestino1(servidor,viaje.destino);
+    return consultaPorDestino(servidor,viaje.destino);
 }
 
 int filtrarPorFecha(Servidor &servidor,Viaje &viaje, string usuario){
@@ -434,7 +446,7 @@ int filtrarPorFecha(Servidor &servidor,Viaje &viaje, string usuario){
     enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
     Sleep(1000);
     recibirFecha(servidor,viaje,usuario);
-    return consultaPorFecha2(servidor,viaje.fecha);
+    return consultaPorFecha(servidor,viaje.fecha);
 }
 
 int filtrarPorTurno(Servidor &servidor,Viaje &viaje, string usuario){
@@ -442,8 +454,18 @@ int filtrarPorTurno(Servidor &servidor,Viaje &viaje, string usuario){
     enviarMensaje(servidor,"ingrese turno: (manana | tarde | noche) : ");
     Sleep(1000);
     recibirTurno(servidor,viaje, usuario);
-    return consultaPorTurno2(servidor,viaje.turno);
+    return consultaPorTurno(servidor,viaje.turno);
 
+}
+
+int filtrarPorDestinoFecha(Servidor &servidor,Viaje &viaje, string usuario){
+    enviarMensaje(servidor,"Ingrese destino: (MDQ | BSAS) :");
+    Sleep(1000);
+    recibirDestino(servidor,viaje,usuario);
+    enviarMensaje(servidor,"Ingrese fecha: (dd/mm/aaaa) : ");
+    Sleep(1000);
+    recibirFecha(servidor,viaje,usuario);
+    return consultaPorDestinoFecha(servidor,viaje.destino,viaje.fecha);
 }
 
 int filtrarPorServicioCompleto(Servidor &servidor,Viaje &viaje, string usuario){
@@ -491,7 +513,7 @@ bool is_file(string file){
     return existe;
 }
 
-int consultaPorDestino1(Servidor &servidor,char destino[20]){
+int consultaPorDestino(Servidor &servidor,char destino[20]){
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
@@ -523,7 +545,7 @@ int consultaPorDestino1(Servidor &servidor,char destino[20]){
     return existe;
 }
 
-int consultaPorFecha2(Servidor &servidor,char fecha[20]){
+int consultaPorFecha(Servidor &servidor,char fecha[20]){
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
@@ -554,7 +576,7 @@ int consultaPorFecha2(Servidor &servidor,char fecha[20]){
 }
 
 
-int consultaPorTurno2(Servidor &servidor,char turno[20]){
+int consultaPorTurno(Servidor &servidor,char turno[20]){
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","rb");
@@ -588,7 +610,7 @@ int consultaPorTurno2(Servidor &servidor,char turno[20]){
 }
 
 
-void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna ){
+void modificacionFicheroAsignar(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna ){
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
@@ -601,7 +623,7 @@ void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha
         {
             if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
             {
-                asignarAsiento2(servidor,viaje,fila,columna);				//asigna el asiento al registro leido
+                asignarAsiento(servidor,viaje,fila,columna);				//asigna el asiento al registro leido
                 int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
                 fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
                 fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
@@ -619,7 +641,7 @@ void modificacionFicheroAsignar1(Servidor &servidor,char destino[20], char fecha
 
 
 
-void asignarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna){
+void asignarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna){
 
 	int columna_aux = columna + 1;
 	char* fila_temporal;
@@ -691,7 +713,7 @@ void asignarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna){
 }
 
 
-void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna ){
+void modificacionFicheroLiberar(Servidor &servidor,char destino[20], char fecha[20], char turno[20], char fila, int columna ){
 
     FILE *fichero;
     fichero=fopen("Servicios.bin","r+b");
@@ -704,7 +726,7 @@ void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha
         {
             if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0 && strcmp(getTurno(viaje),turno) == 0)			//compara si coinciden registro leido con parametro
             {
-                liberarAsiento2(servidor,viaje,fila,columna);				//asigna el asiento al registro leido
+                liberarAsiento(servidor,viaje,fila,columna);				//asigna el asiento al registro leido
                 int pos=ftell(fichero)-sizeof(Viaje);			//lee la posicion del cursor en el fichero
                 fseek(fichero,pos,SEEK_SET);						//reacomoda cursor en fichero
                 fwrite(&viaje, sizeof(Viaje), 1, fichero);		//reescribe fichero modificado, pisando el anterior.
@@ -720,7 +742,7 @@ void modificacionFicheroLiberar1(Servidor &servidor,char destino[20], char fecha
     fclose(fichero);
 }
 
-void liberarAsiento2(Servidor &servidor,Viaje &viaje, char fila, int columna){
+void liberarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna){
 
 	int columna_aux = columna + 1;
 	char* fila_temporal;
@@ -840,6 +862,37 @@ int consultaPorServicioCompleto(Servidor &servidor,char destino[20], char fecha[
 			cout<<endl;
 			cout<<"------------------------"<<endl;
         	existe=1;
+        }
+        fread(&viaje, sizeof(Viaje), 1, fichero);
+    }
+    if (existe==0)
+        cout<<"No existe servicio con dichos parametros"<<endl;
+    fclose(fichero);
+    return existe;
+}
+
+
+int consultaPorDestinoFecha(Servidor &servidor,char destino[20], char fecha[20]){
+
+    FILE *fichero;
+    fichero=fopen("Servicios.bin","rb");
+
+    Viaje viaje;
+    int existe=0;
+    fread(&viaje, sizeof(Viaje), 1, fichero);
+    while(!feof(fichero))
+    {
+        if (strcmp(getDestino(viaje),destino) == 0 && strcmp(getFecha(viaje),fecha) == 0)
+        {
+            cout<<"------------------------"<<endl;
+            cout<< getDestino(viaje)<<endl;
+            cout<< getFecha(viaje)<<endl;
+            cout<<endl;
+            mostrarEsquema(viaje);
+            escribirFicheroDestinoFecha(viaje);
+            cout<<endl;
+            cout<<"------------------------"<<endl;
+            existe=1;
         }
         fread(&viaje, sizeof(Viaje), 1, fichero);
     }
