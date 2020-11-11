@@ -126,6 +126,29 @@ void leerFicheroDestinoFechaTurno(){			//lee el fichero completo
         fclose(fichero);
 }
 
+void leerFicheroDestinoFecha(){
+    FILE *fichero;
+    Viaje viaje;
+    fichero = fopen("ServicioDestinoFecha.bin","rb");
+        if(fichero == NULL){                                    //verifica si fichero existe
+            cout<<"no existe fichero"<<endl;                    //imprime error en pantalla
+        }else{
+            fread(&viaje, sizeof(Viaje),1,fichero);
+                while(! feof(fichero)){
+                    cout<<"------------------------"<<endl;
+                    cout<< getDestino(viaje)<<endl;
+                    cout<< getFecha(viaje)<<endl;
+                    cout<< getTurno(viaje)<<endl;
+                    cout<<endl;
+                    mostrarEsquema(viaje);
+                    cout<<endl;
+                    cout<<"------------------------"<<endl;
+                    fread(&viaje, sizeof(Viaje), 1,fichero);
+                }
+        }
+        fclose(fichero);
+}
+
 
 char* getDestino(Viaje &viaje){
 	return viaje.destino;
