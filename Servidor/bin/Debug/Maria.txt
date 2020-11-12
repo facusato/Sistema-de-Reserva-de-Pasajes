@@ -1,65 +1,100 @@
  ===================================================
-11-11-2020 13:00:37 INICIA SESION EL CLIENTE Maria
+12-11-2020 08:55:15 INICIA SESION EL CLIENTE Maria
  ===================================================
-11-11-2020 13:00:39 Ingresa a la opcion: Alta Servicio
-11-11-2020 13:00:39 Descripcion del servicio: 
-11-11-2020 13:00:42 Destino:
-11-11-2020 13:00:42 MDQ
-11-11-2020 13:00:48 Fecha:
-11-11-2020 13:00:48 19/12/2020
-11-11-2020 13:00:51 Turno:
-11-11-2020 13:00:51 manana
-11-11-2020 13:00:55 Reserva un asiento
-11-11-2020 13:00:55 Servicio: 
-11-11-2020 13:00:58 Destino:
-11-11-2020 13:00:58 MDQ
-11-11-2020 13:01:01 Fecha:
-11-11-2020 13:01:01 19/12/2020
-11-11-2020 13:01:04 Turno:
-11-11-2020 13:01:04 manana
-11-11-2020 13:01:06 Fila: c
-11-11-2020 13:01:07 Columna: 2
-11-11-2020 13:01:22 Reserva un asiento
-11-11-2020 13:01:22 Servicio: 
-11-11-2020 13:01:24 Destino:
-11-11-2020 13:01:24 MDQ
-11-11-2020 13:01:33 Fecha:
-11-11-2020 13:01:33 19/12/2020
-11-11-2020 13:01:35 Turno:
-11-11-2020 13:01:35 manana
-11-11-2020 13:01:41 Fila: a
-11-11-2020 13:01:42 Columna: 12
-11-11-2020 13:01:47 Libera un asiento
-11-11-2020 13:01:47 Servicio: 
-11-11-2020 13:01:51 Destino:
-11-11-2020 13:01:51 MDQ
-11-11-2020 13:01:55 Fecha:
-11-11-2020 13:01:55 19/12/2020
-11-11-2020 13:02:01 Turno:
-11-11-2020 13:02:01 manana
-11-11-2020 13:02:04 Fila: a
-11-11-2020 13:02:05 Columna: 5
-11-11-2020 13:02:10 Libera un asiento
-11-11-2020 13:02:10 Servicio: 
-11-11-2020 13:02:20 Destino:
-11-11-2020 13:02:20 MDQ
-11-11-2020 13:02:35 Fecha:
-11-11-2020 13:02:35 12/10/2020
-11-11-2020 13:02:39 Turno:
-11-11-2020 13:02:39 tarde
-11-11-2020 13:02:42 Fila: a
-11-11-2020 13:02:43 Columna: 2
-11-11-2020 13:03:23 Consulta por un servicio con las siguientes caracteristicas
-11-11-2020 13:03:25 Destino:
-11-11-2020 13:03:25 BSAS
-11-11-2020 13:03:34 Consulta por un servicio con las siguientes caracteristicas
-11-11-2020 13:03:38 Destino:
-11-11-2020 13:03:38 MDQ
-11-11-2020 13:03:52 Consulta por un servicio con las siguientes caracteristicas
-11-11-2020 13:04:00 Fecha:
-11-11-2020 13:04:00 10/2/2020
-11-11-2020 13:04:21 Cierra sesion
- ===================================================
-11-11-2020 13:06:27 INICIA SESION EL CLIENTE Maria
- ===================================================
-11-11-2020 13:06:30 Cierra sesion
+12-11-2020 08:56:50 Ingresa a la opcion: Alta Servicio
+12-11-2020 08:56:50 Descripcion del servicio: 
+12-11-2020 08:56:53 Destino:
+12-11-2020 08:56:53 MDQ
+12-11-2020 08:57:00 Fecha:
+12-11-2020 08:57:00 12/12/2020
+12-11-2020 08:57:05 Turno:
+12-11-2020 08:57:05 manana
+12-11-2020 08:57:10 Ingresa a la opcion: Alta Servicio
+12-11-2020 08:57:10 Descripcion del servicio: 
+12-11-2020 08:57:12 Destino:
+12-11-2020 08:57:12 BSAS
+12-11-2020 08:57:18 Fecha:
+12-11-2020 08:57:18 12/12/2020
+12-11-2020 08:57:21 Turno:
+12-11-2020 08:57:21 noche
+12-11-2020 08:57:22 El servicio se dio de alta de manera correcta
+12-11-2020 08:57:24 Ingresa a la opcion: Alta Servicio
+12-11-2020 08:57:24 Descripcion del servicio: 
+12-11-2020 08:57:26 Destino:
+12-11-2020 08:57:26 MDQ
+12-11-2020 08:57:32 Fecha:
+12-11-2020 08:57:32 25/12/2020
+12-11-2020 08:57:36 Turno:
+12-11-2020 08:57:36 noche
+12-11-2020 08:57:37 El servicio se dio de alta de manera correcta
+12-11-2020 08:57:40 Reserva un asiento
+12-11-2020 08:57:40 Servicio: 
+12-11-2020 08:57:43 Destino:
+12-11-2020 08:57:43 MDQ
+12-11-2020 08:57:48 Fecha:
+12-11-2020 08:57:48 12/12/2020
+12-11-2020 08:57:54 Turno:
+12-11-2020 08:57:54 manana
+12-11-2020 08:58:09 Fila: A
+12-11-2020 08:58:13 Columna: 12
+12-11-2020 08:58:19 Reserva un asiento
+12-11-2020 08:58:19 Servicio: 
+12-11-2020 08:58:22 Destino:
+12-11-2020 08:58:22 BSAS
+12-11-2020 08:58:25 Fecha:
+12-11-2020 08:58:25 12/12/2020
+12-11-2020 08:58:27 Turno:
+12-11-2020 08:58:27 noche
+12-11-2020 08:58:29 Fila: c
+12-11-2020 08:58:31 Columna: 1
+12-11-2020 08:59:56 Libera un asiento
+12-11-2020 08:59:56 Servicio: 
+12-11-2020 09:00:03 Destino:
+12-11-2020 09:00:03 BSAS
+12-11-2020 09:00:08 Fecha:
+12-11-2020 09:00:08 12/12/2020
+12-11-2020 09:00:14 Turno:
+12-11-2020 09:00:14 manana
+12-11-2020 09:00:17 Fila: a
+12-11-2020 09:00:19 Columna: 12
+12-11-2020 09:00:25 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:00:27 Destino:
+12-11-2020 09:00:27 MDQ
+12-11-2020 09:00:37 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:00:50 Destino:
+12-11-2020 09:00:50 BSAS
+12-11-2020 09:01:12 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:01:16 Turno:
+12-11-2020 09:01:16 tarde
+12-11-2020 09:01:26 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:01:28 Turno:
+12-11-2020 09:01:28 noche
+12-11-2020 09:01:43 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:01:45 Turno:
+12-11-2020 09:01:45 manana
+12-11-2020 09:02:03 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:02:08 Fecha:
+12-11-2020 09:02:08 12/12/2020
+12-11-2020 09:02:18 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:02:22 Fecha:
+12-11-2020 09:02:22 10/12/2020
+12-11-2020 09:02:31 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:02:34 Destino:
+12-11-2020 09:02:34 MDQ
+12-11-2020 09:02:40 Fecha:
+12-11-2020 09:02:40 12/12/2020
+12-11-2020 09:02:42 Turno:
+12-11-2020 09:02:42 manana
+12-11-2020 09:02:55 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:03:02 Destino:
+12-11-2020 09:03:02 BSAS
+12-11-2020 09:03:08 Fecha:
+12-11-2020 09:03:08 12/12/2021
+12-11-2020 09:03:14 Turno:
+12-11-2020 09:03:14 tarde
+12-11-2020 09:03:20 Consulta por un servicio con las siguientes caracteristicas
+12-11-2020 09:03:25 Destino:
+12-11-2020 09:03:25 BSAS
+12-11-2020 09:03:29 Fecha:
+12-11-2020 09:03:29 12/12/2020
+12-11-2020 09:04:03 Cierra sesion

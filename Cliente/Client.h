@@ -62,4 +62,6 @@ void lecturaRegistroActividades(string usuario);
 
 void registroDeActividades(Cliente &cliente,string usuario);
 
+bool verConectividad(Cliente &cliente);
+
 #endif // CLIENT_H_INCLUDED
