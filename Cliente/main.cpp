@@ -40,6 +40,7 @@ int main()
             cin>>password;
             enviarMensaje(cliente,password);
             Sleep(1000);
+            system("cls");
             respuesta=recibirMensaje(cliente);
             intentos++;
         }

@@ -219,6 +219,11 @@ int menu(Cliente &cliente,string usuario){
     cout<<" 4- CERRAR SESION \n"<<endl;
     cout << "\n INGRESE LA OPCION DESEADA: ";
     cin>>opcion;
+    if(verConectividad(cliente)==false){
+            cout<<"\n Cliente desconectado por inactividad\n"<<endl;
+            system("pause");
+            exit(EXIT_SUCCESS);
+    }
     system("cls");
     switch(opcion){
                case 1:
@@ -743,3 +748,16 @@ void registroDeActividades(Cliente &cliente,string usuario){
     enviarMensaje(cliente,"RECIBIDO.");
     Sleep(1000);
 }
+
+bool verConectividad(Cliente &cliente){ /** Sirve para comprobar si el servidor esta apto para recibir y enviar mensajes**/
+        bool conectado =true;
+        u_long iMode= 1;
+        ioctlsocket(cliente.server,FIONBIO,&iMode); //Funcion que convierte la conexion en blocking-sockets a non-blocking sockets.
+        memset(cliente.buffer, 0, sizeof(cliente.buffer));
+          if(recibirMensaje(cliente)==2){
+            conectado = false;
+            }
+        iMode = 0;
+        ioctlsocket(cliente.server,FIONBIO,&iMode); //Funcion que convierte la conexion en non-blocking sockets a blocking-sockets.
+        return conectado;
+    }
