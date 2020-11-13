@@ -76,7 +76,6 @@ int recibirMensaje(Servidor &servidor){
       servidor.buffer[0] = '\0';
       int retorno;
       /**Esta rutina lee datos desde un socket conectado es decir recibe el msj*/
-     // recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
             if(recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0)==SOCKET_ERROR){
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));  //reinicia el buffer
                 retorno=-1;

@@ -1,4 +1,4 @@
-Juan;Juan_20
+Juan;Juan-2020
 Maria;maria*123
 Gustavo;-Gus*tavo
 Josefina;2020_jose

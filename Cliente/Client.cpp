@@ -282,6 +282,7 @@ int menuGestionarPasajes(Cliente &cliente,string usuario){
                case 1:
                    enviarMensaje(cliente,"RESERVAR UN ASIENTO.");
                    validarDestinoFechaTurno(destino,fecha,turno,cliente);
+
                    validarFilaColumna(fila,columna,cliente);
                break;
                case 2:
