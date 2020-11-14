@@ -1,0 +1,40 @@
+=========================================================================
+13-11-2020 13:22:59 Inicia Servidor
+=========================================================================
+13-11-2020 13:22:59 Socket creado. Puerto de escucha: 5000
+13-11-2020 13:23:10 El cliente fallo al logueo en el intento:1
+13-11-2020 13:23:30 El cliente fallo al logueo en el intento:2
+13-11-2020 13:23:32 El cliente fallo al logueo en el intento:3
+13-11-2020 13:23:32 El cliente se retiro de la conexion
+=========================================================================
+13-11-2020 13:23:42 Esperando a un nuevo cliente
+13-11-2020 13:24:05 El cliente fallo al logueo en el intento:1
+13-11-2020 13:24:11 El cliente fallo al logueo en el intento:2
+13-11-2020 13:24:16 El cliente fallo al logueo en el intento:3
+13-11-2020 13:24:17 El cliente se retiro de la conexion
+=========================================================================
+13-11-2020 13:24:23 Esperando a un nuevo cliente
+13-11-2020 13:24:50 El cliente fallo al logueo en el intento:1
+13-11-2020 13:24:56 El cliente fallo al logueo en el intento:2
+13-11-2020 13:25:05 El cliente ingreso al sistema
+13-11-2020 13:37:44 El cliente se retiro de la conexion
+=========================================================================
+13-11-2020 13:38:17 Esperando a un nuevo cliente
+13-11-2020 13:38:40 El cliente ingreso al sistema
+13-11-2020 13:43:42 El cliente se retiro de la conexion
+=========================================================================
+13-11-2020 13:44:22 Esperando a un nuevo cliente
+13-11-2020 13:44:55 El cliente ingreso al sistema
+13-11-2020 13:45:23 El cliente se retiro de la conexion
+13-11-2020 13:45:31 El Servidor cerro la conexion
+=========================================================================
+13-11-2020 13:46:55 Inicia Servidor
+=========================================================================
+13-11-2020 13:46:55 Socket creado. Puerto de escucha: 5010
+13-11-2020 13:47:20 El cliente ingreso al sistema
+13-11-2020 13:51:04 El cliente se retiro de la conexion
+=========================================================================
+13-11-2020 13:51:35 Esperando a un nuevo cliente
+13-11-2020 13:52:16 El cliente ingreso al sistema
+13-11-2020 13:52:24 El cliente se retiro de la conexion
+13-11-2020 13:52:32 El Servidor cerro la conexion
