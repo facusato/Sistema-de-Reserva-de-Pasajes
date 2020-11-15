@@ -1,0 +1,231 @@
+ ===================================================
+13-11-2020 13:25:05 INICIA SESION EL CLIENTE Gustavo
+ ===================================================
+13-11-2020 13:25:55 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:25:55 Descripcion del servicio: 
+13-11-2020 13:26:19 Destino:
+13-11-2020 13:26:19 MDQ
+13-11-2020 13:26:24 Fecha:
+13-11-2020 13:26:24 3/11/2020
+13-11-2020 13:26:27 Turno:
+13-11-2020 13:26:27 manana
+13-11-2020 13:26:30 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:26:30 Descripcion del servicio: 
+13-11-2020 13:26:32 Destino:
+13-11-2020 13:26:32 MDQ
+13-11-2020 13:26:37 Fecha:
+13-11-2020 13:26:37 3/11/2020
+13-11-2020 13:26:38 Turno:
+13-11-2020 13:26:39 tarde
+13-11-2020 13:26:40 El servicio se dio de alta de manera correcta
+13-11-2020 13:26:43 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:26:43 Descripcion del servicio: 
+13-11-2020 13:26:48 Destino:
+13-11-2020 13:26:48 MDQ
+13-11-2020 13:26:57 Fecha:
+13-11-2020 13:26:57 3/11/2020
+13-11-2020 13:27:04 Turno:
+13-11-2020 13:27:04 tarde
+13-11-2020 13:27:05 El servicio ya había sido creado
+13-11-2020 13:27:10 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:27:10 Descripcion del servicio: 
+13-11-2020 13:27:13 Destino:
+13-11-2020 13:27:13 MDQ
+13-11-2020 13:27:18 Fecha:
+13-11-2020 13:27:18 3/11/2020
+13-11-2020 13:27:20 Turno:
+13-11-2020 13:27:20 noche
+13-11-2020 13:27:21 El servicio se dio de alta de manera correcta
+13-11-2020 13:27:23 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:27:23 Descripcion del servicio: 
+13-11-2020 13:27:29 Destino:
+13-11-2020 13:27:29 MDQ
+13-11-2020 13:27:33 Fecha:
+13-11-2020 13:27:33 4/11/2020
+13-11-2020 13:27:35 Turno:
+13-11-2020 13:27:35 manana
+13-11-2020 13:27:36 El servicio se dio de alta de manera correcta
+13-11-2020 13:27:39 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:27:39 Descripcion del servicio: 
+13-11-2020 13:27:41 Destino:
+13-11-2020 13:27:41 MDQ
+13-11-2020 13:27:46 Fecha:
+13-11-2020 13:27:46 5/11/2020
+13-11-2020 13:27:48 Turno:
+13-11-2020 13:27:48 tarde
+13-11-2020 13:27:49 El servicio se dio de alta de manera correcta
+13-11-2020 13:27:53 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:27:53 Descripcion del servicio: 
+13-11-2020 13:27:56 Destino:
+13-11-2020 13:27:56 MDQ
+13-11-2020 13:28:00 Fecha:
+13-11-2020 13:28:00 6/11/2020
+13-11-2020 13:28:02 Turno:
+13-11-2020 13:28:02 noche
+13-11-2020 13:28:03 El servicio se dio de alta de manera correcta
+13-11-2020 13:28:11 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:28:11 Descripcion del servicio: 
+13-11-2020 13:28:14 Destino:
+13-11-2020 13:28:14 BSAS
+13-11-2020 13:28:19 Fecha:
+13-11-2020 13:28:19 3/11/2020
+13-11-2020 13:28:21 Turno:
+13-11-2020 13:28:21 tarde
+13-11-2020 13:28:22 El servicio se dio de alta de manera correcta
+13-11-2020 13:28:29 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:28:29 Descripcion del servicio: 
+13-11-2020 13:28:31 Destino:
+13-11-2020 13:28:31 BSAS
+13-11-2020 13:28:36 Fecha:
+13-11-2020 13:28:36 3/11/2020
+13-11-2020 13:28:38 Turno:
+13-11-2020 13:28:38 noche
+13-11-2020 13:28:39 El servicio se dio de alta de manera correcta
+13-11-2020 13:28:44 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:28:44 Descripcion del servicio: 
+13-11-2020 13:28:48 Destino:
+13-11-2020 13:28:48 BSAS
+13-11-2020 13:28:52 Fecha:
+13-11-2020 13:28:52 4/11/2020
+13-11-2020 13:28:54 Turno:
+13-11-2020 13:28:54 manana
+13-11-2020 13:28:56 El servicio se dio de alta de manera correcta
+13-11-2020 13:28:59 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:28:59 Descripcion del servicio: 
+13-11-2020 13:29:03 Destino:
+13-11-2020 13:29:03 BSAS
+13-11-2020 13:29:08 Fecha:
+13-11-2020 13:29:08 4/11/2020
+13-11-2020 13:29:10 Turno:
+13-11-2020 13:29:10 tarde
+13-11-2020 13:29:11 El servicio se dio de alta de manera correcta
+13-11-2020 13:29:14 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:29:14 Descripcion del servicio: 
+13-11-2020 13:29:16 Destino:
+13-11-2020 13:29:16 BSAS
+13-11-2020 13:29:20 Fecha:
+13-11-2020 13:29:20 5/11/2020
+13-11-2020 13:29:22 Turno:
+13-11-2020 13:29:22 noche
+13-11-2020 13:29:23 El servicio se dio de alta de manera correcta
+13-11-2020 13:29:27 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:29:27 Descripcion del servicio: 
+13-11-2020 13:29:29 Destino:
+13-11-2020 13:29:29 BSAS
+13-11-2020 13:29:34 Fecha:
+13-11-2020 13:29:34 6/11/2020
+13-11-2020 13:29:38 Turno:
+13-11-2020 13:29:38 noche
+13-11-2020 13:29:39 El servicio se dio de alta de manera correcta
+13-11-2020 13:29:53 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:30:01 Destino:
+13-11-2020 13:30:01 MDQ
+13-11-2020 13:30:29 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:30:35 Fecha:
+13-11-2020 13:30:35 3/11/2020
+13-11-2020 13:31:07 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:31:17 Destino:
+13-11-2020 13:31:17 MDQ
+13-11-2020 13:31:23 Fecha:
+13-11-2020 13:31:23 3/11/2020
+13-11-2020 13:31:54 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:32:01 Destino:
+13-11-2020 13:32:01 MDQ
+13-11-2020 13:32:07 Fecha:
+13-11-2020 13:32:07 3/11/2020
+13-11-2020 13:32:09 Turno:
+13-11-2020 13:32:09 tarde
+13-11-2020 13:32:30 Ingresa a la opcion: Alta Servicio
+13-11-2020 13:32:30 Descripcion del servicio: 
+13-11-2020 13:32:47 Destino:
+13-11-2020 13:32:47 MDQ
+13-11-2020 13:32:51 Fecha:
+13-11-2020 13:32:51 3/11/2020
+13-11-2020 13:32:56 Turno:
+13-11-2020 13:32:56 tarde
+13-11-2020 13:32:57 El servicio ya había sido creado
+13-11-2020 13:33:03 Reserva un asiento
+13-11-2020 13:33:03 Servicio: 
+13-11-2020 13:33:12 Destino:
+13-11-2020 13:33:12 MDQ
+13-11-2020 13:33:18 Fecha:
+13-11-2020 13:33:18 3/11/2020
+13-11-2020 13:33:20 Turno:
+13-11-2020 13:33:20 tarde
+13-11-2020 13:33:23 Fila: a
+13-11-2020 13:33:24 Columna: 1
+13-11-2020 13:33:29 Reserva un asiento
+13-11-2020 13:33:29 Servicio: 
+13-11-2020 13:33:31 Destino:
+13-11-2020 13:33:31 MDQ
+13-11-2020 13:33:35 Fecha:
+13-11-2020 13:33:35 3/11/2020
+13-11-2020 13:33:39 Turno:
+13-11-2020 13:33:39 tarde
+13-11-2020 13:33:42 Fila: b
+13-11-2020 13:33:44 Columna: 1
+13-11-2020 13:33:51 Reserva un asiento
+13-11-2020 13:33:51 Servicio: 
+13-11-2020 13:33:53 Destino:
+13-11-2020 13:33:53 MDQ
+13-11-2020 13:33:57 Fecha:
+13-11-2020 13:33:57 3/11/2020
+13-11-2020 13:33:59 Turno:
+13-11-2020 13:33:59 tarde
+13-11-2020 13:34:02 Fila: c
+13-11-2020 13:34:04 Columna: 1
+13-11-2020 13:34:18 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:34:21 Destino:
+13-11-2020 13:34:21 MDQ
+13-11-2020 13:34:26 Fecha:
+13-11-2020 13:34:26 3/11/2020
+13-11-2020 13:34:29 Turno:
+13-11-2020 13:34:29 tarde
+13-11-2020 13:34:55 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:34:58 Destino:
+13-11-2020 13:34:58 BSAS
+13-11-2020 13:35:04 Fecha:
+13-11-2020 13:35:04 5/11/2020
+13-11-2020 13:35:08 Turno:
+13-11-2020 13:35:08 noche
+13-11-2020 13:35:23 Reserva un asiento
+13-11-2020 13:35:23 Servicio: 
+13-11-2020 13:35:27 Destino:
+13-11-2020 13:35:27 BSAS
+13-11-2020 13:35:32 Fecha:
+13-11-2020 13:35:32 5/11/2020
+13-11-2020 13:35:34 Turno:
+13-11-2020 13:35:34 noche
+13-11-2020 13:35:37 Fila: a
+13-11-2020 13:35:38 Columna: 18
+13-11-2020 13:35:42 Reserva un asiento
+13-11-2020 13:35:42 Servicio: 
+13-11-2020 13:35:44 Destino:
+13-11-2020 13:35:44 BSAS
+13-11-2020 13:35:50 Fecha:
+13-11-2020 13:35:50 5/11/2020
+13-11-2020 13:35:56 Turno:
+13-11-2020 13:35:56 noche
+13-11-2020 13:35:59 Fila: a
+13-11-2020 13:36:00 Columna: 19
+13-11-2020 13:36:05 Reserva un asiento
+13-11-2020 13:36:05 Servicio: 
+13-11-2020 13:36:08 Destino:
+13-11-2020 13:36:08 BSAS
+13-11-2020 13:36:13 Fecha:
+13-11-2020 13:36:13 5/11/2020
+13-11-2020 13:36:16 Turno:
+13-11-2020 13:36:16 noche
+13-11-2020 13:36:19 Fila: c
+13-11-2020 13:36:21 Columna: 20
+13-11-2020 13:36:30 Consulta por un servicio con las siguientes caracteristicas
+13-11-2020 13:36:34 Destino:
+13-11-2020 13:36:34 BSAS
+13-11-2020 13:36:39 Fecha:
+13-11-2020 13:36:39 5/11/2020
+13-11-2020 13:36:43 Turno:
+13-11-2020 13:36:43 noche
+ ===================================================
+13-11-2020 13:52:16 INICIA SESION EL CLIENTE Gustavo
+ ===================================================
+13-11-2020 13:52:24 Cierra sesion

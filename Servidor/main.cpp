@@ -232,9 +232,11 @@ int main(){
 
     archivo<<fechaHora();
     archivo<<" El cliente se retiro de la conexion"<<endl;
-    ingresarActividadCliente(usuario,""+fechaHora()+" Cierra sesion");
-    Sleep(1000);
+        if(intentos<3){
+            ingresarActividadCliente(usuario,""+fechaHora()+" Cierra sesion");
+        }
     enviarMensaje(servidor,"Se cerro el socket.");
+    Sleep(1000);
 
             system("cls");
             cout<<" 1- ESPERAR UN NUEVO CLIENTE \n"<<endl;

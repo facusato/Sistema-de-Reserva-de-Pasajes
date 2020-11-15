@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1605267623 source:c:\users\notebook\sistema-de-reserva-de-pasajes\interpretedearchivobinario\main.cpp
+	<iostream>
+	<cstdlib>
+

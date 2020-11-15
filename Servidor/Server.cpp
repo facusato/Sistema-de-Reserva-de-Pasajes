@@ -76,7 +76,6 @@ int recibirMensaje(Servidor &servidor){
       servidor.buffer[0] = '\0';
       int retorno;
       /**Esta rutina lee datos desde un socket conectado es decir recibe el msj*/
-     // recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0);
             if(recv(servidor.client,servidor.buffer, sizeof(servidor.buffer), 0)==SOCKET_ERROR){
                 memset(servidor.buffer, 0, sizeof(servidor.buffer));  //reinicia el buffer
                 retorno=-1;
@@ -647,7 +646,7 @@ void asignarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna){
 	char* fila_temporal;
 	char* fila_temporal1 = getFila2(viaje);		// pasa pisar la linea 2 del esquema (no encontre porque se setea mal dado que en ninguna parte del codigo se toca)
 
-	if(true){			// validar si viaje existe (por ahora entra siempre)
+	if(true){
 
 
 		if(fila == 'A' ||fila == 'a'){
@@ -746,9 +745,9 @@ void liberarAsiento(Servidor &servidor,Viaje &viaje, char fila, int columna){
 
 	int columna_aux = columna + 1;
 	char* fila_temporal;
-	char* fila_temporal1 = getFila2(viaje);		// pasa pisar la linea 2 del esquema (no encontre porque se setea mal dado que en ninguna parte del codigo se toca)
+	char* fila_temporal1 = getFila2(viaje);
 
-	if(true){			// validar si viaje existe (por ahora entra siempre)
+	if(true){
 
 
 		if(fila == 'A' ||fila == 'a'){
