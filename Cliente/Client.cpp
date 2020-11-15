@@ -748,15 +748,17 @@ void registroDeActividades(Cliente &cliente,string usuario){
     Sleep(1000);
 }
 
-bool verConectividad(Cliente &cliente){ /** Sirve para comprobar si el servidor esta apto para recibir y enviar mensajes**/
+bool verConectividad(Cliente &cliente){
         bool conectado =true;
         u_long iMode= 1;
-        ioctlsocket(cliente.server,FIONBIO,&iMode); //Funcion que convierte la conexion en blocking-sockets a non-blocking sockets.
+        /**Funcion que convierte la conexion en blocking-sockets a non-blocking sockets.*/
+        ioctlsocket(cliente.server,FIONBIO,&iMode); //
         memset(cliente.buffer, 0, sizeof(cliente.buffer));
           if(recibirMensaje(cliente)==2){
             conectado = false;
             }
         iMode = 0;
-        ioctlsocket(cliente.server,FIONBIO,&iMode); //Funcion que convierte la conexion en non-blocking sockets a blocking-sockets.
+        /**Funcion que convierte la conexion en non-blocking sockets a blocking-sockets.*/
+        ioctlsocket(cliente.server,FIONBIO,&iMode);
         return conectado;
     }
